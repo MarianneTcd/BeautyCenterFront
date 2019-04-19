@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-liste-presta',
@@ -7,12 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListePrestaComponent implements OnInit {
   data;
-  constructor( ) { } // private http: Http liaison à la BD
+  constructor(private http: Http) { } // private http: Http liaison à la BD
 
-  ngOnInit() { //this.http.get('http://localhost:8080/users').subscribe(response => {
-                //console.log(response.json());
-                //this.data = response.json();
-                //});
+  ngOnInit() {
+    this.http.get('http://localhost:8080/prestations').subscribe(response => {
+    console.log(response.json());
+    this.data = response.json();
+                });
   }
 
 }
