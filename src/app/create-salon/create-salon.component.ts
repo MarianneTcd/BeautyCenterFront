@@ -3,6 +3,8 @@ import { Http } from '@angular/http';
 import { Salon } from '../model/Salon';
 import { Prestation } from '../model/Prestation';
 
+
+
 @Component({
   selector: 'app-create-salon',
   templateUrl: './create-salon.component.html',
@@ -36,6 +38,7 @@ export class CreateSalonComponent implements OnInit {
   createPrestation(){
     this.http.post('http://localhost:8080/prestations', this.prestation).subscribe(prestationData=>{
       console.log(prestationData);
+      this.affCach();
     }, err => {
       console.log(err);
     });
