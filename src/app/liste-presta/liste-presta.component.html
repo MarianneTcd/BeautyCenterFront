@@ -1,3 +1,33 @@
-<p>
-  liste-presta works!
-</p>
+<!DOCTYPE html>
+
+<head>
+
+</head>
+
+<body>
+  <div class="container text-center">
+  <div class="card" >
+    <div class="card-header"><h2>Liste des prestations proposées</h2></div>
+    <table class="table" >
+      <tr>
+        <th>Prestation</th>
+        <th>Temps</th>
+        <th>Prix</th>
+      </tr>
+      <tr> <!-- <tr *ngFor="let u of data"> -->
+        <td>Coiffure {{prestation.nom}}</td>
+        <td>1 heure {{prestation.temps}}</td>
+        <td>50 euros {{prestationprix}}</td>
+        <td><button type="submit" class="btn btn-primary">Prendre rdv</button></td>
+      </tr>
+      <tr>
+        <td>prestaB {{prestation.nom}}</td>
+        <td>X minutes {{prestation.temps}}</td>
+        <td>X euros {{prestationprix}}</td>
+        <td><button type="submit" class="btn btn-primary">Prendre rdv</button></td>
+      </tr>
+    </table>
+
+  </div>
+  </div>
+</body>
