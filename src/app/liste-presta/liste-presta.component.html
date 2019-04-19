@@ -12,18 +12,12 @@
       <tr>
         <th>Prestation</th>
         <th>Temps</th>
-        <th>Prix</th>
+        <th>Personnel</th>
       </tr>
       <tr *ngFor="let u of data">
-        <td>Coiffure {{prestation.nom}}</td>
-        <td>1 heure {{prestation.temps}}</td>
-        <td>50 euros {{prestationprix}}</td>
-        <td><button type="submit" class="btn btn-primary" href="#">Prendre rdv</button></td> <!-- lien vers le planning ou un formulaire de réservation -->
-      </tr>
-      <tr>
-        <td>prestaB {{prestation.nom}}</td>
-        <td>X minutes {{prestation.temps}}</td>
-        <td>X euros {{prestationprix}}</td>
+        <td>{{u.titre}}</td>
+        <td>{{u.duree}}</td>
+        <td>{{u.nbPersonnel}}</td>
         <td><button type="submit" class="btn btn-primary" href="#">Prendre rdv</button></td> <!-- lien vers le planning ou un formulaire de réservation -->
       </tr>
     </table>
