@@ -14,7 +14,7 @@
         <th>Temps</th>
         <th>Prix</th>
       </tr>
-      <tr> <!-- <tr *ngFor="let u of data"> -->
+      <tr *ngFor="let u of data">
         <td>Coiffure {{prestation.nom}}</td>
         <td>1 heure {{prestation.temps}}</td>
         <td>50 euros {{prestationprix}}</td>
