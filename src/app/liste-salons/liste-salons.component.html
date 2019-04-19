@@ -1,3 +1,32 @@
-<p>
-  liste-salons works!
-</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10    ">
+      <div class="card" >
+        <h5 class="card-header" style="background-color: rgb(252, 134, 159)">Salons</h5>
+        <div class="card-body" style="background-color: rgb(252, 183, 175)"> 
+          <h5 class="card-title" >Liste des salons</h5>
+          <br>
+          <table class="table" style="background-color: rgb(250, 130, 117)">
+            <tr>
+              <th>Id</th>
+              <th>Intitulé</th>
+              <th>date</th>
+              <th>Mail</th>
+              <th>adresse</th>
+              <th>note</th>
+              <th>téléphone</th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let u of data">
+              <td>{{u.id}}</td>
+              <td>{{u.nomSalon}}</td>
+              <td>{{u.date}}</td>
+              <td>{{u.mailManager}}</td>
+              <td>{{u.note}}</td>
+              <td>{{u.tel}}</td>
+              <td><a href={{u.lien}} class="btn btn-primary">Link of the Show</a></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
