@@ -13,18 +13,16 @@
               <th>date</th>
               <th>Mail</th>
               <th>adresse</th>
-              <th>note</th>
-              <th>téléphone</th>
+
               <th></th>
             </tr>
-            <tr *ngFor="let u of data">
+            <tr *ngFor="let u of salooon">
               <td>{{u.id}}</td>
+              <td>{{u.contact}}</td>
+              <td>{{u.dateSalon}}</td>
               <td>{{u.nomSalon}}</td>
-              <td>{{u.date}}</td>
-              <td>{{u.mailManager}}</td>
-              <td>{{u.note}}</td>
-              <td>{{u.tel}}</td>
-              <td><a href={{u.lien}} class="btn btn-primary">Link of the Show</a></td>
+
+             <td><a href={{u.lien}} class="btn btn-primary">Link of the Show</a></td>
             </tr>
           </table>
         </div>
