@@ -1,3 +1,71 @@
-<p>
-  create-salon works!
-</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center">Création d'un salon</h5>
+          <form (ngSubmit)="createSalon()">
+            <div class="form-group">
+              <label >Nom du salon</label>
+              <input type="text" #nomAction="ngModel" class="form-control" placeholder="Entrer le nom" required [(ngModel)]="salon.nomSalon" name="nomSalon">
+            </div>
+            <div class="form-group">
+              <label >Date du salon</label>
+              <input type="date" #nomDate="ngModel" class="form-control" placeholder="Entrer la date" required [(ngModel)]="salon.dateSalon" name="dateSalon">
+            </div>
+            <div class="form-group">
+              <label >Mail de contact</label>
+              <input type="email" #nomContact="ngModel" class="form-control" placeholder="Entrer le mail" required [(ngModel)]="salon.contact" name="contact">
+              <small class="form-text text-muted">Votre mail ne sera pas utilisé à des fins commerciales</small>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Valider</button>
+                <button type="button" class="btn btn-danger">Retour</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title text-center">Liste des prestations</h6>
+          <table class="table d-flex justify-content-center">
+              <tr>
+                <th>Prestation</th>
+                <th>Durée</th>
+                <th>Personnel necessaire</th>
+              </tr>
+              <tr *ngFor="let u of data">
+                  <th class="dim"><input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">{{u.titre}}</label>
+                  </th>
+                  <th class="dim">
+                    <label class="form-check-label" for="exampleCheck1">{{u.duree}} min</label>
+                  </th>
+                  <th class="dim">
+                      <label class="form-check-label" for="exampleCheck1">{{u.nbPersonnel}}</label>
+                    </th>
+            </tr>
+          </table>
+          <div style="text-align: center">
+            <div *ngIf="show">
+              <div class="form-row">
+                <div class="col">
+                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Prestation" required>
+                </div>
+                <div class="col">
+                  <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Durée (min)" required>
+                </div>
+                <div class="col">
+                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                      placeholder="Personne" required>
+                </div>
+              </div>
+              <button class="btn btn-info">Ajouter</button>
+            </div>
+            <button (click)="affCach()" class="btn btn-info">Ajouter une prestation</button>
+
+          </div>
+        </div>
+      </div>

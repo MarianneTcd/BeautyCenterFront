@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 import { CreateSalonComponent } from './create-salon/create-salon.component';
 import { ListeSalonsComponent } from './liste-salons/liste-salons.component';
 import { ListePrestaComponent } from './liste-presta/liste-presta.component';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,9 @@ import { ListePrestaComponent } from './liste-presta/liste-presta.component';
     ListePrestaComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]

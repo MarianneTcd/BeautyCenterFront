@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-liste-salons',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListeSalonsComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private http:Http) { }
+  
+  salooon;
   ngOnInit() {
-  }
+    this.http.get('http://localhost:8080/salons')
+    .subscribe(
+      response=>{
+        this.salooon = response.json();
+      }
+    );
+}
 
 }
