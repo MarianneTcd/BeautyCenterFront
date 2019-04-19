@@ -7,7 +7,7 @@
 <body>
   <div class="container text-center">
   <div class="card" >
-    <div class="card-header"><h2>Liste des prestations proposées</h2></div>
+    <div class="card-header"><h4>Liste des prestations proposées</h4></div>
     <table class="table" >
       <tr>
         <th>Prestation</th>
@@ -18,13 +18,13 @@
         <td>Coiffure {{prestation.nom}}</td>
         <td>1 heure {{prestation.temps}}</td>
         <td>50 euros {{prestationprix}}</td>
-        <td><button type="submit" class="btn btn-primary">Prendre rdv</button></td>
+        <td><button type="submit" class="btn btn-primary" href="#">Prendre rdv</button></td> <!-- lien vers le planning ou un formulaire de réservation -->
       </tr>
       <tr>
         <td>prestaB {{prestation.nom}}</td>
         <td>X minutes {{prestation.temps}}</td>
         <td>X euros {{prestationprix}}</td>
-        <td><button type="submit" class="btn btn-primary">Prendre rdv</button></td>
+        <td><button type="submit" class="btn btn-primary" href="#">Prendre rdv</button></td> <!-- lien vers le planning ou un formulaire de réservation -->
       </tr>
     </table>
 
