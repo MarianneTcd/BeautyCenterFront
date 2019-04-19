@@ -7,19 +7,17 @@ import { Http } from '@angular/http';
   styleUrls: ['./liste-salons.component.css']
 })
 export class ListeSalonsComponent implements OnInit {
-  constructor() { }
-  ngOnInit() {}
-  /*constructor(private http:Http) { }
+
+  constructor(private http:Http) { }
   
-  data;
+  salooon;
   ngOnInit() {
-    this.http.get('http://localhost:8080/users')
+    this.http.get('http://localhost:8080/salons')
     .subscribe(
       response=>{
-        console.log(response.json());
-        this.data = response.json();
+        this.salooon = response.json();
       }
     );
-}*/
+}
 
 }
