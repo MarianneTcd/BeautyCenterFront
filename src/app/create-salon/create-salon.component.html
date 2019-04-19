@@ -48,21 +48,20 @@
           </table>
           <div style="text-align: center">
             <div *ngIf="show">
+              
               <div class="form-row">
                 <div class="col">
-                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Prestation" required>
+                  <input type="text" #nomAction="ngModel" class="form-control" placeholder="Prestation" required required [(ngModel)]="prestation.titre" name="titre">
                 </div>
                 <div class="col">
-                  <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Durée (min)" required>
+                  <input type="number" #nomDuree="ngModel" class="form-control" placeholder="Durée (min)" required required [(ngModel)]="prestation.duree" name="duree">
                 </div>
                 <div class="col">
-                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                      placeholder="Personne" required>
+                    <input type="number" #nomPersonne="ngModel" class="form-control"  placeholder="Personne" required required [(ngModel)]="prestation.nbPersonnel" name="nbPersonnel">
                 </div>
+         
               </div>
-              <button class="btn btn-info">Ajouter</button>
+              <button (click)="createPrestation()" (click)="affCach()" type="submit" class="btn btn-info">Ajouter</button>
             </div>
             <button (click)="affCach()" class="btn btn-info">Ajouter une prestation</button>
 
