@@ -31,7 +31,13 @@ import { from } from 'rxjs';
       {
         path:'listeprestations',
         component: ListePrestaComponent,
+      },
+
+      {
+        path:'createsalon',
+        component: CreateSalonComponent,
       }
+      
     ])
   ],
   providers: [],
