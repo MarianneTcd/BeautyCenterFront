@@ -5,17 +5,20 @@ import { AppComponent } from './app.component';
 import { CreateSalonComponent } from './create-salon/create-salon.component';
 import { ListeSalonsComponent } from './liste-salons/liste-salons.component';
 import { ListePrestaComponent } from './liste-presta/liste-presta.component';
+import { InscriptionComponent } from './inscription/inscription.component';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { from } from 'rxjs';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateSalonComponent,
     ListeSalonsComponent,
-    ListePrestaComponent
+    ListePrestaComponent,
+    InscriptionComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,11 @@ import { from } from 'rxjs';
       {
         path:'createsalon',
         component: CreateSalonComponent,
+      },
+
+      {
+        path:'createUser',
+        component: InscriptionComponent,
       }
       
     ])
