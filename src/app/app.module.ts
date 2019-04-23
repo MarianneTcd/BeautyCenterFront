@@ -15,7 +15,8 @@ import { from } from 'rxjs';
     AppComponent,
     CreateSalonComponent,
     ListeSalonsComponent,
-    ListePrestaComponent
+    ListePrestaComponent,
+
   ],
   imports: [
     BrowserModule,

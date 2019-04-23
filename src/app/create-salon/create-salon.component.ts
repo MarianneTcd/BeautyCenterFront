@@ -19,29 +19,40 @@ export class CreateSalonComponent implements OnInit {
     this.show = !this.show;
   }
 
-  constructor(private http : Http) { }
+  constructor(private http: Http) { }
 
-  ngOnInit() {
-    this.http.get('http://localhost:8080/prestations').subscribe(response =>{
+  chargeMe(){
+    this.http.get('http://localhost:8080/prestations').subscribe(response => {
       this.data = response.json();
     });
   }
 
-  createSalon(){
-    this.http.post('http://localhost:8080/salons', this.salon).subscribe(salonData=>{
+  ngOnInit() {
+    this.chargeMe();
+  }
+
+  createSalon() {
+    this.http.post('http://localhost:8080/salons', this.salon).subscribe(salonData => {
       console.log(salonData);
     }, err => {
       console.log(err);
     });
   }
+  pass = false;
+  createPrestation() {
+    if (this.prestation.titre == null || 0 || this.prestation.duree == null || 0 || this.prestation.nbPersonnel == null || 0) {
+      this.pass = true;
+    } else {
+      this.pass = false;
+      this.http.post('http://localhost:8080/prestations', this.prestation).subscribe(prestationData => {
+        console.log(prestationData);
+        this.affCach();
+        this.chargeMe();
+      }, err => {
+        console.log(err);
+      });
+    }
 
-  createPrestation(){
-    this.http.post('http://localhost:8080/prestations', this.prestation).subscribe(prestationData=>{
-      console.log(prestationData);
-      this.affCach();
-    }, err => {
-      console.log(err);
-    });
   }
 
 }
