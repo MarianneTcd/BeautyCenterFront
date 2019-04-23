@@ -51,6 +51,12 @@ body
     color: #222725;
  }
 
+ .infosalon_pagesalon
+ {
+    font-weight: lighter;
+    color: #222725;
+    font-size: 120%;
+ }
  .infosalontext
  {
     font-weight: lighter;
