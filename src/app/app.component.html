@@ -23,7 +23,7 @@
         <div class="modal-body">
           
           <h5 class="card-title text-center">Déjà inscrit?</h5>
-          <form #ConnectedUser ="ngForm">
+          <form>
             <div class="form-group">
               <label>Identifiant</label>
               <input type="email" #nomContact="ngModel" class="form-control" placeholder="Entrer votre e-mail" required
@@ -34,9 +34,11 @@
               <input type="password" #nomAction="ngModel" class="form-control" placeholder="Entrer le mot de passe"
                 required [(ngModel)]="u.mdp" name="mdp">
             </div>
+            <div style="width: 100%" class="alert alert-danger" role="alert" *ngIf="pass">
+                Identifiant ou mot de passe incorrect
+             </div>
             <div>
-              <button (click)="connexion()" class="btn btn-primary" routerLink="/listesalons"
-              routerLinkActive="active" [disabled]="!ConnectedUser.form.valid">Valider</button>
+              <button (click)="connexion()" class="btn btn-primary" >Valider</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
               <p><br><br></p>
             </div>
@@ -92,10 +94,9 @@
                     <label>Mot de passe</label>
                     <input type="password" #nomAction="ngModel" class="form-control" placeholder="Entrer le mot de passe"
                       required [(ngModel)]="user.mdp" name="mdp">
-                  </div>
+                  </div>            
                   <div>
-                    <button (click)="createUser()" class="btn btn-primary" routerLink="/listesalons"
-                    routerLinkActive="active" [disabled]="!validUser.form.valid">Valider</button>
+                    <button (click)="createUser()" class="btn btn-primary" data-dismiss="modal" [disabled]="!validUser.form.valid">Valider</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
                   </div>
                 </form>

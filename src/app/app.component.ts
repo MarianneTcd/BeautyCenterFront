@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from './model/User';
 import { Http } from '@angular/http';
+import { RouterLinkWithHref, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,13 +13,15 @@ export class AppComponent {
   data;
   user: User= new User();
   u: User= new User();
+  tuer = 'data-dismiss="modal"';
   
-    constructor(private http : Http) { }
+
+    constructor(private http : Http, private route: Router) { }
   
     ngOnInit() {
     }
   
-  
+    pass = false;
     connexion(){
       this.http.post('http://localhost:8080/connexion', this.u).subscribe(userData=>{
         this.data=userData.json();
@@ -28,8 +31,11 @@ export class AppComponent {
   
         if(this.data.id===null || this.data.id===undefined){
           console.log('Identifiant incorrect !');
+          this.pass = true;
         }else{
-          console.log('okk');
+          this.pass = false;
+          this.route.navigate(['/espaceperso']);
+          console.log('ok');
         }
       }, err => {
         console.log(err);
@@ -44,4 +50,7 @@ export class AppComponent {
       });
   
     }
+
+    
+
 }
