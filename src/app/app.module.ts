@@ -13,6 +13,7 @@ import { from } from 'rxjs';
 import { SalonservicesService } from './salonservices.service';
 import { SalonComponent } from './salon/salon.component';
 import { Salon } from './model/Salon';
+import { ConnexionComponent } from './connexion/connexion.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { Salon } from './model/Salon';
     ListePrestaComponent,
     InscriptionComponent,
     SalonComponent,
+    ConnexionComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,8 +55,12 @@ import { Salon } from './model/Salon';
       {
         path: 'gosalon',
         component: SalonComponent,
+      },
 
-      }
+      {
+        path: 'connexion',
+        component: ConnexionComponent,
+      },
 
     ])
   ],
