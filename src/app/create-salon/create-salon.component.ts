@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Salon } from '../model/Salon';
+import { Prestation } from '../model/Prestation';
+
+
 
 @Component({
   selector: 'app-create-salon',
@@ -10,6 +13,7 @@ import { Salon } from '../model/Salon';
 export class CreateSalonComponent implements OnInit {
   data;
   salon: Salon = new Salon();
+  prestation: Prestation = new Prestation();
   show = false;
   affCach() {
     this.show = !this.show;
@@ -26,6 +30,15 @@ export class CreateSalonComponent implements OnInit {
   createSalon(){
     this.http.post('http://localhost:8080/salons', this.salon).subscribe(salonData=>{
       console.log(salonData);
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  createPrestation(){
+    this.http.post('http://localhost:8080/prestations', this.prestation).subscribe(prestationData=>{
+      console.log(prestationData);
+      this.affCach();
     }, err => {
       console.log(err);
     });
