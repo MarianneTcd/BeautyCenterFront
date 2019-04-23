@@ -3,6 +3,7 @@ import { Salon } from '../model/Salon';
 import { s } from '@angular/core/src/render3';
 import { Http } from '@angular/http';
 import { SalonservicesService } from '../salonservices.service';
+import { $ } from 'protractor';
 
 @Component({
   selector: 'app-salon',
@@ -14,6 +15,10 @@ export class SalonComponent implements OnInit {
   constructor(private http:Http, private serv: SalonservicesService) { }
   id = this.serv.id;
   s;
+  choixsoin = "Je choisis mon soin";
+  table=["manucure", "brushing", "pédicure", "couleur"];
+
+
   ngOnInit() {
 
     console.log('test jo', this.id);
@@ -26,6 +31,9 @@ export class SalonComponent implements OnInit {
       }
     );
   }
+
+  
+ 
 
 
 }

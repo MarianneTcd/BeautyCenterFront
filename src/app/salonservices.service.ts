@@ -8,7 +8,5 @@ export class SalonservicesService {
   constructor(
   ) { }
 id;
-  dateToday(){
-    return new Date();
-  }
+ 
 }

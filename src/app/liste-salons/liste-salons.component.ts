@@ -15,7 +15,7 @@ export class ListeSalonsComponent implements OnInit {
   salooon;
 
   ngOnInit() {
-    this.dateJ = this.salonService.dateToday();
+   
     this.http.get('http://localhost:8080/salons')
     .subscribe(
       response=>{
