@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+import { User } from '../model/User';
 /*import { User } from '../model/User';*/
 
 @Component({
@@ -9,19 +10,19 @@ import { Http } from '@angular/http';
 })
 export class InscriptionComponent implements OnInit {
   data;
-  /*user: User= new User();*/
+user: User= new User();
 
   constructor(private http : Http) { }
-  /*constructor() { }*/
 
   ngOnInit() {
   }
 
-  createSalon(){
-    /*this.http.post('http://localhost:8080/inscription', this.user).subscribe(userData=>{
+  createUser(){
+    this.http.post('http://localhost:8080/users', this.user).subscribe(userData=>{
       console.log(userData);
     }, err => {
       console.log(err);
-    });*/
+    });
+
   }
 }
