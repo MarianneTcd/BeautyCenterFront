@@ -5,10 +5,15 @@ import { AppComponent } from './app.component';
 import { CreateSalonComponent } from './create-salon/create-salon.component';
 import { ListeSalonsComponent } from './liste-salons/liste-salons.component';
 import { ListePrestaComponent } from './liste-presta/liste-presta.component';
+import { InscriptionComponent } from './inscription/inscription.component';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { from } from 'rxjs';
+import { SalonservicesService } from './salonservices.service';
+import { SalonComponent } from './salon/salon.component';
+import { Salon } from './model/Salon';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +21,8 @@ import { from } from 'rxjs';
     CreateSalonComponent,
     ListeSalonsComponent,
     ListePrestaComponent,
-
+    InscriptionComponent,
+    SalonComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,20 +31,31 @@ import { from } from 'rxjs';
     RouterModule.forRoot([
 
       {
-        path:'listesalons',
+        path: 'listesalons',
         component: ListeSalonsComponent,
       },
 
       {
-        path:'listeprestations',
+        path: 'listeprestations',
         component: ListePrestaComponent,
       },
 
       {
-        path:'createsalon',
+        path: 'createsalon',
         component: CreateSalonComponent,
+      },
+
+      {
+        path: 'createUser',
+        component: InscriptionComponent,
+      },
+
+      {
+        path: 'gosalon',
+        component: SalonComponent,
+
       }
-      
+
     ])
   ],
   providers: [],
