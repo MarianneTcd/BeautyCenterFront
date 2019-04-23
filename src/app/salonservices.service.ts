@@ -5,8 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class SalonservicesService {
 
-  constructor() { }
-
+  constructor(
+  ) { }
+id;
   dateToday(){
     return new Date();
   }
