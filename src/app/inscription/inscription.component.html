@@ -5,21 +5,22 @@
         <div class="card-body">
 
           <h5 class="card-title text-center">Déjà inscrit?</h5>
-          <form (ngSubmit)="ConnexionUser()">
+          <form #ConnectedUser ="ngForm">
             <!-- fonction à modifier-->
             <div class="form-group">
               <label>Mail de contact</label>
               <input type="email" #nomContact="ngModel" class="form-control" placeholder="Entrer le mail" required
-                [(ngModel)]="user.mailUser" name="mailUser">
+                [(ngModel)]="user.mail" name="mail">
             </div>
             <div class="form-group">
               <label>Mot de passe</label>
               <input type="password" #nomAction="ngModel" class="form-control" placeholder="Entrer le mot de passe"
-                required [(ngModel)]="user.mdpUser" name="mdpUser">
+                required [(ngModel)]="user.mdp" name="mdp">
             </div>
             <div>
-              <button type="submit" class="btn btn-primary">Valider</button>
-              <button type="button" class="btn btn-danger" routerLink="/listSalons"
+              <button (click)="ConnexionUser()" class="btn btn-primary" routerLink="/listesalons"
+              routerLinkActive="active" [disabled]="!ConnectedUser.form.valid">Valider</button>
+              <button type="button" class="btn btn-danger" routerLink="/listesalons"
                 routerLinkActive="active">Retour</button>
             </div>
           </form>
@@ -40,7 +41,7 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title text-center">Inscription</h5>
-            <form (ngSubmit)="createUser()">
+            <form #validUser ="ngForm">
               <h2 class="card-title text-left">Vous êtes...</h2>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
@@ -58,27 +59,28 @@
               <div class="form-group">
                 <label>Nom de l'utilisateur</label>
                 <input type="text" #nomAction="ngModel" class="form-control" placeholder="Entrer le nom" required
-                  [(ngModel)]="user.nomUser" name="nomUser">
+                  [(ngModel)]="user.nom" name="nom">
               </div>
               <div class="form-group">
                 <label>Prénom de l'utilisateur</label>
                 <input type="text" #nomAction="ngModel" class="form-control" placeholder="Entrer le prénom" required
-                  [(ngModel)]="user.prenomUser" name="prenomUser">
+                  [(ngModel)]="user.prenom" name="prenom">
               </div>
               <div class="form-group">
                 <label>Mail de contact</label>
                 <input type="email" #nomContact="ngModel" class="form-control" placeholder="Entrer le mail" required
-                  [(ngModel)]="user.mailUser" name="mailUser">
+                  [(ngModel)]="user.mail" name="mail">
                 <small class="form-text text-muted">Votre mail ne sera pas utilisé à des fins commerciales</small>
               </div>
               <div class="form-group">
                 <label>Mot de passe</label>
                 <input type="password" #nomAction="ngModel" class="form-control" placeholder="Entrer le mot de passe"
-                  required [(ngModel)]="user.mdpUser" name="mdpUser">
+                  required [(ngModel)]="user.mdp" name="mdp">
               </div>
               <div>
-                <button type="submit" class="btn btn-primary">Valider</button>
-                <button type="button" class="btn btn-danger" routerLink="/listSalons"
+                <button (click)="createUser()" class="btn btn-primary" routerLink="/listesalons"
+                routerLinkActive="active" [disabled]="!validUser.form.valid">Valider</button>
+                <button type="button" class="btn btn-danger" routerLink="/listesalons"
                   routerLinkActive="active">Retour</button>
               </div>
             </form>
