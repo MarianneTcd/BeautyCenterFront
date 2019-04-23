@@ -7,6 +7,7 @@ import { ListeSalonsComponent } from './liste-salons/liste-salons.component';
 import { ListePrestaComponent } from './liste-presta/liste-presta.component';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
 import { from } from 'rxjs';
 
 @NgModule({
@@ -19,7 +20,25 @@ import { from } from 'rxjs';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot([
+
+      {
+        path:'listesalons',
+        component: ListeSalonsComponent,
+      },
+
+      {
+        path:'listeprestations',
+        component: ListePrestaComponent,
+      },
+
+      {
+        path:'createsalon',
+        component: CreateSalonComponent,
+      }
+      
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
