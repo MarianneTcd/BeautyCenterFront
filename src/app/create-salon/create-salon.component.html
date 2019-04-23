@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title text-center">Création d'un salon</h5>
+          <h4 class="card-title text-center">Création d'un salon</h4>
           <form #cSalon="ngForm">
             <div class="form-group">
               <label>Nom du salon</label>
@@ -41,18 +41,18 @@
                     <th>Personnel necessaire</th>
                   </tr>
                   <tr *ngFor="let u of data">
-                    <th class="dim">
+                    <th class="d-flex justify-content-end">
                       <input type="checkbox" class="form-check-input">
                       <input type="hidden" value="{{u.id}}">
                     </th>
-                    <th class="dim">
-                      <label class="form-check-label">{{u.titre}}</label>
+                    <th>
+                      <label class="form-check-label d-flex justify-content-center">{{u.titre}}</label>
                     </th>
-                    <th class="dim">
-                      <label class="form-check-label">{{u.duree}} min</label>
+                    <th>
+                      <label class="form-check-label d-flex justify-content-center">{{u.duree}} min</label>
                     </th>
-                    <th class="dim">
-                      <label class="form-check-label">{{u.nbPersonnel}}</label>
+                    <th>
+                      <label class="form-check-label d-flex justify-content-center">{{u.nbPersonnel}}</label>
                     </th>
                   </tr>
                 </table>

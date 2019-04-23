@@ -25,13 +25,14 @@
                 pour continuer de remplir un peu cette zone de texte.</p>
               <p class="infosalon" style="text-align: justify;">Vous voulez réserver un soin ? Par ici !</p>
               <div class="btn-group">
-                <button class="btn dropdown-toggle" type="button" id="buttonMenu1" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
+                <button class="btn dropdown-toggle" type="button" id="btnChoixPresta" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false" id="lbDrop">
                   Je choisis mon soin
                 </button>
-                <div class="dropdown-menu" aria-labelledby="buttonMenu1">
-                  <a class="dropdown-item" href="#">Manucure</a>
-                  <a class="dropdown-item" href="#">Brushing</a>
+                <div class="dropdown-menu" aria-labelledby="btnChoixPresta">
+
+                  <a *ngFor="let u of table" class="dropdown-item elemListePresta" >{{u}}</a>
+                 
                 </div>
               </div>
             </div>
