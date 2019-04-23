@@ -21,14 +21,14 @@ export class CreateSalonComponent implements OnInit {
 
   constructor(private http: Http) { }
 
-  chargeMe(){
+  chargeListe(){
     this.http.get('http://localhost:8080/prestations').subscribe(response => {
       this.data = response.json();
     });
   }
 
   ngOnInit() {
-    this.chargeMe();
+    this.chargeListe();
   }
 
   createSalon() {
@@ -38,6 +38,9 @@ export class CreateSalonComponent implements OnInit {
       console.log(err);
     });
   }
+
+
+
   pass = false;
   createPrestation() {
     if (this.prestation.titre == null || 0 || this.prestation.duree == null || 0 || this.prestation.nbPersonnel == null || 0) {
@@ -47,7 +50,7 @@ export class CreateSalonComponent implements OnInit {
       this.http.post('http://localhost:8080/prestations', this.prestation).subscribe(prestationData => {
         console.log(prestationData);
         this.affCach();
-        this.chargeMe();
+        this.chargeListe();
       }, err => {
         console.log(err);
       });
