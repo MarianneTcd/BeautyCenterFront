@@ -13,8 +13,8 @@ import { from } from 'rxjs';
 import { SalonservicesService } from './salonservices.service';
 import { SalonComponent } from './salon/salon.component';
 import { Salon } from './model/Salon';
+import { ConnexionComponent } from './connexion/connexion.component';
 import { CarteSalonsComponent } from './carte-salons/carte-salons.component';
-import { componentFactoryName } from '@angular/compiler';
 
 
 @NgModule({
@@ -26,6 +26,7 @@ import { componentFactoryName } from '@angular/compiler';
     InscriptionComponent,
     SalonComponent,
     CarteSalonsComponent,
+    ConnexionComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,11 +57,15 @@ import { componentFactoryName } from '@angular/compiler';
       {
         path: 'gosalon',
         component: SalonComponent,
-
       },
 
       {
-        path:'cartesalons',
+        path: 'connexion',
+        component: ConnexionComponent,
+      },
+
+      {
+        path: 'cartesalons',
         component: CarteSalonsComponent,
       }
 
