@@ -13,6 +13,10 @@ import { from } from 'rxjs';
 import { SalonservicesService } from './salonservices.service';
 import { SalonComponent } from './salon/salon.component';
 import { Salon } from './model/Salon';
+import { ConnexionComponent } from './connexion/connexion.component';
+import { CarteSalonsComponent } from './carte-salons/carte-salons.component';
+import { EspacePersoClientComponent } from './espace-perso-client/espace-perso-client.component';
+import { EspacePersoManagerComponent } from './espace-perso-manager/espace-perso-manager.component';
 
 
 @NgModule({
@@ -23,6 +27,10 @@ import { Salon } from './model/Salon';
     ListePrestaComponent,
     InscriptionComponent,
     SalonComponent,
+    CarteSalonsComponent,
+    ConnexionComponent,
+    EspacePersoClientComponent,
+    EspacePersoManagerComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +61,25 @@ import { Salon } from './model/Salon';
       {
         path: 'gosalon',
         component: SalonComponent,
+      },
 
+      {
+        path: 'connexion',
+        component: ConnexionComponent,
+      },
+
+      {
+        path: 'cartesalons',
+        component: CarteSalonsComponent,
+      },
+
+      {
+        path: 'espaceperso',
+        component: EspacePersoClientComponent,
+      },
+      {
+        path: 'espacemanager',
+        component: EspacePersoManagerComponent,
       }
 
     ])

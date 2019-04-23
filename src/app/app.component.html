@@ -6,14 +6,16 @@
       </a>
       <div class="d-flex">
         <img src="https://cdn.onlinewebfonts.com/svg/img_405324.png" style=" width: 30px; height: 30px;">
-        <button type="button" class="btn lien ml-1" routerLink="/createUser" routerLinkActive="active">Se connecter / S'inscrire</button>
+        <button type="button" class="btn lien ml-1" routerLink="/connexion" routerLinkActive="active">Se connecter</button>
+        <button type="button" class="btn lien ml-1" routerLink="/createUser" routerLinkActive="active">S'inscrire</button>
       </div>
     </nav>
   </div>
   
   <br>
   <a class="nav-link" routerLink="createsalon" routerLinkActive="active">BOUTON TEST CREER SALON EN ATTENDANT LA CONNEXION</a>
-  
+  <a class="nav-link" routerLink="espaceperso" routerLinkActive="active">BOUTON TEST ESPACE CLIENT</a>
+  <a class="nav-link" routerLink="espacemanager" routerLinkActive="active">BOUTON TEST ESPACE MANAGER</a>
   <!--2e navbar : reste tout au long du scroll-->
   <nav class="navbar sticky-top navbar-expand-lg navbar-dark navperso">
     <div class="container-fluid">
@@ -31,7 +33,7 @@
             <a class="nav-link boutonnav" routerLink="listeprestations" routerLinkActive="active">Nos prestations</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link boutonnav" href="#">Voir la carte des salons</a>
+            <a class="nav-link boutonnav" routerLink="cartesalons" routerLinkActive="active">Voir la carte des salons</a>
           </li>
           <li class="nav-item">
             <a class="nav-link boutonnav" href="#">A propos de nous</a>
