@@ -4,11 +4,11 @@ import { User } from '../model/User';
 /*import { User } from '../model/User';*/
 
 @Component({
-  selector: 'app-inscription',
-  templateUrl: './inscription.component.html',
-  styleUrls: ['./inscription.component.css']
+  selector: 'app-connexion-inscription',
+  templateUrl: './connexion-inscription.component.html',
+  styleUrls: ['./connexion-inscription.component.css']
 })
-export class InscriptionComponent implements OnInit {
+export class ConnexionInscriptionComponent implements OnInit {
   data;
 user: User= new User();
 

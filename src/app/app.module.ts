@@ -15,8 +15,7 @@ import { Salon } from './model/Salon';
 import { CarteSalonsComponent } from './carte-salons/carte-salons.component';
 import { EspacePersoClientComponent } from './espace-perso-client/espace-perso-client.component';
 import { EspacePersoManagerComponent } from './espace-perso-manager/espace-perso-manager.component';
-import { ConnectionInscriptionComponent } from './connection-inscription/connection-inscription.component';
-
+import { ConnexionInscriptionComponent } from './connexion-inscription/connexion-inscription.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,7 @@ import { ConnectionInscriptionComponent } from './connection-inscription/connect
     CarteSalonsComponent,
     EspacePersoClientComponent,
     EspacePersoManagerComponent,
-    ConnectionInscriptionComponent,
+    ConnexionInscriptionComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +52,7 @@ import { ConnectionInscriptionComponent } from './connection-inscription/connect
 
       {
         path: 'createUser',
-        component: ConnectionInscriptionComponent,
+        component: ConnexionInscriptionComponent,
       },
 
       {
