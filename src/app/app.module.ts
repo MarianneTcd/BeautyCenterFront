@@ -13,6 +13,8 @@ import { from } from 'rxjs';
 import { SalonservicesService } from './salonservices.service';
 import { SalonComponent } from './salon/salon.component';
 import { Salon } from './model/Salon';
+import { CarteSalonsComponent } from './carte-salons/carte-salons.component';
+import { componentFactoryName } from '@angular/compiler';
 
 
 @NgModule({
@@ -23,6 +25,7 @@ import { Salon } from './model/Salon';
     ListePrestaComponent,
     InscriptionComponent,
     SalonComponent,
+    CarteSalonsComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,11 @@ import { Salon } from './model/Salon';
         path: 'gosalon',
         component: SalonComponent,
 
+      },
+
+      {
+        path:'cartesalons',
+        component: CarteSalonsComponent,
       }
 
     ])
