@@ -59,9 +59,11 @@
                 <div style="text-align: center">
                   <div *ngIf="show">
                     <div class="form-row">
-                      <div class="alert alert-danger" role="alert" *ngIf="pass">
+                      <div style="width: 100%" class="alert alert-danger" role="alert" *ngIf="pass">
                         Champ requis
                       </div>
+                      </div>
+                      <div class="form-row">
                       <div class="col">
                         <input type="text" #nomAction="ngModel" class="form-control" placeholder="Prestation" required
                           [(ngModel)]="prestation.titre" name="titre">
