@@ -35,15 +35,14 @@
                 <h6 class="card-title text-center">Liste des prestations</h6>
                 <table class="table d-flex justify-content-center">
                   <tr>
-                    <th>Selection</th>
+                    <th></th>
                     <th>Prestation</th>
                     <th>Durée</th>
                     <th>Personnel necessaire</th>
                   </tr>
                   <tr *ngFor="let u of data">
                     <th class="d-flex justify-content-end">
-                      <input type="checkbox" class="form-check-input">
-                      <input type="hidden" value="{{u.id}}">
+                      <input type="checkbox" #nomPresta="ngModel" [(ngModel)]="event.presta"  name="presta" id="{{u.name}}" checked>
                     </th>
                     <th>
                       <label class="form-check-label d-flex justify-content-center">{{u.titre}}</label>
@@ -84,7 +83,7 @@
               </div>
             </div>
             <div>
-              <button (click)="createSalon()" [disabled]="!cSalon.form.valid" type="button" routerLink="/listesalons"
+              <button (click)="createSalon()" (click)="createEvent()" [disabled]="!cSalon.form.valid" type="button" routerLink="/listesalons"
                 routerLinkActive="active" class="btn btn-primary">Creer le
                 salon</button>
               <button type="button" routerLink="/listesalons" routerLinkActive="active" class="btn btn-danger">Retour au

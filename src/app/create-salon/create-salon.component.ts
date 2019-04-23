@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Salon } from '../model/Salon';
 import { Prestation } from '../model/Prestation';
+import { Event } from '../model/Event';
 
 
 
@@ -11,9 +12,7 @@ import { Prestation } from '../model/Prestation';
   styleUrls: ['./create-salon.component.css']
 })
 export class CreateSalonComponent implements OnInit {
-  data;
-  salon: Salon = new Salon();
-  prestation: Prestation = new Prestation();
+
   show = false;
   affCach() {
     this.show = !this.show;
@@ -21,7 +20,8 @@ export class CreateSalonComponent implements OnInit {
 
   constructor(private http: Http) { }
 
-  chargeListe(){
+  data;
+  chargeListe() {
     this.http.get('http://localhost:8080/prestations').subscribe(response => {
       this.data = response.json();
     });
@@ -31,6 +31,8 @@ export class CreateSalonComponent implements OnInit {
     this.chargeListe();
   }
 
+
+  salon: Salon = new Salon();
   createSalon() {
     this.http.post('http://localhost:8080/salons', this.salon).subscribe(salonData => {
       console.log(salonData);
@@ -39,8 +41,19 @@ export class CreateSalonComponent implements OnInit {
     });
   }
 
+  event: Event = new Event();
+  
+  createEvent() {
 
+    console.log(this.event)
+    /*this.http.post('http://localhost:8080/events', this.event).subscribe(eventData => {
+      console.log(eventData);
+    }, err => {
+      console.log(err);
+    });*/
+  }
 
+  prestation: Prestation = new Prestation();
   pass = false;
   createPrestation() {
     if (this.prestation.titre == null || 0 || this.prestation.duree == null || 0 || this.prestation.nbPersonnel == null || 0) {
