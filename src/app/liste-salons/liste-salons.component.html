@@ -20,7 +20,7 @@
       <!--boucle sur chaque salon présent dans la base de données-->
       <div *ngFor="let u of salooon">
         <!--card contenant toutes les infos-->
-        <div class="card p-1" (click)="goSalon()" id="carte">
+        <div class="card p-1" (click)="goSalon(u.id)" id="carte">
           <div class="container">
             <div class="row justify-content-left">
 
