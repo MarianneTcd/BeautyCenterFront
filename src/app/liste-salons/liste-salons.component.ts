@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+import { SalonservicesService } from '../salonservices.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-liste-salons',
@@ -7,11 +9,13 @@ import { Http } from '@angular/http';
   styleUrls: ['./liste-salons.component.css']
 })
 export class ListeSalonsComponent implements OnInit {
-
-  constructor(private http:Http) { }
+  constructor(private http:Http, private salonSer: SalonservicesService, private route: Router) { }
   
+  dateJ;
   salooon;
+
   ngOnInit() {
+    this.dateJ = this.salonSer.dateToday();
     this.http.get('http://localhost:8080/salons')
     .subscribe(
       response=>{
@@ -19,5 +23,11 @@ export class ListeSalonsComponent implements OnInit {
       }
     );
 }
+
+   goSalon(){
+
+    this.route.navigate(['/gosalon']);
+
+   }
 
 }

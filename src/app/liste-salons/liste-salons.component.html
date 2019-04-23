@@ -3,7 +3,8 @@
   <h1 class="titre">Salons de beauté à Paris</h1>
   <h6 class="sstitre">Découvrez l'ensemble des salons de Beauty. Quel que soit votre besoin esthétique, nous avons
     quelque chose à
-    vous proposer près de chez vous ! Bon, pas vraiment, ce site est en fait un fake. Nous continuons à écrire pour voir ce
+    vous proposer près de chez vous ! Bon, pas vraiment, ce site est en fait un fake. Nous continuons à écrire pour voir
+    ce
     que ce texte donne sur plusieurs lignes, n'y faites pas attention.</h6>
 </div>
 
@@ -16,53 +17,54 @@
   <div class="row justify-content-around">
     <div class="col-10">
 
-      <div *ngFor= "let u of salooon">
-      <!--card contenant toutes les infos-->
-      <div class="card p-1">
-        <div class="container">
-          <div class="row justify-content-left">
+      <!--boucle sur chaque salon présent dans la base de données-->
+      <div *ngFor="let u of salooon">
+        <!--card contenant toutes les infos-->
+        <div class="card p-1">
+          <div class="container">
+            <div class="row justify-content-left">
 
-            <!--photo du salon-->
-            <div class="col">
-              <img src="http://www.le-salon-coiffeur.com/images/accueil-2.jpg" class="img-fluid mx-auto"
-                style="width : 325px;">
-            </div>
-
-            <!--Informations : nom, tel, adresse, note, ...-->
-            <div class="col align-self-center">
-
-              <div class="row justify-content-between mr-3">
-                <h4 class="nomsalon">{{u.nomSalon}}</h4>
-                <h4 class="note">9.6/10</h4>
+              <!--photo du salon-->
+              <div class="col">
+                <img src="http://www.le-salon-coiffeur.com/images/accueil-2.jpg" class="img-fluid mx-auto"
+                  style="width : 325px;">
               </div>
 
-              <br>
+              <!--Informations : nom, tel, adresse, note, ...-->
+              <div class="col align-self-center">
 
-              <img src="http://simpleicon.com/wp-content/uploads/phone-1.png" style="width : 20px;"><span
-                class="ml-2 infosalon">{{u.telephone}}</span><br>
-              <img src="https://image.flaticon.com/icons/png/512/9/9275.png" style="width : 20px;"><span
-                class="ml-2 infosalon">{{u.adresse}}</span><br><br>
+                <div class="row justify-content-between mr-3">
+                  <a class="nomsalon" (click)="goSalon()">{{u.nomSalon}}</a>
+                  <h4 class="note">3.1415/10</h4>
+                </div>
 
-              <p class="mt-2 infosalontext">Coiffure, Manucure, Pédicure</p>
+                <br>
+
+                <img src="http://simpleicon.com/wp-content/uploads/phone-1.png" style="width : 20px;"><span
+                  class="ml-2 infosalon">{{u.telephone}}</span><br>
+                <img src="https://image.flaticon.com/icons/png/512/9/9275.png" style="width : 20px;"><span
+                  class="ml-2 infosalon">{{u.adresse}}</span><br><br>
+
+                <p class="mt-2 infosalontext">Coiffure, Manucure, Pédicure</p>
 
 
-              <!--Bouton de réservation-->
-              <div style="text-align: end;">
-                <a href="#" class="btn lien">Réserver</a>
+                <!--Bouton de réservation-->
+                <div style="text-align: end;">
+                  <a href="#" class="btn lien">Réserver</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <br>
+        <br>
       </div>
-      <br>
-<br>
-    </div>
 
       <br>
       <br>
 
 
-    
+
       <br>
       <br>
 
