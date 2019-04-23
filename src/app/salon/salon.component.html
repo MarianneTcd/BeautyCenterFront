@@ -1,3 +1,59 @@
-<p>
-  salon works!
-</p>
+<!--Gros container pour la page-->
+<div class="container">
+  <div class="row justify-content-around">
+    <div class="col-10">
+
+      <!--boucle sur chaque salon présent dans la base de données-->
+
+      <!--card contenant toutes les infos-->
+      <div class="card p-1 mt-4" style="width: 950px; height: 700px;">
+        <div class="container">
+
+
+          <div class="row justify-content-between">
+
+            <!--photo du salon-->
+            <div class="col">
+              <img src="http://www.le-salon-coiffeur.com/images/accueil-2.jpg" class="img-fluid mx-auto"
+                style="width : 325px;">
+            </div>
+
+            <div class="col-8 align-self-center" style="text-align: center;">
+              <h2>NOM DU SALON</h2>
+            </div>
+
+          </div>
+
+          <br>
+          <br>
+
+          <img src="http://simpleicon.com/wp-content/uploads/phone-1.png" style="width : 50px;"><span
+            class="ml-2 infosalon">{{u.telephone}}</span><br><br>
+          <img src="https://image.flaticon.com/icons/png/512/9/9275.png" style="width : 50px;"><span
+            class="ml-2 infosalon">{{u.adresse}}</span><br><br>
+
+          <div class="row" style="height: 250px;">
+            <div class="col-4">
+            <p class="mt-2 infosalontext">Coiffure, Manucure, Pédicure, Coiffure, Manucure, Pédicure, Coiffure, Manucure, Pédicure, Coiffure, Manucure, Pédicure</p>
+          </div>
+
+
+          <div class="col-8" style="text-align: center;">
+            PLACE POUR LE PLANNING
+          </div>
+          </div>
+
+          
+
+
+        </div>
+      </div>
+      <br>
+      <br>
+
+
+
+
+    </div>
+  </div>
+</div>
