@@ -15,6 +15,7 @@ import { SalonComponent } from './salon/salon.component';
 import { Salon } from './model/Salon';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { CarteSalonsComponent } from './carte-salons/carte-salons.component';
+import { EspacePersoClientComponent } from './espace-perso-client/espace-perso-client.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { CarteSalonsComponent } from './carte-salons/carte-salons.component';
     SalonComponent,
     CarteSalonsComponent,
     ConnexionComponent,
+    EspacePersoClientComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +69,11 @@ import { CarteSalonsComponent } from './carte-salons/carte-salons.component';
       {
         path: 'cartesalons',
         component: CarteSalonsComponent,
+      },
+
+      {
+        path: 'espaceperso',
+        component: EspacePersoClientComponent,
       }
 
     ])
