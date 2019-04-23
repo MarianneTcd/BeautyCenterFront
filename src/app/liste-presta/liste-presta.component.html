@@ -1,27 +1,78 @@
-<!DOCTYPE html>
+<div class="container mt-4">
+  <h1 class="titre">Nos prestations</h1>
+  <h6 class="sstitre">Découvrez toutes les soins proposés par nos salons. Du soin capillaire à la pédicure, nous saurons
+    trouver votre bonheur !</h6>
+</div>
 
-<head>
+<br>
 
-</head>
+<div class="container">
+  <div class="row justify-content-around">
+    <div class="col-5">
+      <div class="card p-1">
+        <div class="row">
+          <div class="col-3">
+            <img src="https://www.karis-formation.com/wp-content/uploads/sites/7/2014/12/ecole-coiffure.jpg"
+              style="height: 100px; width: 120px;">
+          </div>
+          <div class="col">
+            <div class="row justify-content-end mr-4">
+            <h2 class="titrepresta">Coiffure</h2>
+          </div>
+          <div class="row justify-content-end mr-4">
+              BLABLABLABLABLA
+            </div>
+          </div>
+        </div>
+      </div>
 
-<body>
-  <div class="container text-center">
-  <div class="card" >
-    <div class="card-header"><h4>Liste des prestations proposées</h4></div>
-    <table class="table" >
-      <tr>
-        <th>Prestation</th>
-        <th>Temps</th>
-        <th>Personnel</th>
-      </tr>
-      <tr *ngFor="let u of data">
-        <td>{{u.titre}}</td>
-        <td>{{u.duree}}</td>
-        <td>{{u.nbPersonnel}}</td>
-        <td><button type="submit" class="btn btn-primary" href="#">Prendre rdv</button></td> <!-- lien vers le planning ou un formulaire de réservation -->
-      </tr>
-    </table>
+    </div>
 
+    <div class="col-5">
+      <div class="card p-1">
+        <div class="row">
+          <div class="col-3">
+            <img src="https://static4.pagesjaunes.fr/media/cviv/55355692_NS_0001_photo.jpeg"
+              style="height: 100px; width: 120px;">
+          </div>
+          <div class="col">
+              <div class="row justify-content-end mr-4">
+            <h2 class="titrepresta">Soin des ongles</h2>
+            </div>
+            <div class="row justify-content-end mr-4">
+              BLABLABLABLABLA
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
   </div>
-  </div>
-</body>
+
+  <br>
+  <br>
+  <br>
+
+
+  <h6 class="sstitre">Retrouvez ici la liste complète de nos prestations :</h6>
+  <br>
+  <ul class="sstitre" *ngFor="let u of data">
+    <li>{{u.titre}} <em>({{u.duree}} min)</em></li>
+  </ul>
+
+</div>
+
+
+
+
+
+
+
+<!-- <tr *ngFor="let u of data">
+          <td>{{u.titre}}</td>
+          <td>{{u.duree}}</td>
+          <td>{{u.nbPersonnel}}</td>
+          <td><button type="submit" class="btn btn-primary" href="#">Prendre rdv</button></td>
+         lien vers le planning ou un formulaire de réservation 
+        </tr> -->
