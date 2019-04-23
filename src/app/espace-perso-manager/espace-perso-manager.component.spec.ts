@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InscriptionComponent } from './inscription.component';
+import { EspacePersoManagerComponent } from './espace-perso-manager.component';
 
-describe('InscriptionComponent', () => {
-  let component: InscriptionComponent;
-  let fixture: ComponentFixture<InscriptionComponent>;
+describe('EspacePersoManagerComponent', () => {
+  let component: EspacePersoManagerComponent;
+  let fixture: ComponentFixture<EspacePersoManagerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InscriptionComponent ]
+      declarations: [ EspacePersoManagerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InscriptionComponent);
+    fixture = TestBed.createComponent(EspacePersoManagerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

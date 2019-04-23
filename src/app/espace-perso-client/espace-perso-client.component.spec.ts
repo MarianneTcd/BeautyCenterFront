@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConnexionComponent } from './connexion.component';
+import { EspacePersoClientComponent } from './espace-perso-client.component';
 
-describe('ConnexionComponent', () => {
-  let component: ConnexionComponent;
-  let fixture: ComponentFixture<ConnexionComponent>;
+describe('EspacePersoClientComponent', () => {
+  let component: EspacePersoClientComponent;
+  let fixture: ComponentFixture<EspacePersoClientComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConnexionComponent ]
+      declarations: [ EspacePersoClientComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConnexionComponent);
+    fixture = TestBed.createComponent(EspacePersoClientComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
