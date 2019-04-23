@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { userInfo } from 'os';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-connexion',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConnexionComponent implements OnInit {
 
-  constructor() { }
+  data;
+  /*user: User = new User();*/
+
+  constructor(private http: Http) { }
 
   ngOnInit() {
+
   }
 
+  connexion(){
+   // this.http.post('http://localhost:8080/connexion').response
+  }
+  
 }
