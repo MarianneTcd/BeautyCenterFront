@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { CreateSalonComponent } from './create-salon/create-salon.component';
 import { ListeSalonsComponent } from './liste-salons/liste-salons.component';
 import { ListePrestaComponent } from './liste-presta/liste-presta.component';
-import { InscriptionComponent } from './inscription/inscription.component';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
@@ -13,10 +12,10 @@ import { from } from 'rxjs';
 import { SalonservicesService } from './salonservices.service';
 import { SalonComponent } from './salon/salon.component';
 import { Salon } from './model/Salon';
-import { ConnexionComponent } from './connexion/connexion.component';
 import { CarteSalonsComponent } from './carte-salons/carte-salons.component';
 import { EspacePersoClientComponent } from './espace-perso-client/espace-perso-client.component';
 import { EspacePersoManagerComponent } from './espace-perso-manager/espace-perso-manager.component';
+import { ConnectionInscriptionComponent } from './connection-inscription/connection-inscription.component';
 
 
 @NgModule({
@@ -25,12 +24,11 @@ import { EspacePersoManagerComponent } from './espace-perso-manager/espace-perso
     CreateSalonComponent,
     ListeSalonsComponent,
     ListePrestaComponent,
-    InscriptionComponent,
     SalonComponent,
     CarteSalonsComponent,
-    ConnexionComponent,
     EspacePersoClientComponent,
     EspacePersoManagerComponent,
+    ConnectionInscriptionComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,17 +53,12 @@ import { EspacePersoManagerComponent } from './espace-perso-manager/espace-perso
 
       {
         path: 'createUser',
-        component: InscriptionComponent,
+        component: ConnectionInscriptionComponent,
       },
 
       {
         path: 'gosalon',
         component: SalonComponent,
-      },
-
-      {
-        path: 'connexion',
-        component: ConnexionComponent,
       },
 
       {
