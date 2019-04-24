@@ -6,17 +6,15 @@
     <div class="col-8 p-4" style="border-right: 1px solid;">
       <div class="row">
         <div class="col">
-          <h1 class="titre">Jean-Bran - Votre Espace Perso
+          <h1 class="titre text-center">{{prenomManager}} {{nomManager}} - Votre Espace Perso
           </h1>
           <br>
         </div>
       </div>
       <div class="row">
-        <div style="width: 100%" class="alert alert-success text-center" role="alert" *ngIf="creation">
-          Votre nouveau salon a été créé. A present, ajouter les prestations qui seront proposées ;)
-        </div>
-        <div style="width: 100%" class="alert alert-danger text-center" role="alert" *ngIf="suppression">
-          Salon supprimé =O
+        <div class="col d-flex justify-content-center">
+          <button type="button" class="btn btn-primary" (click)="chargeListeSalons(idManager)">Mise à jour des
+            salons</button>
         </div>
       </div>
       <div class="row">
@@ -31,11 +29,12 @@
                   <h5 class="modal-title" id="exampleModalLabel"> </h5>
                 </div>
                 <div class="modal-body">
-
                   <h5 class="card-title text-center">Mon nouveau salon</h5>
                   <form #cSalon="ngForm">
                     <div class="form-group">
                       <label>Nom du salon</label>
+                      <input type="text" #nomIdManager="ngModel" class="form-control" value="{{idManager}}"
+                        [(ngModel)]="salon.idManager" name="idManager">
                       <input type="text" #nomAction="ngModel" class="form-control" placeholder="Saisir le nom" required
                         [(ngModel)]="salon.nomSalon" name="nomSalon">
                     </div>
@@ -60,7 +59,7 @@
                         required [(ngModel)]="salon.contact" name="contact">
                     </div>
                     <div>
-                      <button (click)="createSalon()" [disabled]="!cSalon.form.valid" type="button"
+                      <button (click)="createSalon(idManager)" [disabled]="!cSalon.form.valid" type="button"
                         class="btn btn-primary" data-dismiss="modal">Creer le
                         salon</button>
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Retour au
@@ -94,10 +93,85 @@
                   <label class="form-check-label d-flex justify-content-center">{{s.dateSalon}}</label>
                 </th>
                 <th>
-                  <button type="button" class="btn btn-warning">Modifier</button>
+                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modifSalon">Modifier</button>
+                  <div class="modal fade" id="modifSalon" tabindex="-1" role="dialog" aria-labelledby="connexionLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel"> </h5>
+                        </div>
+                        <div class="modal-body">
+                          <h5 class="card-title text-center">Modifier le salon</h5>
+                          <form #cSalon="ngForm">
+                            <div class="form-group">
+                              <label>Nom du salon</label>
+                              <input type="text" #nomAction="ngModel" class="form-control" required [(ngModel)]="salon.nomSalon" name="nomSalon">
+                            </div>
+                            <div class="form-group">
+                            <label>Date du salon</label>
+                              <input type="date" #nomDate="ngModel" class="form-control" required
+                                [(ngModel)]="salon.dateSalon"  name="dateSalon">
+                            </div>
+                            <div class="form-group">
+                              <label>Adresse postale</label>
+                              <input type="text" #nomAdresse="ngModel" class="form-control"
+                                required [(ngModel)]="salon.adresse" name="adresse">
+                            </div>
+                            <div class="form-group">
+                              <label>Numéro de telephone</label>
+                              <input type="text" #nomTelephone="ngModel" class="form-control"
+                                required [(ngModel)]="salon.telephone" name="telephone">
+                            </div>
+                            <div class="form-group">
+                              <label>Adresse mail</label>
+                              <input type="email" #nomContact="ngModel" class="form-control"
+                                required [(ngModel)]="salon.contact" name="contact">
+                            </div>
+                            <div>
+                              <button (click)="modifSalon(s.id)" [disabled]="!cSalon.form.valid" type="button"
+                                class="btn btn-primary" data-dismiss="modal">Modifier le
+                                salon</button>
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Retour au
+                                menu</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </th>
+
+
+
+
+
+
                 <th>
-                  <button type="button" class="btn btn-danger" (click)="supSalon(s.id)">Supprimer</button>
+                  <button type="button" class="btn btn-danger" data-toggle="modal"
+                    data-target="#suppression">Supprimer</button>
+                  <div class="modal fade" id="suppression" tabindex="-1" role="dialog" aria-labelledby="connexionLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel"> </h5>
+                        </div>
+                        <div class="modal-body">
+
+                          <h5 class="card-title text-center">Êtes-vous sûr de vouloir supprimer le salon {{s.nomSalon}}
+                            ?</h5>
+                          <form>
+                            <div>
+                              <button (click)="supSalon(s.id)" class="btn btn-primary"
+                                data-dismiss="modal">Valider</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </th>
                 <th>
                   <button type="button" class="btn btn-info" data-toggle="modal" data-target="#prestation"
@@ -184,7 +258,7 @@
       <br>
       <div class="row">
         <div class="col">
-          <h5 class="sstitre">Jean-Bran</h5>
+          <h5 class="sstitre">{{prenomManager}} {{nomManager}}</h5>
 
         </div>
       </div>
@@ -192,7 +266,7 @@
 
       <div class="row">
         <div class="col">
-          <h5 class="sstitre">2 Rue des Fougères</h5>
+          <h5 class="sstitre">{{mailManager}}</h5>
         </div>
       </div>
     </div>

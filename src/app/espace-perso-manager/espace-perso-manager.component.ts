@@ -18,40 +18,44 @@ export class EspacePersoManagerComponent implements OnInit {
   //RECUPERATION DE L'ID DU MANAGER
   idMan = this.stockageService.id;
   res;
+  idManager;
+  nomManager;
+  prenomManager;
+  mailManager;
   ngOnInit() {
-    this.chargeListeSalons();
     this.http.get('http://localhost:8080/users/' + this.idMan)
       .subscribe(
         response => {
           console.log(response.json());
           this.res = response.json();
+          this.idManager = this.res.id;
+          this.nomManager = this.res.nom;
+          this.prenomManager = this.res.prenom;
+          this.mailManager = this.res.mail;
         }
       )
   }
 
   // RECUPERATION DE LA LISTE DES SALONS DU MANAGER
   dataSalons;
-  chargeListeSalons() {
-    this.http.get('http://localhost:8080/salons').subscribe(response => {
+  chargeListeSalons(idManager) {
+    this.http.get('http://localhost:8080/salons/manager/' + idManager).subscribe(response => {
       this.dataSalons = response.json();
     });
   }
 
   // CREATION D'UN SALON POUR LE MANAGER
-  creation = false;
   salon: Salon = new Salon();
   createSalon() {
     this.http.post('http://localhost:8080/salons', this.salon).subscribe(salonData => {
       console.log(salonData);
-      this.creation = true;
-      this.chargeListeSalons();
+      this.chargeListeSalons(this.idManager);
     }, err => {
       console.log(err);
     });
   }
 
   //SUPPRESION D'UN SALON ET EVENT DU MANAGER
-  suppression = false;
   supSalon(id) {
     this.http.delete('http://localhost:8080/events/salon/' + id).subscribe(eventD => {
       console.log(eventD);
@@ -60,8 +64,7 @@ export class EspacePersoManagerComponent implements OnInit {
     });
     this.http.delete('http://localhost:8080/salons/' + id).subscribe(salonD => {
       console.log(salonD);
-      this.suppression = true;
-      this.chargeListeSalons();
+      this.chargeListeSalons(this.idManager);
     }, err => {
       console.log(err);
     });
@@ -109,6 +112,16 @@ export class EspacePersoManagerComponent implements OnInit {
       console.log(err);
     });
   }
+
+
+    //MODIFICATION SALON
+    modifSalon(id) {
+      this.http.put('http://localhost:8080/salons/'+ id, this.salon).subscribe(salonMod => {
+        console.log(salonMod);
+      }, err => {
+        console.log(err);
+      });
+    }
 
 
 }
