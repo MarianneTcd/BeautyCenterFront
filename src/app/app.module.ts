@@ -16,6 +16,7 @@ import { CarteSalonsComponent } from './carte-salons/carte-salons.component';
 import { EspacePersoClientComponent } from './espace-perso-client/espace-perso-client.component';
 import { EspacePersoManagerComponent } from './espace-perso-manager/espace-perso-manager.component';
 import { ConnexionInscriptionComponent } from './connexion-inscription/connexion-inscription.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ConnexionInscriptionComponent } from './connexion-inscription/connexion
     BrowserModule,
     FormsModule,
     HttpModule,
+    FullCalendarModule,
     RouterModule.forRoot([
 
       {

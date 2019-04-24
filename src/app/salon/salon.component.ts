@@ -4,6 +4,8 @@ import { s } from '@angular/core/src/render3';
 import { Http } from '@angular/http';
 import { SalonservicesService } from '../salonservices.service';
 import { $ } from 'protractor';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
 
 @Component({
   selector: 'app-salon',
@@ -11,6 +13,12 @@ import { $ } from 'protractor';
   styleUrls: ['./salon.component.css']
 })
 export class SalonComponent implements OnInit {
+
+  calendarPlugins = [timeGridPlugin, interactionPlugin];
+
+  handleDateClick(arg){
+    alert("ceci est un test" + arg.dateStr);
+  }
 
   constructor(private http:Http, private serv: SalonservicesService) { }
   id = this.serv.id;
