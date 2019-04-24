@@ -15,6 +15,9 @@
         <div style="width: 100%" class="alert alert-success text-center" role="alert" *ngIf="creation">
           Votre nouveau salon a été créé. A present, ajouter les prestations qui seront proposées ;)
         </div>
+        <div style="width: 100%" class="alert alert-danger text-center" role="alert" *ngIf="suppression">
+          Salon supprimé =O
+        </div>
       </div>
       <div class="row">
         <div class="col d-flex justify-content-center">
@@ -91,18 +94,71 @@
                   <label class="form-check-label d-flex justify-content-center">{{s.dateSalon}}</label>
                 </th>
                 <th>
-                    <button type="button" class="btn btn-warning">Modifier</button>
+                  <button type="button" class="btn btn-warning">Modifier</button>
                 </th>
                 <th>
-                    <button type="button" class="btn btn-danger">Supprimer</button>
+                  <button type="button" class="btn btn-danger" (click)="supSalon(s.id)">Supprimer</button>
                 </th>
                 <th>
-                    <button type="button" class="btn btn-info">prestations</button>
-
-
-
-
-                    
+                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#prestation"
+                    (click)="chargeListePresta(s.id)">prestations</button>
+                  <div class="modal fade" id="prestation" tabindex="-1" role="dialog" aria-labelledby="connexionLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel"> </h5>
+                        </div>
+                        <div class="modal-body">
+                          <h5 class="card-title text-center">Prestations proposées</h5>
+                          <table class="table d-flex justify-content-center">
+                            <tr>
+                              <th>Prestation</th>
+                              <th>Durée</th>
+                              <th>Personnel</th>
+                            </tr>
+                            <tr *ngFor="let u of dataPresta">
+                              <th>
+                                <label class="form-check-label d-flex justify-content-center">{{u.titre}}</label>
+                              </th>
+                              <th>
+                                <label class="form-check-label d-flex justify-content-center">{{u.duree}} min</label>
+                              </th>
+                              <th>
+                                <label class="form-check-label d-flex justify-content-center">{{u.nbPersonnel}}</label>
+                              </th>
+                            </tr>
+                          </table>
+                          <div style="text-align: center">
+                            <div *ngIf="show">
+                              <div class="form-row">
+                                <div style="width: 100%" class="alert alert-danger" role="alert" *ngIf="pass">
+                                  Champ requis
+                                </div>
+                              </div>
+                              <div class="form-row">
+                                <div class="col">
+                                  <input type="text" #nomAction="ngModel" class="form-control" placeholder="Prestation"
+                                    required [(ngModel)]="prestation.titre" name="titre">
+                                </div>
+                                <div class="col">
+                                  <input type="number" #nomDuree="ngModel" class="form-control"
+                                    placeholder="Durée (min)" required [(ngModel)]="prestation.duree" name="duree">
+                                </div>
+                                <div class="col">
+                                  <input type="number" #nomPersonne="ngModel" class="form-control"
+                                    placeholder="Personne" required [(ngModel)]="prestation.nbPersonnel"
+                                    name="nbPersonnel">
+                                </div>
+                              </div>
+                              <button (click)="createEvent()" class="btn btn-info">Ajouter</button>
+                            </div>
+                            <button (click)="affCach()" class="btn btn-info">Ajouter une prestation</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </th>
               </tr>
             </table>
@@ -111,8 +167,6 @@
         </div>
       </div>
     </div>
-
-
 
 
 
