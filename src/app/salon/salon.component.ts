@@ -15,25 +15,27 @@ export class SalonComponent implements OnInit {
   constructor(private http:Http, private serv: SalonservicesService) { }
   id = this.serv.id;
   s;
+  data; 
   choixsoin = "Je choisis mon soin";
-  table=["manucure", "brushing", "pédicure", "couleur"];
+ // table=["manucure", "brushing", "pédicure", "couleur"];
 
-
-  ngOnInit() {
-
+  ngOnInit() { 
     console.log('test jo', this.id);
-    
-    this.http.get('http://localhost:8080/salons/'+ this.id)
+  this.http.get('http://localhost:8080/salons/' + this.id)
+  .subscribe(
+    response => { 
+      console.log(response.json()); 
+      this.s= response.json();
+    } ) 
+
+    this.http.get('http://localhost:8080/events/salon/' + this.id)
     .subscribe(
-      response=>{
-        this.s= response.json();
-        console.log(this.s)
-      }
-    );
+      response => { 
+        console.log(response.json()); 
+        this.data= response.json();
+      } ) 
+
   }
 
   
- 
-
-
 }
