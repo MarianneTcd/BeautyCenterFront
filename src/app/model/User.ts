@@ -4,6 +4,7 @@ export class User {
     prenom: string;
     mail: string;
     mdp: string;
+    access: number;
 
     constructor(){
 
