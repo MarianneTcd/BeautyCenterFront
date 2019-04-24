@@ -1,4 +1,5 @@
 export class Salon {
+    id: number; 
     nomSalon: string;
     dateSalon: Date;
     adresse: string;

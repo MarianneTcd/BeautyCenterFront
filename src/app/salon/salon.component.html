@@ -6,7 +6,7 @@
       <!--boucle sur chaque salon présent dans la base de données-->
 
       <!--card contenant toutes les infos-->
-      <div class="card p-1 mt-4" style="width: 950px; height: 700px;">
+      <div class="card p-1 mt-4" >
         <div class="container">
 
 
@@ -24,17 +24,21 @@
                 peu underground, style post-modern rétro avec des notes de design suédois. Je ne sais pas quoi écrire
                 pour continuer de remplir un peu cette zone de texte.</p>
               <p class="infosalon" style="text-align: justify;">Vous voulez réserver un soin ? Par ici !</p>
+
+              
               <div class="btn-group">
                 <button class="btn dropdown-toggle" type="button" id="btnChoixPresta" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false" id="lbDrop">
                   Je choisis mon soin
                 </button>
+
                 <div class="dropdown-menu" aria-labelledby="btnChoixPresta">
 
-                  <a *ngFor="let u of data" class="dropdown-item elemListePresta" >{{u.titre}}</a>
+                  <a *ngFor="let u of data" class="dropdown-item elemListePresta" >{{u.titre}} ({{u.duree}} min)</a>
                  
                 </div>
-              </div>
+              </div>  
+
             </div>
 
           </div>
@@ -63,7 +67,7 @@
 
 
         </div>
-      </div>
+      
       <br>
       <br>
 
