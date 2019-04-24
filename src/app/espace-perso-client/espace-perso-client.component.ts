@@ -16,6 +16,8 @@ export class EspacePersoClientComponent implements OnInit {
   constructor(private http: Http, private stockageService: ServiceStockageService) { }
   id = this.stockageService.id;
   res;
+  nom;
+  prenom;
 
   ngOnInit() {
     this.http.get('http://localhost:8080/users/' + this.id)
@@ -23,12 +25,13 @@ export class EspacePersoClientComponent implements OnInit {
       response => { 
         console.log(response.json()); 
         this.res= response.json();
+        this.nom = this.res.nom;
       } )
 
   }
 
   modifprof() {
-    
+
   }
 
 }
