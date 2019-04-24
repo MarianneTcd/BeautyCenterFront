@@ -11,7 +11,8 @@ import { userInfo } from 'os';
 })
 export class EspacePersoClientComponent implements OnInit {
   
-  
+  user: User= new User();
+
   constructor(private http: Http, private stockageService: ServiceStockageService) { }
   id = this.stockageService.id;
   res;
@@ -24,6 +25,10 @@ export class EspacePersoClientComponent implements OnInit {
         this.res= response.json();
       } )
 
+  }
+
+  modifprof() {
+    
   }
 
 }

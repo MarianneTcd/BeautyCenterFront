@@ -52,7 +52,14 @@ export class AppComponent {
     deconnexion(){
       this.show = true;
       this.stockageService.id = null;
-      this.data = null;
+      this.data.id = null;
+      this.data.nom = null;
+      this.data.prenom = null;
+      this.data.mail = null;
+      this.data.mdp = null;
+      this.data.access = null;
+      this.route.navigate(['/espacenonuser'])
+
     }
   
     createUser(){
