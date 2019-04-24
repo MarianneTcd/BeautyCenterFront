@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { User } from './model/User';
 import { Http } from '@angular/http';
 import { RouterLinkWithHref, Router } from '@angular/router';
+import { ServiceStockageService } from './service-stockage.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent {
   u: User= new User();
   
 
-    constructor(private http : Http, private route: Router) { }
+    constructor(private http : Http, private stockageService: ServiceStockageService, private route: Router) { }
   
     ngOnInit() {
     }
@@ -33,13 +34,14 @@ export class AppComponent {
           this.pass = true;
         }else{
           this.pass = false;
-            if(this.data.access==1){
-              this.route.navigate(['/espaceperso']);
-              console.log('coucou petit client');
-            }if(this.data.access==3){
-              this.route.navigate(['/espacemanager']);
-              console.log('coucou petit employe');
-            }
+          this.stockageService.id = this.data.id;
+          if(this.data.access==1){
+            this.route.navigate(['/espaceperso']);           
+            console.log('coucou petit client');
+          }if(this.data.access==3){
+            this.route.navigate(['/espacemanager']);
+            console.log('coucou petit employe');
+          }
         }
       }, err => {
         console.log(err);

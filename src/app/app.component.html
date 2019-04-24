@@ -34,11 +34,9 @@
               <input type="password" #nomAction="ngModel" class="form-control" placeholder="Entrer le mot de passe"
                 required [(ngModel)]="u.mdp" name="mdp">
             </div>
-            <div style="width: 100%" class="alert alert-danger" role="alert" *ngIf="pass">
-                Identifiant ou mot de passe incorrect
-             </div>
+            
             <div>
-              <button (click)="connexion()" class="btn btn-primary" >Valider</button>
+              <button (click)="connexion()" class="btn btn-primary" data-dismiss="modal">Valider</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
               <p><br><br></p>
             </div>
@@ -49,7 +47,9 @@
     </div>
   </div>
 
-
+  <div style="width: 100%" class="alert alert-danger text-center" role="alert" *ngIf="pass">
+    Identifiant ou mot de passe incorrect
+ </div>
 
 
   <div class="modal fade" id="inscription" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
