@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
+import { Salon } from '../model/Salon';
 
 @Component({
   selector: 'app-espace-perso-manager',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EspacePersoManagerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: Http) { }
 
   ngOnInit() {
   }
 
+  creation = false;
+  salon: Salon = new Salon();
+  createSalon() {
+    this.http.post('http://localhost:8080/salons', this.salon).subscribe(salonData => {
+      console.log(salonData);
+      this.creation = true;
+    }, err => {
+      console.log(err);
+    });
+  }
 }
