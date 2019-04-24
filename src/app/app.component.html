@@ -6,7 +6,6 @@
       </a>
       <div class="d-flex">
         <img src="https://cdn.onlinewebfonts.com/svg/img_405324.png" style=" width: 30px; height: 30px;">
-        <button type="button" class="btn btn-primary" routerLink="/createUser" routerLinkActive="active" >Inscription Test Alex</button>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#connexion">Connexion</button>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inscription">Inscription</button>
       </div>
@@ -61,19 +60,22 @@
           </div>
           <div class="modal-body">
 
-              <form #validUser ="ngForm">
+              <form #validUser="ngForm">
+                  <h2 class="card-title text-left">Vous êtes...</h2>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
-                      checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                      Client
-                    </label>
+                    <input class="form-check-input" type="radio" #nomClient="ngModel" [(ngModel)]="user.access" name="access"
+                      value="1">
+                    <label class="form-check-label" for="exampleRadios1">Client </label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                    <label class="form-check-label" for="exampleRadios2">
-                      Professionnel
-                    </label>
+                    <input class="form-check-input" type="radio" #nomEmp="ngModel" [(ngModel)]="user.access" name="access"
+                      value="2">
+                    <label class="form-check-label" for="exampleRadios2">Employé</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" #nomMan="ngModel" [(ngModel)]="user.access" name="access"
+                      value="3">
+                    <label class="form-check-label" for="exampleRadios2">Manager</label>
                   </div>
                   <div class="form-group">
                     <label>Nom de l'utilisateur</label>
@@ -95,10 +97,12 @@
                     <label>Mot de passe</label>
                     <input type="password" #nomAction="ngModel" class="form-control" placeholder="Entrer le mot de passe"
                       required [(ngModel)]="user.mdp" name="mdp">
-                  </div>            
+                  </div>
                   <div>
-                    <button (click)="createUser()" class="btn btn-primary" data-dismiss="modal" [disabled]="!validUser.form.valid">Valider</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+                    <button (click)="createUser()" class="btn btn-primary" routerLink="/listesalons" routerLinkActive="active"
+                      [disabled]="!validUser.form.valid" data-dismiss="modal">Valider</button>
+                    <button type="button" class="btn btn-danger" routerLink="/listesalons"
+                      routerLinkActive="active" data-dismiss="modal">Retour</button>
                   </div>
                 </form>
           </div>

@@ -13,7 +13,6 @@ export class AppComponent {
   data;
   user: User= new User();
   u: User= new User();
-  tuer = 'data-dismiss="modal"';
   
 
     constructor(private http : Http, private route: Router) { }
@@ -34,8 +33,13 @@ export class AppComponent {
           this.pass = true;
         }else{
           this.pass = false;
-          this.route.navigate(['/espaceperso']);
-          console.log('ok');
+            if(this.data.access==1){
+              this.route.navigate(['/espaceperso']);
+              console.log('coucou petit client');
+            }if(this.data.access==3){
+              this.route.navigate(['/espacemanager']);
+              console.log('coucou petit employe');
+            }
         }
       }, err => {
         console.log(err);
