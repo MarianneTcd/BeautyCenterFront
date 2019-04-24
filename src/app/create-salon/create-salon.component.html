@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title text-center">Création d'un salon</h5>
+          <h4 class="card-title text-center">Création d'un salon</h4>
           <form #cSalon="ngForm">
             <div class="form-group">
               <label>Nom du salon</label>
@@ -30,71 +30,16 @@
               <input type="email" #nomContact="ngModel" class="form-control" placeholder="Saisir le mail" required
                 [(ngModel)]="salon.contact" name="contact">
             </div>
-            <div class="card">
-              <div class="card-body">
-                <h6 class="card-title text-center">Liste des prestations</h6>
-                <table class="table d-flex justify-content-center">
-                  <tr>
-                    <th>Selection</th>
-                    <th>Prestation</th>
-                    <th>Durée</th>
-                    <th>Personnel necessaire</th>
-                  </tr>
-                  <tr *ngFor="let u of data">
-                    <th class="dim">
-                      <input type="checkbox" class="form-check-input">
-                      <input type="hidden" value="{{u.id}}">
-                    </th>
-                    <th class="dim">
-                      <label class="form-check-label">{{u.titre}}</label>
-                    </th>
-                    <th class="dim">
-                      <label class="form-check-label">{{u.duree}} min</label>
-                    </th>
-                    <th class="dim">
-                      <label class="form-check-label">{{u.nbPersonnel}}</label>
-                    </th>
-                  </tr>
-                </table>
-                <div style="text-align: center">
-                  <div *ngIf="show">
-                    <div class="form-row">
-                      <div style="width: 100%" class="alert alert-danger" role="alert" *ngIf="pass">
-                        Champ requis
-                      </div>
-                      </div>
-                      <div class="form-row">
-                      <div class="col">
-                        <input type="text" #nomAction="ngModel" class="form-control" placeholder="Prestation" required
-                          [(ngModel)]="prestation.titre" name="titre">
-                      </div>
-                      <div class="col">
-                        <input type="number" #nomDuree="ngModel" class="form-control" placeholder="Durée (min)" required
-                          [(ngModel)]="prestation.duree" name="duree">
-                      </div>
-                      <div class="col">
-                        <input type="number" #nomPersonne="ngModel" class="form-control" placeholder="Personne" required
-                          [(ngModel)]="prestation.nbPersonnel" name="nbPersonnel">
-                      </div>
-                    </div>
-                    <button (click)="createPrestation()" class="btn btn-info">Ajouter</button>
-                  </div>
-                  <button (click)="affCach()" class="btn btn-info">Ajouter une prestation</button>
-                </div>
-              </div>
-            </div>
             <div>
-              <button (click)="createSalon()" [disabled]="!cSalon.form.valid" type="button" routerLink="/listesalons"
+              <button (click)="createSalon()" (click)="createEvent()" [disabled]="!cSalon.form.valid" type="button" routerLink="/espacemanager"
                 routerLinkActive="active" class="btn btn-primary">Creer le
                 salon</button>
               <button type="button" routerLink="/listesalons" routerLinkActive="active" class="btn btn-danger">Retour au
                 menu</button>
             </div>
           </form>
-
         </div>
       </div>
-
     </div>
   </div>
 </div>
