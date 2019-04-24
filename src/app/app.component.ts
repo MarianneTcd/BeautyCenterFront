@@ -14,7 +14,7 @@ export class AppComponent {
   data;
   user: User= new User();
   u: User= new User();
-  
+  show=true;
 
     constructor(private http : Http, private stockageService: ServiceStockageService, private route: Router) { }
   
@@ -34,6 +34,7 @@ export class AppComponent {
           this.pass = true;
         }else{
           this.pass = false;
+          this.show = false;
           this.stockageService.id = this.data.id;
           if(this.data.access==1){
             this.route.navigate(['/espaceperso']);           
@@ -46,6 +47,19 @@ export class AppComponent {
       }, err => {
         console.log(err);
       });
+    }
+
+    deconnexion(){
+      this.show = true;
+      this.stockageService.id = null;
+      this.data.id = null;
+      this.data.nom = null;
+      this.data.prenom = null;
+      this.data.mail = null;
+      this.data.mdp = null;
+      this.data.access = null;
+      this.route.navigate(['/espacenonuser'])
+
     }
   
     createUser(){

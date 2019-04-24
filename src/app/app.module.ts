@@ -16,6 +16,7 @@ import { CarteSalonsComponent } from './carte-salons/carte-salons.component';
 import { EspacePersoClientComponent } from './espace-perso-client/espace-perso-client.component';
 import { EspacePersoManagerComponent } from './espace-perso-manager/espace-perso-manager.component';
 import { ConnexionInscriptionComponent } from './connexion-inscription/connexion-inscription.component';
+import { EspaceNonUserComponent } from './espace-non-user/espace-non-user.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ConnexionInscriptionComponent } from './connexion-inscription/connexion
     CarteSalonsComponent,
     EspacePersoClientComponent,
     EspacePersoManagerComponent,
-    ConnexionInscriptionComponent
+    ConnexionInscriptionComponent,
+    EspaceNonUserComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,11 @@ import { ConnexionInscriptionComponent } from './connexion-inscription/connexion
       {
         path: 'espacemanager',
         component: EspacePersoManagerComponent,
-      }
+      },
+      {
+        path: 'espacenonuser',
+        component: EspaceNonUserComponent,
+      },
 
     ])
   ],

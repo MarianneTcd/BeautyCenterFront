@@ -1,16 +1,24 @@
 <!--1ere navbar : logo et connexion-->
 <div class="mt-1 ml-3">
-    <nav class="navbar navbar-light bg-light" style=" height: 50px; box-shadow: 0px 0px 0px;">
-      <a class="navbar-brand ml-3" href="#">
-        Beauty
+  <nav class="navbar navbar-light bg-light" style=" height: 50px; box-shadow: 0px 0px 0px;">
+    <a class="navbar-brand ml-3" href="#">Beauty</a>
+    <div class="d-flex">
+      
+      <a>
+        {{ data.prenom }} {{ data.nom }} 
       </a>
-      <div class="d-flex">
-        <img src="https://cdn.onlinewebfonts.com/svg/img_405324.png" style=" width: 30px; height: 30px;">
+      <img src="https://cdn.onlinewebfonts.com/svg/img_405324.png" style=" width: 30px; height: 30px;">
+      <div *ngIf="show">        
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#connexion">Connexion</button>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inscription">Inscription</button>
       </div>
-    </nav>
-  </div>
+      <div *ngIf="!show">        
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deconnexion">Déconnexion</button>
+      </div>
+
+    </div>
+  </nav>
+</div>
 
 
 
@@ -49,7 +57,7 @@
 
   <div style="width: 100%" class="alert alert-danger text-center" role="alert" *ngIf="pass">
     Identifiant ou mot de passe incorrect
- </div>
+  </div>
 
 
   <div class="modal fade" id="inscription" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -111,14 +119,31 @@
     </div>
 
 
-
+    <div class="modal fade" id="deconnexion" tabindex="-1" role="dialog" aria-labelledby="connexionLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">  </h5>
+            </div>
+            <div class="modal-body">
+              
+              <h5 class="card-title text-center">Êtes-vous sûr de vous déconnecter ?</h5>
+              <form>
+                <div>
+                  <button (click)="deconnexion()" class="btn btn-primary" data-dismiss="modal">Valider</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+                </div>    
+              </form>
+            </div>         
+          </div>
+        </div>
+      </div>
 
 
 
 
   
   <br>
-  <a class="nav-link" routerLink="createsalon" routerLinkActive="active">BOUTON TEST CREER SALON EN ATTENDANT LA CONNEXION</a>
   <a class="nav-link" routerLink="espaceperso" routerLinkActive="active">BOUTON TEST ESPACE CLIENT</a>
   <a class="nav-link" routerLink="espacemanager" routerLinkActive="active">BOUTON TEST ESPACE MANAGER</a>
   <!--2e navbar : reste tout au long du scroll-->

@@ -6,10 +6,68 @@
     <div class="col-8 p-4" style="border-right: 1px solid;">
       <div class="row">
         <div class="col">
-          <h1 class="titre">Bonjour, {{ res.nom }} - Votre Espace Perso</h1>
+          <h1 class="titre">Bonjour, {{ res.nom }} - Votre Espace Perso</h1><br>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <p>Nom : {{ res.nom }}</p>
+            <p>Prénom : {{ res.prenom}}</p>
+            <p>e-mail : {{ res.mail}}</p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modifprof">Modifier mon profile</button>
+          </div>
           <br>
         </div>
       </div>
+
+      <div class="modal fade" id="modifprof" tabindex="-1" role="dialog" aria-labelledby="modifLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modifModalLabel">  </h5>
+              </div>
+              <div class="modal-body">
+                
+                <h5 class="card-title text-center">Modifier mon profile</h5>
+
+
+                <form>
+                  <div class="form-group">
+                    <label>Nom</label>
+                    <input type="text" #nomContact="ngModel" class="form-control" placeholder="Changer mon nom" required
+                      [(ngModel)]="user.nom" name="nom">
+                  </div>
+                  <div class="form-group">
+                    <label>e-mail</label>
+                    <input type="text" #nomContact="ngModel" class="form-control" placeholder="Changer mon prenom" required
+                      [(ngModel)]="user.prenom" name="prenom">
+                  </div>
+                  <div class="form-group">
+                    <label>Mot de passe</label>
+                    <input type="password" #nomAction="ngModel" class="form-control" placeholder="Changer mon mot de passe"
+                      required [(ngModel)]="user.mdp" name="mdp">
+                  </div>
+                    
+                  <div>
+                    <button (click)="modifprof()" class="btn btn-primary" data-dismiss="modal">Valider</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+                    <p><br><br></p>
+                  </div>
+        
+                </form>
+
+              
+              </div>         
+            </div>
+          </div>
+        </div>
+
+
+
+
+
       <div class="row">
         <div class="col">
           <div class="card">
@@ -18,6 +76,7 @@
           <br>
         </div>
       </div>
+      
       <div class="row">
         <div class="col">
           <div class="card">
