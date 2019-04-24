@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./espace-perso-client.component.css']
 })
 export class EspacePersoClientComponent implements OnInit {
-
+  
+  data;
   constructor() { }
 
   ngOnInit() {
