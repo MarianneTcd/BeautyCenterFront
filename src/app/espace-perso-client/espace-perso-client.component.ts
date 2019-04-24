@@ -18,6 +18,8 @@ export class EspacePersoClientComponent implements OnInit {
   res;
   nom;
   prenom;
+  mail;
+  mdp;
 
   ngOnInit() {
     this.http.get('http://localhost:8080/users/' + this.id)
@@ -26,6 +28,9 @@ export class EspacePersoClientComponent implements OnInit {
         console.log(response.json()); 
         this.res= response.json();
         this.nom = this.res.nom;
+        this.prenom = this.res.prenom;
+        this.mail = this.res.mail;
+        this.mdp = this.res.mdp
       } )
 
   }
