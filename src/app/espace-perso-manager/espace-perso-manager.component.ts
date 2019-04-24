@@ -12,6 +12,14 @@ export class EspacePersoManagerComponent implements OnInit {
   constructor(private http: Http) { }
 
   ngOnInit() {
+    this.chargeListeSalons();
+  }
+
+  dataSalons;
+  chargeListeSalons() {
+    this.http.get('http://localhost:8080/salons').subscribe(response => {
+      this.dataSalons = response.json();
+    });
   }
 
   creation = false;
@@ -20,6 +28,7 @@ export class EspacePersoManagerComponent implements OnInit {
     this.http.post('http://localhost:8080/salons', this.salon).subscribe(salonData => {
       console.log(salonData);
       this.creation = true;
+      this.chargeListeSalons();
     }, err => {
       console.log(err);
     });

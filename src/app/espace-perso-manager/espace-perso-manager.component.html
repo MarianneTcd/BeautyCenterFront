@@ -74,7 +74,38 @@
       <div class="row">
         <div class="col">
           <div class="card-body">
-                <h4 class="card-title text-center">Mes salons</h4>
+            <h4 class="card-title text-center">Mes salons</h4>
+            <table class="table d-flex justify-content-center">
+              <tr>
+                <th>Nom</th>
+                <th>Date</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
+                <th>Prestation</th>
+              </tr>
+              <tr *ngFor="let s of dataSalons">
+                <th>
+                  <label class="form-check-label">{{s.nomSalon}}</label>
+                </th>
+                <th>
+                  <label class="form-check-label d-flex justify-content-center">{{s.dateSalon}}</label>
+                </th>
+                <th>
+                    <button type="button" class="btn btn-warning">Modifier</button>
+                </th>
+                <th>
+                    <button type="button" class="btn btn-danger">Supprimer</button>
+                </th>
+                <th>
+                    <button type="button" class="btn btn-info">prestations</button>
+
+
+
+
+                    
+                </th>
+              </tr>
+            </table>
           </div>
           <br>
         </div>
