@@ -1,3 +1,35 @@
-<p>
-  gestion-prestation works!
-</p>
+<div>
+  <h5>Les prestations du salon</h5>
+</div>
+<div>
+  <table>
+    <tr *ngFor="let u of dataPrestaSalon">
+      <th>
+        <label class="form-check-label d-flex justify-content-start">{{u.titre}} || {{u.duree}} min ||
+          {{u.nbPersonnel}} personne(s)</label>
+      </th>
+      <th>
+          <button mat-mini-fab color="warn">-</button>
+      </th>
+    </tr>
+  </table>
+</div>
+
+<hr>
+
+<div>
+  <h5>Les prestations disponibles</h5>
+</div>
+<div>
+  <table>
+    <tr *ngFor="let p of dataPresta">
+      <th>
+        <label class="form-check-label d-flex justify-content-start">{{p.titre}} || {{p.duree}} min ||
+          {{p.nbPersonnel}} personne(s)</label>
+      </th>
+      <th>
+          <button mat-mini-fab color="primary">+</button>
+      </th>
+    </tr>
+  </table>
+</div>

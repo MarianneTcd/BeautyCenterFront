@@ -125,7 +125,7 @@
                             <form>
                               <div class="d-flex justify-content-center">
                                 <button class="btn btn-primary" data-dismiss="modal"
-                                  (click)="supSalon(stock?.id)">Valider</button>
+                                  (click)="supSalon(stock?.id)" >Valider</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
                               </div>
                             </form>
@@ -136,64 +136,16 @@
 
 
                     <img src="http://simpleicon.com/wp-content/uploads/users.png" style="width : 30px;"><button
-                      type="button" class="btn btn-info" data-toggle="modal" data-target="#prestation"
-                      (click)="chargeListePresta(s.id)" style="height : 30px">Prestations</button>
+                      type="button" class="btn btn-info" (click)="affCach()" (click)="infoSalon(s.id)" style="height : 30px">Prestations</button>
                     <br>
-
-                    <div class="modal fade" id="prestation" tabindex="-1" role="dialog" aria-labelledby="connexionLabel"
-                      aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel"> </h5>
-                          </div>
-                          <div class="modal-body">
-                            <h5 class="card-title text-center">Prestations</h5>
-                            <table class="table d-flex justify-content-center">
-                              <tr>
-                                <th>Prestation</th>
-                                <th>Durée</th>
-                                <th>Personnel</th>
-                              </tr>
-                              <tr *ngFor="let u of dataPresta">
-                                <th>
-                                  <label class="form-check-label d-flex justify-content-center">{{u.titre}}</label>
-                                </th>
-                                <th>
-                                  <label class="form-check-label d-flex justify-content-center">{{u.duree}} min</label>
-                                </th>
-                                <th>
-                                  <label
-                                    class="form-check-label d-flex justify-content-center">{{u.nbPersonnel}}</label>
-                                </th>
-                              </tr>
-                            </table>
-
-                            
-                            <form class="example-form">
-                                <mat-form-field class="example-full-width">
-                                  <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-                                  <mat-autocomplete #auto="matAutocomplete">
-                                    <mat-option *ngFor="let option of options" [value]="option">
-                                      {{option}}
-                                    </mat-option>
-                                  </mat-autocomplete>
-                                </mat-form-field>
-                              </form>
-
-
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
                   </div>
                 </div>
               </div>
+
             </div>
             <br>
             <br>
+            
           </div>
 
 
@@ -326,6 +278,11 @@
             </div>
           </div>
           <br>
+        </div>
+      </div>
+      <div class="row">
+          <div *ngIf="show">
+              <app-gestion-prestation></app-gestion-prestation>
         </div>
       </div>
 

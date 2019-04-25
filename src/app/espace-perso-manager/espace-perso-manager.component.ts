@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceStockageService } from '../service-stockage.service';
+import { SalonservicesService } from '../salonservices.service';
 import { Http } from '@angular/http';
 import { Salon } from '../model/Salon';
 import { identifierModuleUrl } from '@angular/compiler';
@@ -14,7 +15,7 @@ import {FormControl} from '@angular/forms';
 })
 export class EspacePersoManagerComponent implements OnInit {
 
-  constructor(private http: Http, private stockageService: ServiceStockageService) { }
+  constructor(private http: Http, private stockageService: ServiceStockageService, private serv: SalonservicesService) { }
 
   //RECUPERATION DE L'ID DU MANAGER
   idMan = this.stockageService.id;
@@ -82,6 +83,11 @@ export class EspacePersoManagerComponent implements OnInit {
   show = false;
   affCach() {
     this.show = !this.show;
+  }
+
+  infoSalon(numeroSalon){
+    this.serv.id = numeroSalon;
+    console.log('numero du salon recup', numeroSalon)
   }
 
   // RECUPERATION DE LA LISTE DES PRESTATIONS DU SALON
