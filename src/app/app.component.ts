@@ -12,6 +12,7 @@ import { ServiceStockageService } from './service-stockage.service';
 export class AppComponent {
   title = 'app';
   data;
+  mail;
   user: User= new User();
   u: User= new User();
   show=true;
@@ -74,6 +75,14 @@ export class AppComponent {
     createUser(){
       this.http.post('http://localhost:8080/users', this.user).subscribe(userData=>{
         console.log(userData);
+  
+        this.http.post('http://localhost:8080/mailcreationcompte',this.user).subscribe(reponse =>{
+          this.mail=reponse.json();
+  
+          console.log('mail => user' , this.user);
+          console.log('mail' , this.mail);
+          console.log('mail envoyé');
+        })
       }, err => {
         console.log(err);
       });
