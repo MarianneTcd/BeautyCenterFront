@@ -8,9 +8,6 @@ export class ServiceStockageService {
   constructor() { }
 
   id;
-  nom;
-  prenom;
-  acces;
-  mail;
+  idManager;
 
 }

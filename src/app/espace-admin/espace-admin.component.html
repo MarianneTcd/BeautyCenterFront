@@ -14,20 +14,23 @@
               <h3 class="mx-auto">Liste des managers</h3>
               <table class="table table-striped">
                 <thead>
-                  <tr>
+                  <tr style="background-color: rgb(235, 118, 142)">
                     <th scope="col">ID</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Preom</th>
                     <th scope="col">e-mail</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody *ngFor="let m of manager">                  
-                  <tr class="table-info">
+                  <tr style="background-color: rgb(231, 166, 179)">
                     <th scope="row">{{m.id}}</th>
                     <td>{{m.nom}}</td>
                     <td>{{m.prenom}}</td>
                     <td>{{m.mail}}</td>
-                    <td>npm update --save</td>
+                    <td>
+                      <button (click)="goModif(m.id)" class="btn btn-outline-light">Modifier</button>                     
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -36,16 +39,41 @@
             <br>
           </div>
         </div>
-        
-        <div class="row">
-          <div class="col">
-            <div class="card">
-              Ajouter un employé
-            </div>
-            <br>
-          </div>
-        </div>
       </div>
+
+      <div class="col-4 p-4">
+          <div class="row" style="text-align: center;">
+            <div class="col">
+              <br><br><br><br><br>
+              <form>
+                <div class="form-group">
+                  <label> Nom de manager</label>
+                  <input type="text" #nomAction="ngModel" class="form-control" value={{nomM}}
+                    required [(ngModel)]="nom" name="nom">
+                </div>
+                <div class="form-group">
+                  <label> Prénom de manager</label>
+                  <input type="text" #nomAction="ngModel" class="form-control" value={{prenomM}}
+                    required [(ngModel)]="prenom" name="prenom">
+                </div>
+                <div class="form-group">
+                  <label> e-mail</label>
+                  <input type="text" #nomAction="ngModel" class="form-control" value={{mailM}}
+                    required [(ngModel)]="mail" name="mail">
+                </div> 
+                <div class="form-group">
+                  <label> Mot de passe </label>
+                  <input type="password" #nomAction="ngModel" class="form-control" value={{mdpM}}
+                    required [(ngModel)]="mdp" name="mdp">
+                </div>
+                <div>
+                  <button (click)="modifManager()" class="btn btn-primary" data-dismiss="modal">Valider</button>
+                </div>
+              </form>
+              
+            </div>
+          </div>             
+        </div>
 
     </div>
   </div>
