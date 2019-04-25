@@ -39,6 +39,8 @@ export class AppComponent {
           this.pass = false;
           this.show = false;
           this.stockageService.id = this.data.id;
+          console.log('mis en service id', this.stockageService.id);
+          console.log('value id avt mis en service', this.data.id);
           if(this.data.access==1){
             this.route.navigate(['/espaceperso']);
             this.showClient = true;           

@@ -12,15 +12,235 @@
         </div>
       </div>
       <div class="row">
-        <div class="col d-flex justify-content-center">
-          <button type="button" class="btn btn-primary" (click)="chargeListeSalons(idManager)">Mise à jour des
-            salons</button>
+        <div class="col">
+
+          <h4 class="card-title text-center">Gestion de mes salons</h4>
+          <div *ngFor="let s of dataSalons">
+            <!--card contenant toutes les infos-->
+            <div class="card p-1">
+              <div class="container">
+                <div class="row justify-content-left">
+
+                  <!--photo du salon-->
+                  <div class="col">
+                    <br>
+                    <img src="http://www.le-salon-coiffeur.com/images/accueil-2.jpg" class="img-fluid mx-auto"
+                      style="width : 325px;">
+                  </div>
+
+                  <!--Informations : nom, tel, adresse, note, ...-->
+                  <div class="col align-self-center">
+                    <div class="row justify-content-between mr-3">
+                      <h4 class="nomsalon">{{s.nomSalon}}</h4>
+                    </div>
+                    <br>
+                    <img src="http://simpleicon.com/wp-content/uploads/phone-1.png" style="width : 30px;"><span
+                      class="ml-2 infosalon">{{s.telephone}}</span>
+                    <br>
+                    <img src="https://image.flaticon.com/icons/png/512/9/9275.png" style="width : 30px;"><span
+                      class="ml-2 infosalon">{{s.adresse}}</span>
+                    <br>
+                    <img src="http://simpleicon.com/wp-content/uploads/Calendar-2.png" style="width : 30px;"><span
+                      class="ml-2 infosalon">{{s.dateSalon}}</span>
+                    <br>
+                  </div>
+
+                  <div class="col align-self-center">
+                    <div class="row justify-content-between mr-3">
+                      <h5 class="nomsalon">Options</h5>
+                    </div>
+                    <br>
+                    <img src="http://simpleicon.com/wp-content/uploads/pen-5.png" style="width : 30px;"><button
+                      type="button" class="btn btn-warning" data-toggle="modal" data-target="#modifSalon"
+                      (click)="getSalon(s.id)" style="height : 30px">Modifier</button>
+                    <br>
+
+                    <div class="modal fade" id="modifSalon" tabindex="-1" role="dialog" aria-labelledby="connexionLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"> </h5>
+                          </div>
+                          <div class="modal-body">
+                            <h5 class="card-title text-center">Modifier le salon</h5>
+                            <form>
+                              <div class="form-group">
+                                <label>Nom du salon</label>
+                                <input type="text" #nomAction="ngModel" class="form-control" 
+                                  [(ngModel)]="salon.nomSalon" name="nomSalon">
+                              </div>
+                              <div class="form-group">
+                                <label>Date du salon</label>
+                                <input type="date" #nomDate="ngModel" class="form-control" 
+                                  [(ngModel)]="salon.dateSalon" name="dateSalon">
+                              </div>
+                              <div class="form-group">
+                                <label>Adresse postale</label>
+                                <input type="text" #nomAdresse="ngModel" class="form-control" 
+                                  [(ngModel)]="salon.adresse" name="adresse">
+                              </div>
+                              <div class="form-group">
+                                <label>Numéro de telephone</label>
+                                <input type="text" #nomTelephone="ngModel" class="form-control" 
+                                  [(ngModel)]="salon.telephone" name="telephone">
+                              </div>
+                              <div class="form-group">
+                                <label>Adresse mail</label>
+                                <input type="email" #nomContact="ngModel" class="form-control" 
+                                  [(ngModel)]="salon.contact" name="contact">
+                              </div>
+                              <div>
+                                <button (click)="modifSalon()" type="button"
+                                  class="btn btn-primary" data-dismiss="modal">Modifier le
+                                  salon</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Retour au
+                                  menu</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <img src="http://simpleicon.com/wp-content/uploads/trash.png" style="width : 30px;"><button
+                      type="button" class="btn btn-danger" data-toggle="modal" data-target="#suppression"
+                      style="height : 30px" (click)="getSalon(s.id)">Supprimer</button>
+
+                    <br>
+
+                    <div class="modal fade" id="suppression" tabindex="-1" role="dialog"
+                      aria-labelledby="connexionLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"> </h5>
+                          </div>
+                          <div class="modal-body">
+
+                            <h5 class="card-title text-center">Êtes-vous sûr de vouloir supprimer ce salon {{stock.nomSalon}} du {{stock.dateSalon}} ?</h5>
+                            <form>
+                              <div>
+                                <button class="btn btn-primary"
+                                  data-dismiss="modal" (click)="supSalon(stock.id)">Valider</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <img src="http://simpleicon.com/wp-content/uploads/users.png" style="width : 30px;"><button
+                      type="button" class="btn btn-info" data-toggle="modal" data-target="#prestation"
+                      (click)="chargeListePresta(s.id)" style="height : 30px">Prestations</button>
+                    <br>
+
+                    <div class="modal fade" id="prestation" tabindex="-1" role="dialog" aria-labelledby="connexionLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"> </h5>
+                          </div>
+                          <div class="modal-body">
+                            <h5 class="card-title text-center">Prestations proposées</h5>
+                            <table class="table d-flex justify-content-center">
+                              <tr>
+                                <th>Prestation</th>
+                                <th>Durée</th>
+                                <th>Personnel</th>
+                              </tr>
+                              <tr *ngFor="let u of dataPresta">
+                                <th>
+                                  <label class="form-check-label d-flex justify-content-center">{{u.titre}}</label>
+                                </th>
+                                <th>
+                                  <label class="form-check-label d-flex justify-content-center">{{u.duree}} min</label>
+                                </th>
+                                <th>
+                                  <label
+                                    class="form-check-label d-flex justify-content-center">{{u.nbPersonnel}}</label>
+                                </th>
+                              </tr>
+                            </table>
+                            <div style="text-align: center">
+                              <div *ngIf="show">
+                                <div class="form-row">
+                                  <div style="width: 100%" class="alert alert-danger" role="alert" *ngIf="pass">
+                                    Champ requis
+                                  </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="col">
+                                    <input type="text" #nomAction="ngModel" class="form-control"
+                                      placeholder="Prestation" required [(ngModel)]="prestation.titre" name="titre">
+                                  </div>
+                                  <div class="col">
+                                    <input type="number" #nomDuree="ngModel" class="form-control"
+                                      placeholder="Durée (min)" required [(ngModel)]="prestation.duree" name="duree">
+                                  </div>
+                                  <div class="col">
+                                    <input type="number" #nomPersonne="ngModel" class="form-control"
+                                      placeholder="Personne" required [(ngModel)]="prestation.nbPersonnel"
+                                      name="nbPersonnel">
+                                  </div>
+                                </div>
+                                <button (click)="createEvent()" class="btn btn-info">Ajouter</button>
+                              </div>
+                              <button (click)="affCach()" class="btn btn-info">Ajouter une prestation</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <br>
+          </div>
+
+
+          <br>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="col-4 p-4">
+      <div class="row" style="text-align: center;">
+        <div class="col">
+          <img
+            src="https://static1.purebreak.com/articles/4/17/45/44/@/669571-game-of-thrones-saison-8-le-secret-du-diapo-1.jpeg"
+            style="width:300px;">
+        </div>
+      </div>
+
+      <br>
+      <br>
+      <div class="row">
+        <div class="col">
+          <h5 class="sstitre">{{prenomManager}} {{nomManager}}</h5>
         </div>
       </div>
       <div class="row">
-        <div class="col d-flex justify-content-center">
+        <div class="col">
+          <h5 class="sstitre">{{mailManager}}</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col d-flex justify-content-start">
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createSalon">Creer un nouveau
             salon</button>
+
           <div class="modal fade" id="createSalon" tabindex="-1" role="dialog" aria-labelledby="connexionLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -33,8 +253,6 @@
                   <form #cSalon="ngForm">
                     <div class="form-group">
                       <label>Nom du salon</label>
-                      <input type="text" #nomIdManager="ngModel" class="form-control" value="{{idManager}}"
-                        [(ngModel)]="salon.idManager" name="idManager">
                       <input type="text" #nomAction="ngModel" class="form-control" placeholder="Saisir le nom" required
                         [(ngModel)]="salon.nomSalon" name="nomSalon">
                     </div>
@@ -59,7 +277,7 @@
                         required [(ngModel)]="salon.contact" name="contact">
                     </div>
                     <div>
-                      <button (click)="createSalon(idManager)" [disabled]="!cSalon.form.valid" type="button"
+                      <button (click)="createSalon()" [disabled]="!cSalon.form.valid" type="submit"
                         class="btn btn-primary" data-dismiss="modal">Creer le
                         salon</button>
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Retour au
@@ -70,203 +288,8 @@
               </div>
             </div>
           </div>
+
           <br>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="card-body">
-            <h4 class="card-title text-center">Mes salons</h4>
-            <table class="table d-flex justify-content-center">
-              <tr>
-                <th>Nom</th>
-                <th>Date</th>
-                <th>Modifier</th>
-                <th>Supprimer</th>
-                <th>Prestation</th>
-              </tr>
-              <tr *ngFor="let s of dataSalons">
-                <th>
-                  <label class="form-check-label">{{s.nomSalon}}</label>
-                </th>
-                <th>
-                  <label class="form-check-label d-flex justify-content-center">{{s.dateSalon}}</label>
-                </th>
-                <th>
-                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modifSalon">Modifier</button>
-                  <div class="modal fade" id="modifSalon" tabindex="-1" role="dialog" aria-labelledby="connexionLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel"> </h5>
-                        </div>
-                        <div class="modal-body">
-                          <h5 class="card-title text-center">Modifier le salon</h5>
-                          <form #cSalon="ngForm">
-                            <div class="form-group">
-                              <label>Nom du salon</label>
-                              <input type="text" #nomAction="ngModel" class="form-control" required [(ngModel)]="salon.nomSalon" name="nomSalon">
-                            </div>
-                            <div class="form-group">
-                            <label>Date du salon</label>
-                              <input type="date" #nomDate="ngModel" class="form-control" required
-                                [(ngModel)]="salon.dateSalon"  name="dateSalon">
-                            </div>
-                            <div class="form-group">
-                              <label>Adresse postale</label>
-                              <input type="text" #nomAdresse="ngModel" class="form-control"
-                                required [(ngModel)]="salon.adresse" name="adresse">
-                            </div>
-                            <div class="form-group">
-                              <label>Numéro de telephone</label>
-                              <input type="text" #nomTelephone="ngModel" class="form-control"
-                                required [(ngModel)]="salon.telephone" name="telephone">
-                            </div>
-                            <div class="form-group">
-                              <label>Adresse mail</label>
-                              <input type="email" #nomContact="ngModel" class="form-control"
-                                required [(ngModel)]="salon.contact" name="contact">
-                            </div>
-                            <div>
-                              <button (click)="modifSalon(s.id)" [disabled]="!cSalon.form.valid" type="button"
-                                class="btn btn-primary" data-dismiss="modal">Modifier le
-                                salon</button>
-                              <button type="button" class="btn btn-danger" data-dismiss="modal">Retour au
-                                menu</button>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </th>
-
-
-
-
-
-
-                <th>
-                  <button type="button" class="btn btn-danger" data-toggle="modal"
-                    data-target="#suppression">Supprimer</button>
-                  <div class="modal fade" id="suppression" tabindex="-1" role="dialog" aria-labelledby="connexionLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel"> </h5>
-                        </div>
-                        <div class="modal-body">
-
-                          <h5 class="card-title text-center">Êtes-vous sûr de vouloir supprimer le salon {{s.nomSalon}}
-                            ?</h5>
-                          <form>
-                            <div>
-                              <button (click)="supSalon(s.id)" class="btn btn-primary"
-                                data-dismiss="modal">Valider</button>
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </th>
-                <th>
-                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#prestation"
-                    (click)="chargeListePresta(s.id)">prestations</button>
-                  <div class="modal fade" id="prestation" tabindex="-1" role="dialog" aria-labelledby="connexionLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel"> </h5>
-                        </div>
-                        <div class="modal-body">
-                          <h5 class="card-title text-center">Prestations proposées</h5>
-                          <table class="table d-flex justify-content-center">
-                            <tr>
-                              <th>Prestation</th>
-                              <th>Durée</th>
-                              <th>Personnel</th>
-                            </tr>
-                            <tr *ngFor="let u of dataPresta">
-                              <th>
-                                <label class="form-check-label d-flex justify-content-center">{{u.titre}}</label>
-                              </th>
-                              <th>
-                                <label class="form-check-label d-flex justify-content-center">{{u.duree}} min</label>
-                              </th>
-                              <th>
-                                <label class="form-check-label d-flex justify-content-center">{{u.nbPersonnel}}</label>
-                              </th>
-                            </tr>
-                          </table>
-                          <div style="text-align: center">
-                            <div *ngIf="show">
-                              <div class="form-row">
-                                <div style="width: 100%" class="alert alert-danger" role="alert" *ngIf="pass">
-                                  Champ requis
-                                </div>
-                              </div>
-                              <div class="form-row">
-                                <div class="col">
-                                  <input type="text" #nomAction="ngModel" class="form-control" placeholder="Prestation"
-                                    required [(ngModel)]="prestation.titre" name="titre">
-                                </div>
-                                <div class="col">
-                                  <input type="number" #nomDuree="ngModel" class="form-control"
-                                    placeholder="Durée (min)" required [(ngModel)]="prestation.duree" name="duree">
-                                </div>
-                                <div class="col">
-                                  <input type="number" #nomPersonne="ngModel" class="form-control"
-                                    placeholder="Personne" required [(ngModel)]="prestation.nbPersonnel"
-                                    name="nbPersonnel">
-                                </div>
-                              </div>
-                              <button (click)="createEvent()" class="btn btn-info">Ajouter</button>
-                            </div>
-                            <button (click)="affCach()" class="btn btn-info">Ajouter une prestation</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </th>
-              </tr>
-            </table>
-          </div>
-          <br>
-        </div>
-      </div>
-    </div>
-
-
-
-
-    <div class="col-4 p-4">
-      <div class="row" style="text-align: center;">
-        <div class="col">
-          <img
-            src="https://static1.purebreak.com/articles/4/17/45/44/@/669571-game-of-thrones-saison-8-le-secret-du-diapo-1.jpeg"
-            style="width:300px;">
-        </div>
-      </div>
-
-      <br>
-      <br>
-      <div class="row">
-        <div class="col">
-          <h5 class="sstitre">{{prenomManager}} {{nomManager}}</h5>
-
-        </div>
-      </div>
-
-
-      <div class="row">
-        <div class="col">
-          <h5 class="sstitre">{{mailManager}}</h5>
         </div>
       </div>
     </div>
