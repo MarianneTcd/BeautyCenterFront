@@ -23,6 +23,7 @@ export class AppComponent {
   
     pass = false;
     connexion(){
+      console.log('debut de connexion()' , this.u);
       this.http.post('http://localhost:8080/connexion', this.u).subscribe(userData=>{
         this.data=userData.json();
   
