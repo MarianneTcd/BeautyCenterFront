@@ -5,8 +5,7 @@ import { Salon } from '../model/Salon';
 import { identifierModuleUrl } from '@angular/compiler';
 import { Prestation } from '../model/Prestation';
 import { Event } from '../model/Event';
-import { MatDialog, MatDialogConfig } from '@angular/material';
-import { ModificationSalonComponent } from '../modification-salon/modification-salon.component';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-espace-perso-manager',
@@ -15,7 +14,7 @@ import { ModificationSalonComponent } from '../modification-salon/modification-s
 })
 export class EspacePersoManagerComponent implements OnInit {
 
-  constructor(private http: Http, private stockageService: ServiceStockageService, public dialog: MatDialog,) { }
+  constructor(private http: Http, private stockageService: ServiceStockageService) { }
 
   //RECUPERATION DE L'ID DU MANAGER
   idMan = this.stockageService.id;
@@ -126,7 +125,7 @@ export class EspacePersoManagerComponent implements OnInit {
     //MODIFICATION SALON
     modifSalon(id) {
       this.salon.idManager = this.stockageService.id;
-      this.http.put('http://localhost:8080/salons/'+ id, this.salon).subscribe(salonMod => {
+      this.http.put('http://localhost:8080/salons/'+ id, this.stock).subscribe(salonMod => {
         console.log(salonMod);
       this.chargeListeSalons(this.idManager);
       }, err => {
@@ -135,7 +134,7 @@ export class EspacePersoManagerComponent implements OnInit {
     }
 
     //RECUPERATION SALON PAR ID
-    stock;
+    stock: Salon = new Salon();
     getSalon(id){
       this.http.get('http://localhost:8080/salons/'+ id).subscribe(salonGet => {
         console.log(salonGet);
@@ -144,17 +143,6 @@ export class EspacePersoManagerComponent implements OnInit {
       }, err => {
         console.log(err);
       });
-    }
-
-
-    modifier(id){
-      const dialogConfig = new MatDialogConfig();
-  
-      console.log(id);
-  
-          dialogConfig.disableClose = false;
-          dialogConfig.autoFocus = true;
-          this.dialog.open(ModificationSalonComponent, dialogConfig);
     }
 
 }
