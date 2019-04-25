@@ -3,7 +3,7 @@
   <nav class="navbar navbar-light bg-light" style=" height: 50px; box-shadow: 0px 0px 0px;">
     <a class="navbar-brand ml-3" href="#">Beauty</a>
     <div class="d-flex">
-      
+      <div>{{ prenom }} {{ nom }}</div>
       <img src="https://cdn.onlinewebfonts.com/svg/img_405324.png" style=" width: 30px; height: 30px;">
       <div *ngIf="show">        
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#connexion">Connexion</button>
@@ -158,6 +158,9 @@
         <li class="nav-item" *ngIf="showManager">
           <a class="nav-link boutonnav" routerLink="espacemanager" routerLinkActive="active">Mon espace Manager</a>
         </li>
+        <li class="nav-item" *ngIf="showAdmin">
+            <a class="nav-link boutonnav" routerLink="espaceadminr" routerLinkActive="active">Mon espace Admin</a>
+          </li>
       </ul>
     </div>
   </div>

@@ -17,6 +17,9 @@ export class AppComponent {
   show=true;
   showClient=false;  //pour faire afficher le bouton espace client dans le bar nav
   showManager=false;
+  showAdmin=false;
+  nom=null;
+  prenom=null;
 
     constructor(private http : Http, private stockageService: ServiceStockageService, private route: Router) { }
   
@@ -31,7 +34,7 @@ export class AppComponent {
   
         console.log('user pour la connect' , this.u);
         console.log('user retourné' , this.data);
-  
+
         if(this.data.id===null || this.data.id===undefined){
           console.log('Identifiant incorrect !');
           this.pass = true;
@@ -41,14 +44,20 @@ export class AppComponent {
           this.stockageService.id = this.data.id;
           console.log('mis en service id', this.stockageService.id);
           console.log('value id avt mis en service', this.data.id);
+          this.nom = this.data.nom;
+          this.prenom = this.data.prenom;
           if(this.data.access==1){
             this.route.navigate(['/espaceperso']);
             this.showClient = true;           
             console.log('coucou petit client');
-          }if(this.data.access==3){
+          }else if(this.data.access==3){
             this.route.navigate(['/espacemanager']);
             this.showManager = true;
             console.log('coucou petit employe');
+          }else if(this.data.access==4){
+            this.route.navigate(['/espaceadmin']);
+            this.showAdmin = true;
+            console.log('coucou petit administrateur');
           }
         }
       }, err => {
@@ -67,6 +76,7 @@ export class AppComponent {
       this.data.access = null;
       this.showClient = false;
       this.showManager = false;
+      this.showAdmin = false;
       this.route.navigate(['/espacenonuser'])
 
     }
