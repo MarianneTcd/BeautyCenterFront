@@ -5,6 +5,7 @@ import { Salon } from '../model/Salon';
 import { identifierModuleUrl } from '@angular/compiler';
 import { Prestation } from '../model/Prestation';
 import { Event } from '../model/Event';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-espace-perso-manager',
@@ -25,7 +26,6 @@ export class EspacePersoManagerComponent implements OnInit {
   ngOnInit() {
     console.log('recup mis en service id', this.stockageService.id);
     console.log('recup mis en service id dans variable perso', this.idMan);
-
     this. chargeListeSalons(this.idMan)
     console.log('donne das salon', this.dataSalons);
 
@@ -125,7 +125,7 @@ export class EspacePersoManagerComponent implements OnInit {
     //MODIFICATION SALON
     modifSalon(id) {
       this.salon.idManager = this.stockageService.id;
-      this.http.put('http://localhost:8080/salons/'+ id, this.salon).subscribe(salonMod => {
+      this.http.put('http://localhost:8080/salons/'+ id, this.stock).subscribe(salonMod => {
         console.log(salonMod);
       this.chargeListeSalons(this.idManager);
       }, err => {
@@ -134,7 +134,7 @@ export class EspacePersoManagerComponent implements OnInit {
     }
 
     //RECUPERATION SALON PAR ID
-    stock;
+    stock: Salon = new Salon();
     getSalon(id){
       this.http.get('http://localhost:8080/salons/'+ id).subscribe(salonGet => {
         console.log(salonGet);

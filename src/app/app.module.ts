@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { CreateSalonComponent } from './create-salon/create-salon.component';
 import { ListeSalonsComponent } from './liste-salons/liste-salons.component';
 import { ListePrestaComponent } from './liste-presta/liste-presta.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { from } from 'rxjs';
@@ -19,6 +19,10 @@ import { ConnexionInscriptionComponent } from './connexion-inscription/connexion
 import { EspaceNonUserComponent } from './espace-non-user/espace-non-user.component';
 import { EmailService } from './email-service/email.service';
 import { EspaceAdminComponent } from './espace-admin/espace-admin.component';
+import { ModificationSalonComponent } from './modification-salon/modification-salon.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material';
+
 
 @NgModule({
   declarations: [
@@ -32,12 +36,16 @@ import { EspaceAdminComponent } from './espace-admin/espace-admin.component';
     EspacePersoManagerComponent,
     ConnexionInscriptionComponent,
     EspaceNonUserComponent,
-    EspaceAdminComponent
+    EspaceAdminComponent,
+    ModificationSalonComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
 
       {
