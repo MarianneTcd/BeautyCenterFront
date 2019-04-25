@@ -11,13 +11,25 @@
         <div class="row">
           <div class="col">
             <div class="card">
-              <h5>Liste des managers</h5>
-              <table>
+              <h3 class="mx-auto">Liste des managers</h3>
+              <table class="table table-striped">
                 <thead>
                   <tr>
-                    <td></td>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Preom</th>
+                    <th scope="col">e-mail</th>
                   </tr>
                 </thead>
+                <tbody *ngFor="let m of manager">                  
+                  <tr class="table-info">
+                    <th scope="row">{{m.id}}</th>
+                    <td>{{m.nom}}</td>
+                    <td>{{m.prenom}}</td>
+                    <td>{{m.mail}}</td>
+                    <td>npm update --save</td>
+                  </tr>
+                </tbody>
               </table>
               
             </div>
