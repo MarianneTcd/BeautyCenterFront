@@ -41,7 +41,6 @@ export class EspacePersoClientComponent implements OnInit {
         this.mdp = this.res.mdp;
         this.access = this.res.access;
       } )
-
   }
   
   modifNom(){
