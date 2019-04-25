@@ -18,6 +18,7 @@
                 <tr>
                     <td>Nom</td>
                     <td>{{ nom }}</td>
+                    <td> </td>
                     <td>
                       <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modifNom">Modifier</button>
                     </td>
@@ -25,6 +26,7 @@
                 <tr>
                     <td>Prénom</td>
                     <td>{{ prenom }}</td>
+                    <td> </td>
                     <td>
                       <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modifPrenom">Modifier</button>
                     </td>
@@ -32,6 +34,7 @@
                 <tr>
                     <td>e-mail</td>
                     <td>{{ mail }}</td>
+                    <td> </td>
                     <td>
                       <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modifMail">Modifier</button>
                     </td>
@@ -105,7 +108,7 @@
               <form>
                 <div class="form-group">
                 <label> e-mail </label>
-                <input type="text" #nomContact="ngModel" class="form-control" placeholder={{prenom}} required
+                <input type="text" #nomContact="ngModel" class="form-control" placeholder={{mail}} required
                   [(ngModel)]="user3.mail" name="mail">
                 </div>                 
                 <div>
