@@ -15,6 +15,8 @@ export class AppComponent {
   user: User= new User();
   u: User= new User();
   show=true;
+  showClient=false;  //pour faire afficher le bouton espace client dans le bar nav
+  showManager=false;
 
     constructor(private http : Http, private stockageService: ServiceStockageService, private route: Router) { }
   
@@ -38,10 +40,12 @@ export class AppComponent {
           this.show = false;
           this.stockageService.id = this.data.id;
           if(this.data.access==1){
-            this.route.navigate(['/espaceperso']);           
+            this.route.navigate(['/espaceperso']);
+            this.showClient = true;           
             console.log('coucou petit client');
           }if(this.data.access==3){
             this.route.navigate(['/espacemanager']);
+            this.showManager = true;
             console.log('coucou petit employe');
           }
         }
@@ -59,6 +63,8 @@ export class AppComponent {
       this.data.mail = null;
       this.data.mdp = null;
       this.data.access = null;
+      this.showClient = false;
+      this.showManager = false;
       this.route.navigate(['/espacenonuser'])
 
     }
