@@ -5,6 +5,8 @@ import { Salon } from '../model/Salon';
 import { identifierModuleUrl } from '@angular/compiler';
 import { Prestation } from '../model/Prestation';
 import { Event } from '../model/Event';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { ModificationSalonComponent } from '../modification-salon/modification-salon.component';
 
 @Component({
   selector: 'app-espace-perso-manager',
@@ -13,7 +15,7 @@ import { Event } from '../model/Event';
 })
 export class EspacePersoManagerComponent implements OnInit {
 
-  constructor(private http: Http, private stockageService: ServiceStockageService) { }
+  constructor(private http: Http, private stockageService: ServiceStockageService, public dialog: MatDialog,) { }
 
   //RECUPERATION DE L'ID DU MANAGER
   idMan = this.stockageService.id;
@@ -25,7 +27,6 @@ export class EspacePersoManagerComponent implements OnInit {
   ngOnInit() {
     console.log('recup mis en service id', this.stockageService.id);
     console.log('recup mis en service id dans variable perso', this.idMan);
-
     this. chargeListeSalons(this.idMan)
     console.log('donne das salon', this.dataSalons);
 
@@ -143,6 +144,17 @@ export class EspacePersoManagerComponent implements OnInit {
       }, err => {
         console.log(err);
       });
+    }
+
+
+    modifier(id){
+      const dialogConfig = new MatDialogConfig();
+  
+      console.log(id);
+  
+          dialogConfig.disableClose = false;
+          dialogConfig.autoFocus = true;
+          this.dialog.open(ModificationSalonComponent, dialogConfig);
     }
 
 }
