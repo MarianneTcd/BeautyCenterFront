@@ -19,9 +19,9 @@ import { ConnexionInscriptionComponent } from './connexion-inscription/connexion
 import { EspaceNonUserComponent } from './espace-non-user/espace-non-user.component';
 import { EmailService } from './email-service/email.service';
 import { EspaceAdminComponent } from './espace-admin/espace-admin.component';
-import { ModificationSalonComponent } from './modification-salon/modification-salon.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material';
+import { GestionPrestationComponent } from './gestion-prestation/gestion-prestation.component';
 
 
 @NgModule({
@@ -37,7 +37,7 @@ import { MaterialModule } from './material';
     ConnexionInscriptionComponent,
     EspaceNonUserComponent,
     EspaceAdminComponent,
-    ModificationSalonComponent
+    GestionPrestationComponent,
   ],
   imports: [
     BrowserModule,

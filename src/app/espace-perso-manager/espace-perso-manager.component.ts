@@ -96,10 +96,6 @@ export class EspacePersoManagerComponent implements OnInit {
   prestation: Prestation = new Prestation();
   pass = false;
   createPrestation() {
-    if (this.prestation.titre == null || 0 || this.prestation.duree == null || 0 || this.prestation.nbPersonnel == null || 0) {
-      this.pass = true;
-    } else {
-      this.pass = false;
       this.http.post('http://localhost:8080/prestations', this.prestation).subscribe(prestationData => {
         console.log(prestationData);
         this.affCach();
@@ -107,22 +103,18 @@ export class EspacePersoManagerComponent implements OnInit {
         console.log(err);
       });
     }
-  }
-
+  
   //CREATION PRESTATION ET EVENT
   event: Event = new Event();
   createEvent() {
-    this.createPrestation();
-    this.http.post('http://localhost:8080/events', this.event).subscribe(eventData => {
+       this.http.post('http://localhost:8080/events', this.event).subscribe(eventData => {
       console.log(eventData);
       this.affCach();
     }, err => {
       console.log(err);
     });
   }
-
-
-    //MODIFICATION SALON
+   //MODIFICATION SALON
     modifSalon(id) {
       this.salon.idManager = this.stockageService.id;
       this.http.put('http://localhost:8080/salons/'+ id, this.stock).subscribe(salonMod => {
