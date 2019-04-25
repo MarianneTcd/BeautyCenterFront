@@ -17,6 +17,7 @@ import { EspacePersoClientComponent } from './espace-perso-client/espace-perso-c
 import { EspacePersoManagerComponent } from './espace-perso-manager/espace-perso-manager.component';
 import { ConnexionInscriptionComponent } from './connexion-inscription/connexion-inscription.component';
 import { EspaceNonUserComponent } from './espace-non-user/espace-non-user.component';
+import { EmailService } from './email-service/email.service';
 import { EspaceAdminComponent } from './espace-admin/espace-admin.component';
 
 @NgModule({
@@ -88,7 +89,7 @@ import { EspaceAdminComponent } from './espace-admin/espace-admin.component';
 
     ])
   ],
-  providers: [],
+  providers: [EmailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

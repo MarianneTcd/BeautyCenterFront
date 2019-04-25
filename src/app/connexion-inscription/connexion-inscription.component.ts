@@ -10,6 +10,8 @@ import { NgIf } from '@angular/common';
 })
 export class ConnexionInscriptionComponent implements OnInit {
   data;
+  mail;
+
 user: User= new User();
 u: User= new User();
 
@@ -39,9 +41,15 @@ u: User= new User();
   createUser(){
     this.http.post('http://localhost:8080/users', this.user).subscribe(userData=>{
       console.log(userData);
+      this.http.post('http://localhost:8080/mailcreationcompte',this.user).subscribe(reponse =>{
+        this.mail=reponse.json();
+        console.log('mail envoyé');
+
+      })
     }, err => {
       console.log(err);
     });
 
   }
 }
+
