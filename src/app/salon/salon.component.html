@@ -34,7 +34,7 @@
 
                 <div class="dropdown-menu" aria-labelledby="btnChoixPresta">
 
-                  <a *ngFor="let u of data" class="dropdown-item elemListePresta" >{{u.titre}} ({{u.duree}} min)</a>
+                  <a *ngFor="let u of data" class="dropdown-item elemListePresta" (click)="afficherplanning()" >{{u.titre}} ({{u.duree}} min)</a>
                  
                 </div>
               </div>  
@@ -59,7 +59,18 @@
 
 
             <div class="col-8" style="text-align: center;">
-              PLACE POUR LE PLANNING
+              <div *ngFor ="let m of mois">
+                <button (click)="goReserv()" > {{m.dayOfMonth}}</button>
+              </div>
+
+              <div *ngIf="!show">        
+                <div *ngFor = "let r of reserv">
+                  <p>{{r.hour}}:{{r.minute}}</p>
+                </div>
+              </div>
+                     
+               
+              </div>
             </div>
           </div>
 
