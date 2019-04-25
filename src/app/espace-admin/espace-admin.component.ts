@@ -14,20 +14,24 @@ export class EspaceAdminComponent implements OnInit {
 
   id = this.stockageService.id;
   resUser;
-  nom;
-  prenom;
-  mail;
-  mdp;
-  access;
+  nomA; //déclarer les info d'administrateur sur la session
+  prenomA;
+  mailA;
+  mdpA;
+  accessA;
+  managerModif //déclarer les info de manager que l'administrateur souhaite modifier
+  nomM;
+  prenomM;
+  mailM;
+  mdpM;
+  accessM;
   user1: User = new User();
   user2: User = new User();
   user3: User = new User();
   u: User = new User();
-  mdpA;
-  mdpN1;
   passS=false;
   passE=false;
-  manager; 
+  manager; //déclarer le variable qui chargera la liste de tous les managers
   
   ngOnInit() {
     this.http.get('http://localhost:8080/users/' + this.id)
@@ -35,11 +39,11 @@ export class EspaceAdminComponent implements OnInit {
       response => { 
         console.log(response.json()); 
         this.resUser= response.json();
-        this.nom = this.resUser.nom;
-        this.prenom = this.resUser.prenom;
-        this.mail = this.resUser.mail;
-        this.mdp = this.resUser.mdp;
-        this.access = this.resUser.access;
+        this.nomA = this.resUser.nom;
+        this.prenomA = this.resUser.prenom;
+        this.mailA = this.resUser.mail;
+        this.mdpA = this.resUser.mdp;
+        this.accessA = this.resUser.access;
       } )
 
     this.http.get('http://localhost:8080/users/managers')
@@ -48,6 +52,21 @@ export class EspaceAdminComponent implements OnInit {
         console.log(response.json()); 
         this.manager= response.json();
       } )
+  }
+
+  goModif(id){
+    this.http.get('http://localhost:8080/users/' + id)
+    .subscribe(
+      response => { 
+        console.log(response.json()); 
+        this.managerModif = response.json();
+        this.nomM = this.managerModif.nom;
+        this.prenomM = this.managerModif.prenom;
+        this.mailM = this.managerModif.mail;
+        this.mdpM = this.managerModif.mdp;
+      } )
+    
+
   }
 
 
