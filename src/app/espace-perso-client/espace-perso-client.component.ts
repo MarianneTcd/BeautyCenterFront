@@ -51,18 +51,17 @@ export class EspacePersoClientComponent implements OnInit {
     this.user1.mdp = this.res.mdp;
     this.user1.access = this.res.access;
 
-    this.http.put('http://localhost:8080/user/' + this.id, this.user1).
-    subscribe(userData => {
+    this.http.put('http://localhost:8080/user/' + this.id, this.user1).subscribe(userData => {
       console.log(userData);
     }, err => {
       console.log(err);
     });
 
-    this.http.get('http://localhost:8080/users/' + this.id)
-    .subscribe(response => { 
-        console.log(response.json()); 
-        this.res= response.json();
-        this.nom = this.res.nom;
+    this.http.get('http://localhost:8080/users/' + this.id).subscribe(response => { 
+      console.log(response.json()); 
+      this.res= response.json();
+      this.nom = this.res.nom;
+      console.log('rafraîchir après le modif nom');
     });
   }
 
@@ -85,6 +84,7 @@ export class EspacePersoClientComponent implements OnInit {
         console.log(response.json()); 
         this.res= response.json();
         this.prenom = this.res.prenom;
+        console.log('rafraîchir après le modif prenom');
     });
   }
 
@@ -107,6 +107,7 @@ export class EspacePersoClientComponent implements OnInit {
         console.log(response.json()); 
         this.res= response.json();
         this.mail = this.res.mail;
+        console.log('rafraîchir après le modif mail');
     });
   }
 

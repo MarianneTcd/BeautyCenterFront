@@ -17,6 +17,7 @@ import { EspacePersoClientComponent } from './espace-perso-client/espace-perso-c
 import { EspacePersoManagerComponent } from './espace-perso-manager/espace-perso-manager.component';
 import { ConnexionInscriptionComponent } from './connexion-inscription/connexion-inscription.component';
 import { EspaceNonUserComponent } from './espace-non-user/espace-non-user.component';
+import { EspaceAdminComponent } from './espace-admin/espace-admin.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { EspaceNonUserComponent } from './espace-non-user/espace-non-user.compon
     EspacePersoClientComponent,
     EspacePersoManagerComponent,
     ConnexionInscriptionComponent,
-    EspaceNonUserComponent
+    EspaceNonUserComponent,
+    EspaceAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +80,10 @@ import { EspaceNonUserComponent } from './espace-non-user/espace-non-user.compon
       {
         path: 'espacenonuser',
         component: EspaceNonUserComponent,
+      },
+      {
+        path: 'espaceadmin',
+        component: EspaceAdminComponent,
       },
 
     ])
