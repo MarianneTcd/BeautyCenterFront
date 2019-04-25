@@ -13,7 +13,7 @@ export class EspaceAdminComponent implements OnInit {
   constructor(private http: Http, private stockageService: ServiceStockageService) { }
 
   id = this.stockageService.id;
-  res;
+  resUser;
   nom;
   prenom;
   mail;
@@ -26,22 +26,30 @@ export class EspaceAdminComponent implements OnInit {
   mdpA;
   mdpN1;
   passS=false;
-  passE=false; 
+  passE=false;
+  manager; 
   
   ngOnInit() {
     this.http.get('http://localhost:8080/users/' + this.id)
     .subscribe(
       response => { 
         console.log(response.json()); 
-        this.res= response.json();
-        this.nom = this.res.nom;
-        this.prenom = this.res.prenom;
-        this.mail = this.res.mail;
-        this.mdp = this.res.mdp;
-        this.access = this.res.access;
+        this.resUser= response.json();
+        this.nom = this.resUser.nom;
+        this.prenom = this.resUser.prenom;
+        this.mail = this.resUser.mail;
+        this.mdp = this.resUser.mdp;
+        this.access = this.resUser.access;
+      } )
+
+    this.http.get('http://localhost:8080/users/managers')
+    .subscribe(
+      response => { 
+        console.log(response.json()); 
+        this.manager= response.json();
       } )
   }
 
-  
+
 
 }
