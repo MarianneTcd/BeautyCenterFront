@@ -77,6 +77,8 @@ export class AppComponent {
       this.showClient = false;
       this.showManager = false;
       this.showAdmin = false;
+      this.nom = null;
+      this.prenom = null;
       this.route.navigate(['/espacenonuser'])
 
     }
