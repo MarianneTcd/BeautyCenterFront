@@ -22,12 +22,7 @@ export class EspaceAdminComponent implements OnInit {
   accessA;
 
   //stocker les info du manager que l'administrateur souhaite modifier
-  managerModif 
-  nomM;
-  prenomM;
-  mailM;
-  mdpM;
-  accessM;
+  managerModif: User = new User;
 
   //variable qui chargera la liste de tous les managers
   manager;  
@@ -40,6 +35,8 @@ export class EspaceAdminComponent implements OnInit {
 
   //stocker les info du manager à ajouter;
   man: User = new User();
+  //stocker les info du manager à modifier;
+  manag: User = new User();
 
 
 
@@ -64,20 +61,25 @@ export class EspaceAdminComponent implements OnInit {
       } )
   }
 
+ 
   goModif(id){
-    this.http.get('http://localhost:8080/users/' + id)
-    .subscribe(
+    this.http.get('http://localhost:8080/users/' + id).subscribe(
       response => { 
         console.log(response.json()); 
         this.managerModif = response.json();
-        this.nomM = this.managerModif.nom;
-        this.prenomM = this.managerModif.prenom;
-        this.mailM = this.managerModif.mail;
-        this.mdpM = this.managerModif.mdp;
       } )
     this.show = false;
   }
-
+/*
+  modifManager(id){
+    this.http.put('http://localhost:8080/user/' + id).subscribe(
+      Response => {
+        console.log(response.json());
+        this.
+      }
+    )
+  }
+*/
   showAjout(){
     this.show = true;
   }
