@@ -4,6 +4,7 @@ import { s } from '@angular/core/src/render3';
 import { Http } from '@angular/http';
 import { SalonservicesService } from '../salonservices.service';
 import { $ } from 'protractor';
+import { PathLocationStrategy } from '@angular/common';
 import { ServiceStockageService } from '../service-stockage.service';
 import { Reservation } from '../model/Reservation';
 
@@ -39,6 +40,10 @@ export class SalonComponent implements OnInit {
   heure ; 
   minute; 
   dureepresta;
+  nomS;
+  telephoneS;
+  adresseS;
+  photoS;
 
 
   
@@ -50,6 +55,11 @@ export class SalonComponent implements OnInit {
       .subscribe(
         response => {
           this.s = response.json();
+          this.nomS = this.s.nomSalon;
+          this.telephoneS = this.s.telephone;
+          this.adresseS = this.s.adresse;
+          this.photoS = this.s.photo;
+
         })
 
     this.http.get('http://localhost:8080/events/salon/' + this.id)
