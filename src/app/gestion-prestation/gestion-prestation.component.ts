@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { SalonservicesService } from '../salonservices.service';
 import { Event } from '../model/Event';
+import { Prestation } from '../model/Prestation';
+import { Salon } from '../model/Salon';
 
 @Component({
   selector: 'app-gestion-prestation',
@@ -16,8 +18,6 @@ export class GestionPrestationComponent implements OnInit {
   ngOnInit() {
     this.chargeListePrestaSalon(this.id);
     this.chargeListePresta();
-    console.log('id du salon qui suit', this.id);
-
   }
 
   //LISTE PRESTA DU SALON
@@ -37,30 +37,44 @@ export class GestionPrestationComponent implements OnInit {
   }
 
 
-  //RECUPERATION INFO PRESTAS
-  stockage;
-  getPresta(id) {
-    this.http.get('http://localhost:8080/prestations/' + id).subscribe(response => {
-      this.stockage = response.json();
-      console.log('id presta stockée', this.stockage.id);
-    }
+  //RECUPERATION EVENT ET CREATION
+  recupEvent(idPresta) {
+
+    this.http.get('http://localhost:8080/prestations/' + idPresta).subscribe(responseP => {
+      this.event.presta = responseP.json();
+      console.log('id presta envoyé1', this.event.presta);
+    }, err => {
+      console.log(err)});
+
+    this.http.get('http://localhost:8080/salons/' + this.serv.id).subscribe(responseS => {
+      this.event.salon = responseS.json();
+      console.log('id salon envoyé1', this.event.salon);
+    }, err => {
+      console.log(err)});
   }
 
 
   //CREATION EVENT
-  event: Event = new Event();
-  createEvent() {
-    this.event.salon = this.serv.id;
-    this.event.presta = this.stockage.id;
-    console.log('id salon envoyé', this.event.salon);
-    console.log('id presta envoyé', this.event.presta);
+    event: Event = new Event();
+    createEvent(){
     this.http.post('http://localhost:8080/events', this.event).subscribe(eventData => {
       console.log(eventData);
-      this.chargeListePrestaSalon(this.serv.id);
+      this.chargeListePrestaSalon(this.id);
       this.chargeListePresta();
     }, err => {
       console.log(err);
     });
-
   }
+
+  //SUPPRESION EVENT
+  supEvent(idPresta) {
+    this.http.delete('http://localhost:8080/events/presta/'+ idPresta).subscribe(responseP => {
+      console.log(responseP);
+      this.chargeListePrestaSalon(this.id);
+      this.chargeListePresta();
+    }, err => {
+      console.log(err);
+    });
+  }
+
 }
