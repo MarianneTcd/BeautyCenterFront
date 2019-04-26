@@ -27,6 +27,7 @@ export class SalonComponent implements OnInit {
   s;
   data;
   listeheures;
+  texteheuresminutes;
 
 
   ngOnInit() {
@@ -39,7 +40,6 @@ export class SalonComponent implements OnInit {
     this.http.get('http://localhost:8080/events/salon/' + this.id)
       .subscribe(
         response => {
-          console.log(response.json());
           this.data = response.json();
 
 
@@ -74,8 +74,10 @@ export class SalonComponent implements OnInit {
     this.show = true;
   }
 
-  fougere(){
+  affichageReserver(heure, minute){
     this.show2 = true;
+    this.texteheuresminutes = heure + "h" + minute;
+    console.log(this.texteheuresminutes);
   }
 
   //
