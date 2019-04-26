@@ -37,7 +37,9 @@ export class SalonComponent implements OnInit {
   heure ; 
   minute; 
   dureepresta;
-
+  idsalon;
+  user;
+  mail;
 
   
 
@@ -100,14 +102,20 @@ export class SalonComponent implements OnInit {
 
 
   
-  reserver() {
-
+  reserver(reservation) {
+this.reservation=reservation;
     
 
    this.http.post('http://localhost:8080/PresqueReservations', this.reservation)
     .subscribe(reserv => {
       console.log(reserv);
-      
+      this.http.post('http://localhost:8080/mailreservation/' +this.iduser +'/'+this.idsalon+'/'+this.idpresta).subscribe(reponse => {
+        this.mail = reponse.json();
+
+        console.log('mail => user', this.user);
+        console.log('mail', this.mail);
+        console.log('mail envoyé');
+      })
     }, err => {
       console.log(err);
     });
