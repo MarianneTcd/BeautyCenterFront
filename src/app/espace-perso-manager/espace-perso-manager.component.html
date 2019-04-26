@@ -24,7 +24,7 @@
                   <!--photo du salon-->
                   <div class="col">
                     <br>
-                    <img src="http://www.le-salon-coiffeur.com/images/accueil-2.jpg" class="img-fluid mx-auto"
+                    <img src="{{s.photo}}" class="img-fluid mx-auto"
                       style="width : 325px;">
                   </div>
 
@@ -35,7 +35,7 @@
                     </div>
                     <div>
                       <img src="https://image.flaticon.com/icons/svg/912/912318.svg" style="width : 30px;"><span
-                        class="ml-2 infosalon">{{s.nbPersonnelSalon}} emplyés</span>
+                        class="ml-2 infosalon">{{s.nbPersonnelSalon}} employés</span>
                     </div>
                     <div>
                       <img src="https://image.flaticon.com/icons/svg/126/126509.svg" style="width : 30px;"><span
@@ -96,6 +96,11 @@
                                 <input type="email" #nomContact="ngModel" class="form-control"
                                   [(ngModel)]="stock.contact" name="contact">
                               </div>
+                              <div class="form-group">
+                                  <label>Photo du salon</label>
+                                  <input type="text" #nomContact="ngModel" class="form-control"
+                                    [(ngModel)]="stock.photo" name="photo">
+                                </div>
                               <div class="d-flex justify-content-center">
                                 <button (click)="modifSalon(stock?.id)" type="button" class="btn btn-primary"
                                   data-dismiss="modal">Modifier le

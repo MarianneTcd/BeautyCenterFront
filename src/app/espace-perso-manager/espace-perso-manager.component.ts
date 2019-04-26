@@ -52,7 +52,7 @@ export class EspacePersoManagerComponent implements OnInit {
   chargeListeSalons(idManager) {
     this.http.get('http://localhost:8080/salons/manager/' + idManager).subscribe(response => {
       this.dataSalons = response.json();
-      console.log('conenu datasalon dans sa meth', this.dataSalons);
+      console.log('Contenu liste salon', this.dataSalons);
     });
   }
 
