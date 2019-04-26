@@ -30,6 +30,7 @@ export class AppComponent {
   pass = false;
   desactive = false;
   connecte = true;
+
   connexion() {
     console.log('debut de connexion()', this.u);
     this.http.post('http://localhost:8080/connexion', this.u).subscribe(userData => {
@@ -62,6 +63,8 @@ export class AppComponent {
     });
   }
 
+
+
   deconnexion() {
     this.show = true;
     this.stockageService.id = null;
@@ -81,6 +84,7 @@ export class AppComponent {
   }
 
   createUser() {
+    this.user.access = 1;
     this.http.post('http://localhost:8080/users', this.user).subscribe(userData => {
       console.log(userData);
 
@@ -95,8 +99,41 @@ export class AppComponent {
       console.log(err);
     });
 
+    this.http.post('http://localhost:8080/connexion', this.user).subscribe(userData => {
+      this.data = userData.json();
+      if (this.data.id === null || this.data.id === undefined) {
+        this.pass = true;
+      } else {
+        this.pass = false;
+        this.show = false;
+        this.stockageService.id = this.data.id;
+        this.nom = this.data.nom;
+        this.prenom = this.data.prenom;
+        this.route.navigate(['/espaceperso']);
+        this.showClient = true;
+      }
+    }, err => {
+      console.log(err);
+    });
+
   }
-
-
+/*
+  connexionApresInscription(userInscri) {
+    this.http.post('http://localhost:8080/connexion', userInscri).subscribe(userData => {
+      this.data = userData.json();
+      if (this.data.id === null || this.data.id === undefined) {
+        this.pass = true;
+      } else {
+        this.pass = false;
+        this.show = false;
+        this.stockageService.id = this.data.id;
+        this.nom = this.data.nom;
+        this.prenom = this.data.prenom;
+      }
+    }, err => {
+      console.log(err);
+    });
+  }
+*/
 
 }
