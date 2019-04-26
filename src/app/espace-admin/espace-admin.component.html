@@ -43,8 +43,8 @@
                   <th scope="col">Nom</th>
                   <th scope="col">Preom</th>
                   <th scope="col">e-mail</th>
-                  <th></th>
-                  <th></th>
+                  <th>Modifier</th>
+                  <th>Active</th>
                 </tr>
               </thead>
               <tbody *ngFor="let m of manager">
@@ -57,7 +57,12 @@
                     <button mat-fab (click)="goModif(m.id)">Modify</button>
                   </td>
                   <td>
-                    <button mat-fab color="warn" (click)="goDisable(m.id)" data-toggle="modal" data-target="#disableManager">Disable</button>
+                    <div *ngIf="m.access == 3">
+                      <button mat-fab color="warn" (click)="goDisable(m.id)" data-toggle="modal" data-target="#disableManager">On</button>
+                    </div>
+                    <div *ngIf="m.access == 5">
+                        <button mat-fab color="primary" (click)="goActive(m.id)" data-toggle="modal" data-target="#activeManager">Off</button>
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -162,7 +167,29 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)="disable(managerDisable.id)">Valider</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="disable(managerDisable.id)">Valider</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--modal pour désactiver un manager-->
+<div class="modal fade" id="activeManager" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Désactivation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Vous êtes sur de reactiver le manager suivant ? <br>
+          {{managerActive.nom}} {{managerActive.prenom}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="active(managerActive.id)">Valider</button>
         </div>
       </div>
     </div>
