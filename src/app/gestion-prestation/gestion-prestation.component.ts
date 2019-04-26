@@ -37,7 +37,7 @@ export class GestionPrestationComponent implements OnInit {
   }
 
 
-  //RECUPERATION EVENT ET CREATION
+  //RECUPERATION POUR EVENT
   recupEvent(idPresta) {
 
     this.http.get('http://localhost:8080/prestations/' + idPresta).subscribe(responseP => {
