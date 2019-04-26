@@ -70,16 +70,24 @@ export class EspaceAdminComponent implements OnInit {
       } )
     this.show = false;
   }
-/*
+
   modifManager(id){
-    this.http.put('http://localhost:8080/user/' + id).subscribe(
-      Response => {
-        console.log(response.json());
-        this.
-      }
-    )
+    this.managerModif.access = 3;
+    this.http.put('http://localhost:8080/user/' + id, this.managerModif).
+    subscribe(userData => {
+      console.log(userData);
+    }, err => {
+      console.log(err);
+    });
+
+    this.http.get('http://localhost:8080/users/managers')
+    .subscribe(
+      response => { 
+        console.log(response.json()); 
+        this.manager= response.json();
+      } )
   }
-*/
+
   showAjout(){
     this.show = true;
   }
