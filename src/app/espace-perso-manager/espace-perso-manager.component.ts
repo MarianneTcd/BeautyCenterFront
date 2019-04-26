@@ -85,6 +85,7 @@ export class EspacePersoManagerComponent implements OnInit {
     this.show = !this.show;
   }
 
+  //STOCKAGE ID DU SALON
   infoSalon(numeroSalon){
     this.serv.id = numeroSalon;
     console.log('numero du salon recup', numeroSalon)
@@ -110,7 +111,7 @@ export class EspacePersoManagerComponent implements OnInit {
       });
     }
   
-  //CREATION PRESTATION ET EVENT
+  //CREATION EVENT
   event: Event = new Event();
   createEvent() {
        this.http.post('http://localhost:8080/events', this.event).subscribe(eventData => {

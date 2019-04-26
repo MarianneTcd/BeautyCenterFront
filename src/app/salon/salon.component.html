@@ -38,8 +38,8 @@
 
               <div class="dropdown-menu" aria-labelledby="btnChoixPresta">
 
-                <a *ngFor="let u of data" class="dropdown-item elemListePresta"
-                  (click)="afficherplanning(u.id)">{{u.titre}} ({{u.duree}} min)</a>
+                <a *ngFor="let u of listepresta" class="dropdown-item elemListePresta"
+                  (click)="afficherplanning(u.id, u.duree)">{{u.titre}} ({{u.duree}} min)</a>
 
 
               </div>
@@ -106,7 +106,7 @@
                 <div class="col-12">
               <div *ngIf="show2==true">
                 <div>{{texteheuresminutes}}</div>
-                <button class="btn btn-primary" (click)="reservation()">Réserver</button>
+                <button class="btn btn-primary" (click)="reserver()">Réserver</button>
               </div>
             </div>
             </div>

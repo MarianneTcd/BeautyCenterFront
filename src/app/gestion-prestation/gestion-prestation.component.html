@@ -1,35 +1,40 @@
-<div>
-  <h5>Les prestations du salon</h5>
-</div>
-<div>
-  <table>
-    <tr *ngFor="let u of dataPrestaSalon">
-      <th>
-        <label class="form-check-label d-flex justify-content-start">{{u.titre}} || {{u.duree}} min ||
-          {{u.nbPersonnel}} personne(s)</label>
-      </th>
-      <th>
-          <button mat-mini-fab color="warn">-</button>
-      </th>
-    </tr>
-  </table>
-</div>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Les prestations du salon</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <table>
+      <tr *ngFor="let u of dataPrestaSalon">
+        <th>
+          <label class="form-check-label d-flex justify-content-start">{{u.titre}} || {{u.duree}} min ||
+            {{u.nbPersonnel}} personne(s)</label>
+        </th>
+        <th>
+          <button mat-mini-fab color="warn" style="font-size: 30px" (click)=supEvent(u.id)>-</button>
+        </th>
+      </tr>
+    </table>
+  </mat-card-content>
+</mat-card>
 
-<hr>
-
-<div>
-  <h5>Les prestations disponibles</h5>
-</div>
-<div>
-  <table>
-    <tr *ngFor="let p of dataPresta">
-      <th>
-        <label class="form-check-label d-flex justify-content-start">{{p.titre}} || {{p.duree}} min ||
-          {{p.nbPersonnel}} personne(s)</label>
-      </th>
-      <th>
-          <button mat-mini-fab color="primary">+</button>
-      </th>
-    </tr>
-  </table>
-</div>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Les prestations disponibles</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+      <table>
+          <tr *ngFor="let p of dataPresta">
+            <th>
+              <label class="form-check-label d-flex justify-content-start">{{p.titre}} || {{p.duree}} min ||
+                {{p.nbPersonnel}} personne(s)</label>
+            </th>
+            <th>
+              <button mat-mini-fab color="primary" style="font-size: 30px" (click)="recupEvent(p.id)">1</button>
+            </th>
+            <th>
+              <button mat-mini-fab color="primary" style="font-size: 30px" (click)="createEvent()">2</button>
+            </th>
+          </tr>
+        </table>
+  </mat-card-content>
+</mat-card>
