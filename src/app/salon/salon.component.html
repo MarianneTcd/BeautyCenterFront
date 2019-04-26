@@ -35,7 +35,7 @@
                 <div class="dropdown-menu" aria-labelledby="btnChoixPresta">
 
                   <a *ngFor="let u of data" class="dropdown-item elemListePresta"
-                    (click)="afficherplanning()">{{u.titre}} ({{u.duree}} min)</a>
+                    (click)="afficherplanning(u.id)">{{u.titre}} ({{u.duree}} {{u.id}} min)</a>
 
                 </div>
               </div>
@@ -61,28 +61,31 @@
 
             <div class="col-8" style="text-align: center;">
               <div *ngFor="let m of mois">
-                <button class="btn" (click)="fonction()"> {{m.dayOfMonth}}</button>
+                <button class="btn" (click)="fonction(m.dayOfMonth)">{{m.dayOfMonth}}</button>
               </div>
             </div>
           </div>
 
 
-         <!--<form *ngIf="show==true">
-            <div class="form-row">
-              <div class="col-auto my-1">
-                <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label>
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                  <option selected>Je choisis mon horaire</option>
+          <div *ngIf="show==true" class="btn-group">
+            <button class="btn dropdown-toggle" type="button" id="btnChoixHeure" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" id="lbDropHeure">
+              Je choisis mon horaire
+            </button>
 
-                  <div *ngFor="">
+            <div class="dropdown-menu" aria-labelledby="btnChoixPresta">
 
-                  <option value="1">One</option>
-                 
-                </div>
-                </select>
-              </div>
+              <a *ngFor="let l of listeheures" class="dropdown-item elemListePresta"
+                (click)="fougere()">{{l.hour}}:{{l.minute}}</a>
+
             </div>
-          </form>--> 
+
+          </div>
+
+
+          <div *ngIf="show2==true">
+            <button class="btn btn-primary" (click)="reservation()">Réserver</button>
+          </div>
         </div>
 
 
