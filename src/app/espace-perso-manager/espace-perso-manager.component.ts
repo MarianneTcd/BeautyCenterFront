@@ -3,10 +3,12 @@ import { ServiceStockageService } from '../service-stockage.service';
 import { SalonservicesService } from '../salonservices.service';
 import { Http } from '@angular/http';
 import { Salon } from '../model/Salon';
+import { RouterLinkWithHref, Router } from '@angular/router';
 import { identifierModuleUrl } from '@angular/compiler';
 import { Prestation } from '../model/Prestation';
 import { Event } from '../model/Event';
-import {FormControl} from '@angular/forms';
+import { User } from '../model/User';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-espace-perso-manager',
@@ -15,7 +17,7 @@ import {FormControl} from '@angular/forms';
 })
 export class EspacePersoManagerComponent implements OnInit {
 
-  constructor(private http: Http, private stockageService: ServiceStockageService, private serv: SalonservicesService) { }
+  constructor(private http: Http, private stockageService: ServiceStockageService, private serv: SalonservicesService, private route: Router) { }
 
   //RECUPERATION DE L'ID DU MANAGER
   idMan = this.stockageService.id;
@@ -24,10 +26,11 @@ export class EspacePersoManagerComponent implements OnInit {
   nomManager;
   prenomManager;
   mailManager;
+  photoManager;
   ngOnInit() {
     console.log('recup mis en service id', this.stockageService.id);
     console.log('recup mis en service id dans variable perso', this.idMan);
-    this. chargeListeSalons(this.idMan)
+    this.chargeListeSalons(this.idMan)
     console.log('donne das salon', this.dataSalons);
 
     this.http.get('http://localhost:8080/users/' + this.idMan)
@@ -39,6 +42,7 @@ export class EspacePersoManagerComponent implements OnInit {
           this.nomManager = this.res.nom;
           this.prenomManager = this.res.prenom;
           this.mailManager = this.res.mail;
+          this.photoManager = this.res.photo;
         }
       )
   }
@@ -86,7 +90,7 @@ export class EspacePersoManagerComponent implements OnInit {
   }
 
   //STOCKAGE ID DU SALON
-  infoSalon(numeroSalon){
+  infoSalon(numeroSalon) {
     this.serv.id = numeroSalon;
     console.log('numero du salon recup', numeroSalon)
   }
@@ -103,45 +107,67 @@ export class EspacePersoManagerComponent implements OnInit {
   prestation: Prestation = new Prestation();
   pass = false;
   createPrestation() {
-      this.http.post('http://localhost:8080/prestations', this.prestation).subscribe(prestationData => {
-        console.log(prestationData);
-        this.affCach();
-      }, err => {
-        console.log(err);
-      });
-    }
-  
-  //CREATION EVENT
-  event: Event = new Event();
-  createEvent() {
-       this.http.post('http://localhost:8080/events', this.event).subscribe(eventData => {
-      console.log(eventData);
+    this.http.post('http://localhost:8080/prestations', this.prestation).subscribe(prestationData => {
+      console.log(prestationData);
       this.affCach();
     }, err => {
       console.log(err);
     });
   }
-   //MODIFICATION SALON
-    modifSalon(id) {
-      this.salon.idManager = this.stockageService.id;
-      this.http.put('http://localhost:8080/salons/'+ id, this.stock).subscribe(salonMod => {
-        console.log(salonMod);
-      this.chargeListeSalons(this.idManager);
-      }, err => {
-        console.log(err);
-      });
-    }
 
-    //RECUPERATION SALON PAR ID
-    stock: Salon = new Salon();
-    getSalon(id){
-      this.http.get('http://localhost:8080/salons/'+ id).subscribe(salonGet => {
-        console.log(salonGet);
-        this.stock = salonGet.json();
-        console.log('nom salon stocké', this.stock.nomSalon);
-      }, err => {
-        console.log(err);
-      });
-    }
+  //MODIFICATION SALON
+  modifSalon(id) {
+    this.salon.idManager = this.stockageService.id;
+    this.http.put('http://localhost:8080/salons/' + id, this.stock).subscribe(salonMod => {
+      console.log(salonMod);
+      this.chargeListeSalons(this.idManager);
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  //RECUPERATION SALON PAR ID
+  stock: Salon = new Salon();
+  getSalon(id) {
+    this.http.get('http://localhost:8080/salons/' + id).subscribe(salonGet => {
+      console.log(salonGet);
+      this.stock = salonGet.json();
+      console.log('nom salon stocké', this.stock.nomSalon);
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  //RECUPERATION INFOS MANAGER
+  stockManager: User = new User();
+  getCompte(id) {
+    this.http.get('http://localhost:8080/users/' + id).subscribe(userGet => {
+      console.log(userGet);
+      this.stockManager = userGet.json();
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  //MODIFICATION COMPTE MANAGER
+  modifCompte(id) {
+    this.http.put('http://localhost:8080/user/' + id, this.stockManager).subscribe(userPut => {
+      this.route.navigate(['/espacemanager']);
+      console.log(userPut);
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  //DESACTIVATION COMPTE MANAGER
+  desactiveCompte(id) {
+    this.stockManager.access = 5;
+    this.http.put('http://localhost:8080/user/' + id, this.stockManager).subscribe(userPut => {
+      this.route.navigate(['/espacemanager']);
+      console.log(userPut);
+    }, err => {
+      console.log(err);
+    });
+  }
 
 }

@@ -7,6 +7,7 @@ export class Salon {
     contact: string;
     nbPersonnelSalon: number;
     idManager: number;
+    photo: string;
 
     constructor(){
 

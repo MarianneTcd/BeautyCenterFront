@@ -104,8 +104,25 @@ body
      box-shadow: 0.5px 1.5px 4px  #583769;
  }
 
+ .boutonsjour
+ {
+    cursor: pointer;
+ }
+
+ .boutonsjour:hover
+ {
+     box-shadow: 0.5px 1.5px 4px  #583769;
+ }
+
  .elemListePresta
  {
      text-transform: uppercase;
      font-size: 90%;
+ }
+
+ .reservationconfirm
+ {
+     font-weight: bold;
+     color: #313d5a;
+
  }
