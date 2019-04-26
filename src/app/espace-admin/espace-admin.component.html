@@ -16,12 +16,10 @@
           </div>
           <br>
           <!--charger la liste des managers-->
-          <div class="card">
-            <br>
             <h3 class="mx-auto">Liste des managers</h3>
             <table class="table table-striped">
               <thead>
-                <tr style="background-color: rgb(235, 118, 142)">
+                <tr>
                   <th scope="col">ID</th>
                   <th scope="col">Nom</th>
                   <th scope="col">Preom</th>
@@ -31,7 +29,7 @@
                 </tr>
               </thead>
               <tbody *ngFor="let m of manager">
-                <tr style="background-color: rgb(231, 166, 179)">
+                <tr>
                   <th scope="row">{{m.id}}</th>
                   <td>{{m.nom}}</td>
                   <td>{{m.prenom}}</td>
@@ -52,7 +50,6 @@
                 </tr>
               </tbody>
             </table>
-          </div>
           <br>
         </div>
       </div>
