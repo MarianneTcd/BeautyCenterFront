@@ -5,6 +5,7 @@ export class Salon {
     adresse: string;
     telephone: string;
     contact: string;
+    nbPersonnelSalon: number;
     idManager: number;
 
     constructor(){
