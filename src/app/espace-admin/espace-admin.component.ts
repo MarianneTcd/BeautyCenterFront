@@ -151,9 +151,6 @@ export class EspaceAdminComponent implements OnInit {
 
       this.http.post('http://localhost:8080/mailcreationmanager', this.man).subscribe(reponse => {
         this.mail = reponse.json();
-        console.log('mail => man', this.man);
-        console.log('mail', this.mail);
-        console.log('mail envoyé');
       })
     }, err => {
       console.log(err);
@@ -162,7 +159,6 @@ export class EspaceAdminComponent implements OnInit {
     this.showAjout = false;
     this.showModif = false;
     this.showMessageCreate = true;
-
     this.chargeListe();
   }
 
