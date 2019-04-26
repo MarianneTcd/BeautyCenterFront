@@ -109,7 +109,7 @@ this.reservation=reservation;
    this.http.post('http://localhost:8080/PresqueReservations', this.reservation)
     .subscribe(reserv => {
       console.log(reserv);
-      this.http.post('http://localhost:8080/mailreservation/' +this.iduser +'/'+this.idsalon+'/'+this.idpresta).subscribe(reponse => {
+      this.http.post('http://localhost:8080/mailreservation/' +this.iduser +'/'+this.idsalon+'/'+this.idpresta , this.user).subscribe(reponse => {
         this.mail = reponse.json();
 
         console.log('mail => user', this.user);
