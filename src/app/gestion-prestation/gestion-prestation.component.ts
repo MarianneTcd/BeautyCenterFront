@@ -12,6 +12,8 @@ import { Salon } from '../model/Salon';
 })
 export class GestionPrestationComponent implements OnInit {
 
+
+  
   constructor(private http: Http, private serv: SalonservicesService) { }
   id = this.serv.id;
 

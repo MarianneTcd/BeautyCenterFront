@@ -35,16 +35,16 @@
                   <td>{{m.prenom}}</td>
                   <td>{{m.mail}}</td>
                   <td>
-                    <button mat-fab (click)="goModif(m.id)">Modify</button>
+                    <button mat-button (click)="goModif(m.id)">Modify</button>
                   </td>
                   <td>
                     <div *ngIf="m.access == 3">
-                      <button mat-fab color="warn" (click)="goDisable(m.id)" data-toggle="modal"
-                        data-target="#disableManager">On</button>
+                      <button mat-button color="warn" (click)="goDisable(m.id)" data-toggle="modal"
+                        data-target="#disableManager">Désactiver</button>
                     </div>
                     <div *ngIf="m.access == 5">
-                      <button mat-fab color="primary" (click)="goActive(m.id)" data-toggle="modal"
-                        data-target="#activeManager">Off</button>
+                      <button mat-button color="primary" (click)="goActive(m.id)" data-toggle="modal"
+                        data-target="#activeManager">Activer</button>
                     </div>
                   </td>
                 </tr>

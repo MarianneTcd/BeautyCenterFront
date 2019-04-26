@@ -1,6 +1,7 @@
+<br>
 <mat-card>
   <mat-card-header>
-    <mat-card-title style="font-size: 18px">Les prestations du salon</mat-card-title>
+    <mat-card-title style="font-size: 18px">Prestations du salon</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <table>
@@ -10,16 +11,16 @@
             {{u.nbPersonnel}} personne(s)</label>
         </th>
         <th>
-          <button mat-mini-fab color="warn" style="font-size: 30px" (click)=supEvent(u.id)>-</button>
+          <button mat-button color="warn" (click)=supEvent(u.id)>retirer</button>
         </th>
       </tr>
     </table>
   </mat-card-content>
 </mat-card>
-
+<br>
 <mat-card>
   <mat-card-header>
-    <mat-card-title style="font-size: 18px">Les prestations disponibles</mat-card-title>
+    <mat-card-title style="font-size: 18px">Prestations disponibles</mat-card-title>
   </mat-card-header>
   <mat-card-content>
       <table>
@@ -29,7 +30,7 @@
                 {{p.nbPersonnel}} personne(s)</label>
             </th>
             <th>
-              <button mat-mini-fab color="primary" style="font-size: 30px" (click)="recupEvent(p.id)" data-toggle="modal" data-target="#ajout">+</button>
+              <button mat-button color="primary" (click)="recupEvent(p.id)" data-toggle="modal" data-target="#ajout">ajouter</button>
               
               <div class="modal fade" id="ajout" tabindex="-1" role="dialog"
                       aria-labelledby="connexionLabel" aria-hidden="true">
