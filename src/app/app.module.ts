@@ -22,6 +22,7 @@ import { EspaceAdminComponent } from './espace-admin/espace-admin.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material';
 import { GestionPrestationComponent } from './gestion-prestation/gestion-prestation.component';
+import { AproposComponent } from './apropos/apropos.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { GestionPrestationComponent } from './gestion-prestation/gestion-prestat
     EspaceNonUserComponent,
     EspaceAdminComponent,
     GestionPrestationComponent,
+    AproposComponent,
   ],
   imports: [
     BrowserModule,
@@ -94,6 +96,10 @@ import { GestionPrestationComponent } from './gestion-prestation/gestion-prestat
         path: 'espaceadmin',
         component: EspaceAdminComponent,
       },
+      {
+        path: 'apropos',
+        component: AproposComponent,
+      }
 
     ])
   ],
