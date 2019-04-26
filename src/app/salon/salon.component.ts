@@ -4,6 +4,9 @@ import { s } from '@angular/core/src/render3';
 import { Http } from '@angular/http';
 import { SalonservicesService } from '../salonservices.service';
 import { $ } from 'protractor';
+import { ServiceStockageService } from '../service-stockage.service';
+import { Reservation } from '../model/Reservation';
+
 
 @Component({
   selector: 'app-salon',
@@ -12,8 +15,11 @@ import { $ } from 'protractor';
 })
 export class SalonComponent implements OnInit {
 
-  constructor(private http: Http, private serv: SalonservicesService) { }
+  constructor(private http: Http, private serv: SalonservicesService, private serv2: ServiceStockageService) { }
 
+
+  iduser = this.serv2.id; 
+  reservation: Reservation = new Reservation();
   currentDate = new Date();
   month = this.currentDate.getMonth() + 1;
   year = this.currentDate.getFullYear();
@@ -25,12 +31,19 @@ export class SalonComponent implements OnInit {
   show = false;
   show2 = false;
   s;
-  data;
+  listepresta;
   listeheures;
   texteheuresminutes;
+  heure ; 
+  minute; 
+  dureepresta;
+
+
+  
 
 
   ngOnInit() {
+
     this.http.get('http://localhost:8080/salons/' + this.id)
       .subscribe(
         response => {
@@ -40,26 +53,19 @@ export class SalonComponent implements OnInit {
     this.http.get('http://localhost:8080/events/salon/' + this.id)
       .subscribe(
         response => {
-          this.data = response.json();
-
-
+          this.listepresta = response.json();
         })
-
-
 
   }
 
-  afficherplanning(id) {
+  afficherplanning(id, duree) {
     this.http.get('http://localhost:8080/testdate/' + this.month)
       .subscribe(
         response => {
           this.idpresta = id;
           this.mois = response.json();
-         
-
-
+          this.dureepresta = duree ; 
         })
-
   }
 
   fonction(day) {
@@ -77,9 +83,37 @@ export class SalonComponent implements OnInit {
   affichageReserver(heure, minute){
     this.show2 = true;
     this.texteheuresminutes = heure + "h" + minute;
-    console.log(this.texteheuresminutes);
+    this.heure = heure ; 
+    this.minute = minute ; 
+
+    this.reservation.iduser = this.iduser;
+    this.reservation.idsalon = this.id;
+    this.reservation.idpresta = this.idpresta;
+    this.reservation.annee = this.year;
+    this.reservation.mois = this.month;
+    this.reservation.jour = this.day;
+    this.reservation.heure = this.heure;
+    this.reservation.minute = this.minute;
+    this.reservation.dureepresta = this.dureepresta;
+    console.log(this.reservation);
   }
 
-  //
 
+  
+  reserver() {
+
+    
+
+   this.http.post('http://localhost:8080/PresqueReservations', this.reservation)
+    .subscribe(reserv => {
+      console.log(reserv);
+      
+    }, err => {
+      console.log(err);
+    });
+       
+         
+  }
 }
+
+
