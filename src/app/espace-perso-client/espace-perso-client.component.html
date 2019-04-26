@@ -13,34 +13,11 @@
       <div class="row">
         <div class="col">
           <div class="card">
-            <table class="table table-borderless">
-              <tbody>
-                <tr>
-                    <td>Nom</td>
-                    <td>{{ nom }}</td>
-                    <td> </td>
-                    <td>
-                      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modifNom">Modifier</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Prénom</td>
-                    <td>{{ prenom }}</td>
-                    <td> </td>
-                    <td>
-                      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modifPrenom">Modifier</button>
-                    </td>
-                </tr>   
-                <tr>
-                    <td>e-mail</td>
-                    <td>{{ mail }}</td>
-                    <td> </td>
-                    <td>
-                      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modifMail">Modifier</button>
-                    </td>
-                </tr> 
-              </tbody>
-            </table>
+            <p>Nom : {{ nom }}</p>
+            <p>Prénom : {{ prenom }}</p>
+            <p>e-mail : {{ mail }}</p>
+            <button type="button" (click)="goModif()" class="btn btn-outline-info" data-toggle="modal" data-target="#modifProfile">Modifier mon profile</button>
+            <p><br><br></p>
             <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#modifMdp">Modifier mon mot de passe</button>
             <div style="width: 100%" class="alert alert-success text-center" role="alert" *ngIf="passS">La modification de mot de passe a bien été prise en compte</div>
             <div style="width: 100%" class="alert alert-danger text-center" role="alert" *ngIf="passE">La modification de mot de passe n'a pas été prise en compte</div>
@@ -49,75 +26,36 @@
         </div>
       </div>
 
-      <div class="modal fade" id="modifNom" tabindex="-1" role="dialog" aria-labelledby="modifLabel" aria-hidden="true">
+
+      <!--modal pour modifier mon profile-->
+      <div class="modal fade" id="modifProfile" tabindex="-1" role="dialog" aria-labelledby="modifLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="modifModalLabel"> Modifier mon nom </h5>
+              <h5 class="modal-title" id="modifModalLabel"> Modifier mon profile </h5>
             </div>
-            <div class="modal-body">               
+            <div class="modal-body">
               <form>
                 <div class="form-group">
-                <label> Nom </label>
-                <input type="text" #nomContact="ngModel" class="form-control" placeholder={{nom}} required
-                  [(ngModel)]="user1.nom" name="nom">
-                </div>                 
-                <div>
-                  <button (click)="modifNom()" class="btn btn-primary" data-dismiss="modal">Valider</button>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
-                  <p><br><br></p>
-                </div>        
-              </form>
-            </div>         
-          </div>
-        </div>
-      </div>
-
-      <div class="modal fade" id="modifPrenom" tabindex="-1" role="dialog" aria-labelledby="modifLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modifModalLabel"> Modifier mon prénom </h5>
-            </div>
-            <div class="modal-body">               
-              <form>
+                  <label> Nom </label>
+                  <input type="text" #nomContact="ngModel" class="form-control" required [(ngModel)]="user.nom" name="nom">
+                </div>
                 <div class="form-group">
-                <label> Prénom </label>
-                <input type="text" #nomContact="ngModel" class="form-control" placeholder={{prenom}} required
-                  [(ngModel)]="user2.prenom" name="prenom">
-                </div>                 
-                <div>
-                  <button (click)="modifPrenom()" class="btn btn-primary" data-dismiss="modal">Valider</button>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
-                  <p><br><br></p>
-                </div>        
-              </form>
-            </div>         
-          </div>
-        </div>
-      </div>
-
-
-      <div class="modal fade" id="modifMail" tabindex="-1" role="dialog" aria-labelledby="modifLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modifModalLabel"> Modifier mon e-mail</h5>
-            </div>
-            <div class="modal-body">               
-              <form>
+                  <label> Prénom </label>
+                  <input type="text" #nomContact="ngModel" class="form-control" required [(ngModel)]="user.prenom" name="prenom">
+                </div>
                 <div class="form-group">
-                <label> e-mail </label>
-                <input type="text" #nomContact="ngModel" class="form-control" placeholder={{mail}} required
-                  [(ngModel)]="user3.mail" name="mail">
-                </div>                 
+                  <label> e-mail </label>
+                  <input type="text" #nomContact="ngModel" class="form-control" required [(ngModel)]="user.mail" name="mail">
+                </div>
                 <div>
-                  <button (click)="modifMail()" class="btn btn-primary" data-dismiss="modal">Valider</button>
+                  <button (click)="modifProfile()" class="btn btn-primary" data-dismiss="modal">Valider</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
                   <p><br><br></p>
-                </div>        
+                </div>
               </form>
-            </div>         
+            </div>
           </div>
         </div>
       </div>
@@ -127,38 +65,38 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="modifModalLabel">  </h5>
+              <h5 class="modal-title" id="modifModalLabel"> </h5>
             </div>
             <div class="modal-body">
               <h5 class="card-title text-center">Modifier mon mot de passe</h5>
-                <form>                 
-                  <div class="form-group">
-                    <label> Ancien mot de passe</label>
-                    <input type="password" #nomAction="ngModel" class="form-control" placeholder="Mon ancien mot de passe" 
+              <form>
+                <div class="form-group">
+                  <label> Ancien mot de passe</label>
+                  <input type="password" #nomAction="ngModel" class="form-control" placeholder="Mon ancien mot de passe"
                     required [(ngModel)]="mdpA" name="mdpA">
-                  </div>
-                  <div class="form-group">
-                    <label> Nouveau mot de passe</label>
-                    <input type="password" #nomAction="ngModel" class="form-control" placeholder="Mon nouveau mon mot de passe" 
-                    required [(ngModel)]="mdpN1" name="mdpN1">
-                  </div>
-                  <div class="form-group">
-                    <label> Confirmer le nouveau mot de passe</label>
-                    <input type="password" #nomAction="ngModel" class="form-control" placeholder="Confirmer mon nouveau mot de passe" 
-                      required [(ngModel)]="u.mdp" name="mdpN2">
-                  </div> 
-                  <div>
-                    <button (click)="modifMdp()" class="btn btn-primary" data-dismiss="modal">Valider</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
-                    <p><br><br></p>
-                  </div>
-                </form>
-             
-              </div>         
+                </div>
+                <div class="form-group">
+                  <label> Nouveau mot de passe</label>
+                  <input type="password" #nomAction="ngModel" class="form-control"
+                    placeholder="Mon nouveau mon mot de passe" required [(ngModel)]="mdpN1" name="mdpN1">
+                </div>
+                <div class="form-group">
+                  <label> Confirmer le nouveau mot de passe</label>
+                  <input type="password" #nomAction="ngModel" class="form-control"
+                    placeholder="Confirmer mon nouveau mot de passe" required [(ngModel)]="u.mdp" name="mdpN2">
+                </div>
+                <div>
+                  <button (click)="modifMdp()" class="btn btn-primary" data-dismiss="modal">Valider</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+                  <p><br><br></p>
+                </div>
+              </form>
+
             </div>
           </div>
         </div>
-<!--
+      </div>
+      <!--
       <div class="modal fade" id="modifprof" tabindex="-1" role="dialog" aria-labelledby="modifLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -201,13 +139,70 @@
 
       <div class="row">
         <div class="col">
-          <div class="card">
-            Mes réservations
+         <!-- <div class="card">-->
+            <h1>Mes réservations</h1>
+            <br>
+            
+            <div *ngFor="let r of resa">
+                <div class="card p-1">
+                    <div class="row">
+                      <div class="col-3">
+                        <img src="https://www.karis-formation.com/wp-content/uploads/sites/7/2014/12/ecole-coiffure.jpg"
+                          style="height: 100px; width: 120px;">
+                      </div>
+                      <div class="col-6">
+                          <div class="row justify-content">
+                             <!-- <h2 class="titresalon">{{getSalon(r.idsalon)}} {{salon.nomSalon}}</h2>-->
+                            </div>
+                        <div class="row justify-content">
+                        <!--<h2 class="titrepresta">{{getTitre(r.idpresta)}} {{presta.titre}}</h2>-->
+                      </div>
+                      <div class="row">
+                        <p>Date : {{r.hstart.dayOfMonth}} {{r.hstart.month}} {{r.hstart.year}} </p>
+                      </div>
+                      <div class="row">
+                        <p>Heure : {{r.hstart.hour}}h{{r.hstart.minute}}</p>
+                      </div>
+                      <div class="row">
+                        <p>Durée : {{r.dureepresta}} min</p>
+                      </div>
+
+                      </div>
+                      <div class="col-3 ">
+                          <div class="row justify-content-end mr-5">
+                              <p></p>
+                            </div>
+                          <div class="row justify-content-end ">
+                              <p></p>
+                            </div>
+                            <div class="row justify-content mr-3 mt-2">
+                                <button class="btn btn-primary "> modifier </button>
+                              </div>
+                              <div class="row justify-content-end">
+                                  <p></p>
+                                </div>
+                              <div class="row justify-content mr-2">
+                                  <button class= "btn btn-primary"> annuler </button>
+                                </div>
+
+                        </div>
+                    </div>
+                  </div>
+              
+           <br>
           </div>
+         <!-- </div> -->
           <br>
         </div>
       </div>
+
+<<<<<<< HEAD
+=======
+     
+
+
       
+>>>>>>> c8c0687f7c2b0bd049fea0156a321d12aebb2292
       <div class="row">
         <div class="col">
           <div class="card">
@@ -233,7 +228,7 @@
         <div class="col">
           <h5 class="sstitre">Jean-Michel</h5>
         </div>
-      </div>    
+      </div>
       <div class="row">
         <div class="col">
           <h5 class="sstitre">2 Rue des Fougères</h5>
