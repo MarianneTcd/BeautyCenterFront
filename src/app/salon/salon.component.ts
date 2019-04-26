@@ -17,22 +17,16 @@ export class SalonComponent implements OnInit {
   month = this.currentDate.getMonth()+1 ;
   year = this.currentDate.getFullYear() ; 
   day = this.currentDate.getDay() ;
-
-idpresta ; 
+  idpresta ; 
   mois ; 
   reserv ;  
   id = this.serv.id;
-  show = true; 
-
-  
-
+  show = false; 
   s;
   data; 
-  choixsoin = "Je choisis mon soin";
- // table=["manucure", "brushing", "pédicure", "couleur"];
+  
 
   ngOnInit() { 
-    console.log('test jo', this.id);
   this.http.get('http://localhost:8080/salons/' + this.id)
   .subscribe(
     response => { 
@@ -45,6 +39,8 @@ idpresta ;
       response => { 
         console.log(response.json()); 
         this.data= response.json();
+        this.idpresta = this.data.id;
+        
       } ) 
 
       
@@ -55,23 +51,21 @@ idpresta ;
     this.http.get('http://localhost:8080/testdate/' + this.month)
       .subscribe(
         response => { 
-          console.log(response.json()); 
+          console.log(this.month); 
           this.mois= response.json();
+          console.log(this.id);
+          console.log(this.idpresta);
+          
           
         } ) 
 
   }
 
-  goReserv(m){
-    this.show = false ;
-    this.http.get('http://localhost:8080/reservations/'+ this.s.id + '/' this.data.id + '/' + this.year + '/' + this.month +'/'+ this.day + 9 + '/' + 17 )
-      .subscribe(
-        response => { 
-          console.log(response.json()); 
-          this.reserv = response.json();
-        } ) 
-
+  fonction() {
+    //this.http.get('http://localhost:8080/reservations/sal' + '{idsalon}' + '/presta{idpresta}/{année}/{mois}/{jour}/{hOuv}/{hFerm}')
+    this.show = true;
   }
+
 //
   
 }
