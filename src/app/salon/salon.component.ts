@@ -4,6 +4,7 @@ import { s } from '@angular/core/src/render3';
 import { Http } from '@angular/http';
 import { SalonservicesService } from '../salonservices.service';
 import { $ } from 'protractor';
+import { PathLocationStrategy } from '@angular/common';
 import { ServiceStockageService } from '../service-stockage.service';
 import { Reservation } from '../model/Reservation';
 
@@ -25,11 +26,13 @@ export class SalonComponent implements OnInit {
   year = this.currentDate.getFullYear();
   day;
   idpresta;
+  nompresta;
   mois;
   reserv;
   id = this.serv.id;
   show = false;
   show2 = false;
+  showplanning = false;
   s;
   listepresta;
   listeheures;
@@ -40,6 +43,11 @@ export class SalonComponent implements OnInit {
   idsalon;
   user;
   mail;
+  nomS;
+  telephoneS;
+  adresseS;
+  photoS;
+
 
   
 
@@ -50,6 +58,11 @@ export class SalonComponent implements OnInit {
       .subscribe(
         response => {
           this.s = response.json();
+          this.nomS = this.s.nomSalon;
+          this.telephoneS = this.s.telephone;
+          this.adresseS = this.s.adresse;
+          this.photoS = this.s.photo;
+
         })
 
     this.http.get('http://localhost:8080/events/salon/' + this.id)
@@ -59,14 +72,27 @@ export class SalonComponent implements OnInit {
         })
 
   }
+  
 
-  afficherplanning(id, duree) {
+  moisSuivant(){
+    this.month = this.month + 1;
+    this.afficherplanning(this.idpresta, this.dureepresta, this.nompresta);
+  }
+
+  moisPrecedent(){
+    this.month = this.month - 1;
+    this.afficherplanning(this.idpresta, this.dureepresta, this.nompresta);
+  }
+
+  afficherplanning(id, duree, titre) {
     this.http.get('http://localhost:8080/testdate/' + this.month)
       .subscribe(
         response => {
           this.idpresta = id;
+          this.nompresta = titre;
           this.mois = response.json();
           this.dureepresta = duree ; 
+          this.showplanning = true ;
         })
   }
 
@@ -87,7 +113,7 @@ export class SalonComponent implements OnInit {
     this.texteheuresminutes = heure + "h" + minute;
     this.heure = heure ; 
     this.minute = minute ; 
-
+    this.show = false;
     this.reservation.iduser = this.iduser;
     this.reservation.idsalon = this.id;
     this.reservation.idpresta = this.idpresta;

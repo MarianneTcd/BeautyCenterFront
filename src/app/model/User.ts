@@ -5,6 +5,7 @@ export class User {
     mail: string;
     mdp: string;
     access: number;
+    photo: string;
 
     constructor(){
 

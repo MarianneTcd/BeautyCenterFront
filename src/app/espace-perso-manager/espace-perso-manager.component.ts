@@ -26,6 +26,7 @@ export class EspacePersoManagerComponent implements OnInit {
   nomManager;
   prenomManager;
   mailManager;
+  photoManager;
   ngOnInit() {
     console.log('recup mis en service id', this.stockageService.id);
     console.log('recup mis en service id dans variable perso', this.idMan);
@@ -41,6 +42,7 @@ export class EspacePersoManagerComponent implements OnInit {
           this.nomManager = this.res.nom;
           this.prenomManager = this.res.prenom;
           this.mailManager = this.res.mail;
+          this.photoManager = this.res.photo;
         }
       )
   }
@@ -50,7 +52,7 @@ export class EspacePersoManagerComponent implements OnInit {
   chargeListeSalons(idManager) {
     this.http.get('http://localhost:8080/salons/manager/' + idManager).subscribe(response => {
       this.dataSalons = response.json();
-      console.log('conenu datasalon dans sa meth', this.dataSalons);
+      console.log('Contenu liste salon', this.dataSalons);
     });
   }
 
