@@ -201,12 +201,66 @@
 
       <div class="row">
         <div class="col">
-          <div class="card">
-            Mes réservations
+         <!-- <div class="card">-->
+            <h1>Mes réservations</h1>
+            <br>
+            
+            <div *ngFor="let r of resa">
+                <div class="card p-1">
+                    <div class="row">
+                      <div class="col-3">
+                        <img src="https://www.karis-formation.com/wp-content/uploads/sites/7/2014/12/ecole-coiffure.jpg"
+                          style="height: 100px; width: 120px;">
+                      </div>
+                      <div class="col-6">
+                          <div class="row justify-content">
+                             <!-- <h2 class="titresalon">{{getSalon(r.idsalon)}} {{salon.nomSalon}}</h2>-->
+                            </div>
+                        <div class="row justify-content">
+                        <!--<h2 class="titrepresta">{{getTitre(r.idpresta)}} {{presta.titre}}</h2>-->
+                      </div>
+                      <div class="row">
+                        <p>Date : {{r.hstart.dayOfMonth}} {{r.hstart.month}} {{r.hstart.year}} </p>
+                      </div>
+                      <div class="row">
+                        <p>Heure : {{r.hstart.hour}}h{{r.hstart.minute}}</p>
+                      </div>
+                      <div class="row">
+                        <p>Durée : {{r.dureepresta}} min</p>
+                      </div>
+
+                      </div>
+                      <div class="col-3 ">
+                          <div class="row justify-content-end mr-5">
+                              <p></p>
+                            </div>
+                          <div class="row justify-content-end ">
+                              <p></p>
+                            </div>
+                            <div class="row justify-content mr-3 mt-2">
+                                <button class="btn btn-primary "> modifier </button>
+                              </div>
+                              <div class="row justify-content-end">
+                                  <p></p>
+                                </div>
+                              <div class="row justify-content mr-2">
+                                  <button class= "btn btn-primary"> annuler </button>
+                                </div>
+
+                        </div>
+                    </div>
+                  </div>
+              
+           <br>
           </div>
+         <!-- </div> -->
           <br>
         </div>
       </div>
+
+     
+
+
       
       <div class="row">
         <div class="col">
