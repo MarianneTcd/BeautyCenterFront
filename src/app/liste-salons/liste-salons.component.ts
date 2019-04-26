@@ -20,6 +20,7 @@ export class ListeSalonsComponent implements OnInit {
     .subscribe(
       response=>{
         this.salooon = response.json();
+        console.log('photo' , this.salooon);
       }
     );
 }
