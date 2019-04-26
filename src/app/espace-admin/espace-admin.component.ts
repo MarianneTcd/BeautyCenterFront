@@ -15,7 +15,7 @@ export class EspaceAdminComponent implements OnInit {
   //récupérer l'ID et stocker les info de l'administrateur sur la session
   id = this.stockageService.id;
   resUser;
-  nomA; 
+  nomA;
   prenomA;
   mailA;
   mdpA;
@@ -25,13 +25,13 @@ export class EspaceAdminComponent implements OnInit {
   managerModif: User = new User;
 
   //variable qui chargera la liste de tous les managers
-  manager;  
+  manager;
 
   //variable qui charge le mail de manager crée qui est utilisé pour envoyer un mail
-  mail; 
+  mail;
 
   //variable pour switcher entre le panneau d'ajout et de modification de manager
-  show = true; 
+  show = true;
 
   //stocker les info du manager à ajouter;
   man: User = new User();
@@ -42,70 +42,78 @@ export class EspaceAdminComponent implements OnInit {
 
   ngOnInit() {
     this.http.get('http://localhost:8080/users/' + this.id)
-    .subscribe(
-      response => { 
-        console.log(response.json()); 
-        this.resUser= response.json();
-        this.nomA = this.resUser.nom;
-        this.prenomA = this.resUser.prenom;
-        this.mailA = this.resUser.mail;
-        this.mdpA = this.resUser.mdp;
-        this.accessA = this.resUser.access;
-      } )
+      .subscribe(
+        response => {
+          console.log(response.json());
+          this.resUser = response.json();
+          this.nomA = this.resUser.nom;
+          this.prenomA = this.resUser.prenom;
+          this.mailA = this.resUser.mail;
+          this.mdpA = this.resUser.mdp;
+          this.accessA = this.resUser.access;
+        })
 
     this.http.get('http://localhost:8080/users/managers')
-    .subscribe(
-      response => { 
-        console.log(response.json()); 
-        this.manager= response.json();
-      } )
+      .subscribe(
+        response => {
+          console.log(response.json());
+          this.manager = response.json();
+        })
   }
 
- 
-  goModif(id){
+
+  goModif(id) {
     this.http.get('http://localhost:8080/users/' + id).subscribe(
-      response => { 
-        console.log(response.json()); 
+      response => {
+        console.log(response.json());
         this.managerModif = response.json();
-      } )
+      })
     this.show = false;
   }
 
-  modifManager(id){
+  modifManager(id) {
     this.managerModif.access = 3;
     this.http.put('http://localhost:8080/user/' + id, this.managerModif).
-    subscribe(userData => {
-      console.log(userData);
-    }, err => {
-      console.log(err);
-    });
+      subscribe(userData => {
+        console.log(userData);
+      }, err => {
+        console.log(err);
+      });
 
     this.http.get('http://localhost:8080/users/managers')
-    .subscribe(
-      response => { 
-        console.log(response.json()); 
-        this.manager= response.json();
-      } )
+      .subscribe(
+        response => {
+          console.log(response.json());
+          this.manager = response.json();
+        })
   }
 
-  showAjout(){
+  showAjout() {
     this.show = true;
   }
 
-  createManager(){
+  createManager() {
     this.man.access = 3;
-    this.http.post('http://localhost:8080/users', this.man).subscribe(userData=>{
-      console.log(userData);      
+    this.http.post('http://localhost:8080/users', this.man).subscribe(userData => {
+      console.log(userData);
+
+      this.http.post('http://localhost:8080/mailcreationmanager', this.man).subscribe(reponse => {
+        this.mail = reponse.json();
+
+        console.log('mail => man', this.man);
+        console.log('mail', this.mail);
+        console.log('mail envoyé');
+      })
     }, err => {
       console.log(err);
     });
 
     this.http.get('http://localhost:8080/users/managers')
-    .subscribe(
-      response => { 
-        console.log(response.json()); 
-        this.manager= response.json();
-      } )
+      .subscribe(
+        response => {
+          console.log(response.json());
+          this.manager = response.json();
+        })
   }
-  
+
 }
