@@ -13,10 +13,7 @@ export class EspacePersoClientComponent implements OnInit {
   
   user: User = new User();
   u: User = new User();
-  mdpA;
-  mdpN1;
-  passS=false;
-  passE=false;
+  modif = false;
 
   constructor(private http: Http, private stockageService: ServiceStockageService) { }
   id = this.stockageService.id;
@@ -30,7 +27,8 @@ export class EspacePersoClientComponent implements OnInit {
   idpresta;  
   presta;  
   idSalon; 
-  salon; 
+  salon;
+  photo; 
 
   ngOnInit() {
     this.http.get('http://localhost:8080/users/' + this.id)
@@ -43,6 +41,7 @@ export class EspacePersoClientComponent implements OnInit {
         this.mail = this.res.mail;
         this.mdp = this.res.mdp;
         this.access = this.res.access;
+        this.photo = this.res.photo;
       } )
 
       this.http.get('http://localhost:8080/reserv/user/' + this.id)
@@ -54,64 +53,23 @@ export class EspacePersoClientComponent implements OnInit {
     );
   }
 
-  modifProfile(){
-    this.user.id = this.res.id;
-    this.user.mdp = this.res.mdp;
-    this.user.access = this.res.access;
-
-    this.http.put('http://localhost:8080/user/' + this.id, this.user).subscribe(userData => {
-      console.log(userData);
-    }, err => {
-      console.log(err);
-    });
-
-    this.http.get('http://localhost:8080/users/' + this.id).subscribe(response => { 
+  profil: User= new User;
+  recupProfil(id){
+    this.http.get('http://localhost:8080/users/' + id).subscribe(response => { 
       console.log(response.json()); 
-      this.res= response.json();
-      this.nom = this.res.nom;
-      console.log('rafraîchir après le modif nom');
+      this.profil= response.json();
     });
   }
 
-  modifMdp() {
+  modifProfile(id){
 
-    this.u.id = this.res.id;
-    this.u.nom = this.res.nom;
-    this.u.prenom = this.res.prenom;
-    this.u.mail = this.res.mail;
-    this.u.access = this.res.access;
-
-    if (this.mdpA === this.res.mdp && this.mdpN1 === this.u.mdp){
-      this.http.put('http://localhost:8080/user/' + this.id, this.u).subscribe(userData=>{
-        console.log(userData);
-      }, err => {
-        console.log(err);
-      });
-      console.log('la modification de mot de passe a bien été prise en compte');
-      this.passS = true;
-      this.passE = false;
-    }else {
-      console.log('la modification de mot de passe est echouée');
-      this.passS = false;
-      this.passE = true;
-    }
-  }
-
-  /*
-  modifProf() {
-   
-    this.user.id = this.res.id;
-    this.user.mdp = this.res.mdp;
-    this.user.access = this.res.access;
-
-    this.http.put('http://localhost:8080/user/' + this.id, this.user).subscribe(userData=>{
+    this.http.put('http://localhost:8080/user/' + id, this.profil).subscribe(userData => {
       console.log(userData);
+      this.modif = true;
     }, err => {
       console.log(err);
     });
-
   }
-*/
 
 getTitre(idpresta){ 
   this.idpresta = idpresta
