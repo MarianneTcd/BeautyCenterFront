@@ -9,7 +9,7 @@
           {{u.nbPersonnel}} personne(s)</label>
       </th>
       <th>
-          <button mat-mini-fab color="warn">-</button>
+        <button mat-mini-fab color="warn" style="font-size: 30px">-</button>
       </th>
     </tr>
   </table>
@@ -28,7 +28,7 @@
           {{p.nbPersonnel}} personne(s)</label>
       </th>
       <th>
-          <button mat-mini-fab color="primary">+</button>
+        <button mat-mini-fab color="primary" style="font-size: 30px" (click)="getPresta(p.id)" (click)="createEvent()">+</button>
       </th>
     </tr>
   </table>
