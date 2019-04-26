@@ -219,8 +219,8 @@
                         required [(ngModel)]="salon.contact" name="contact">
                     </div>
                     <div>
-                      <button (click)="createSalon()" [disabled]="!cSalon.form.valid" type="submit"
-                        class="btn btn-primary" data-dismiss="modal">Creer le
+                      <button (click)="createSalon()" type="submit"
+                        class="btn btn-primary" data-dismiss="modal" [disabled]="!cSalon.form.valid">Creer le
                         salon</button>
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Retour au
                         menu</button>
@@ -247,7 +247,7 @@
                 </div>
                 <div class="modal-body">
                   <h5 class="card-title text-center">Nouvelle prestation</h5>
-                  <form #cSalon="ngForm">
+                  <form #cPrestation="ngForm">
                     <div class="form-group">
                       <label>Nom de la prestation</label>
                       <input type="text" #nomAction="ngModel" class="form-control"
@@ -265,7 +265,7 @@
                       name="nbPersonnel">
                     </div>
                     <div>
-                      <button (click)="createPrestation()" [disabled]="!cSalon.form.valid" type="submit"
+                      <button (click)="createPrestation()" [disabled]="!cPrestation.form.valid" type="submit"
                         class="btn btn-primary" data-dismiss="modal">Creer la
                         prestation</button>
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Retour au
