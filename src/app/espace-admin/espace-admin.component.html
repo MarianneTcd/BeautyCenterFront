@@ -1,183 +1,196 @@
 <div class="container">
-    <div class="row mt-4">  
-      <br>
-  
-      <div class="col-8 p-4" style="border-right: 1px solid;">
-        <div class="row">
-          <div class="col">
-            <h3 class="titre">Bonjour, {{ prenomA }} {{ nomA }} - Votre Espace Admin</h3><br>
-          </div>
-        </div>  
-        <div class="row">
-          <div class="col">
+  <div class="row mt-4">
+    <br>
 
-            <div class="card">
-              <div class="container">
-                <div class="row">
-                  <div class="col-sm">
-                  </div>
-                  <div class="col-sm">
-                    <br>
-                    <!--data-target="#ajouterManager"-->
-                    <button mat-stroked-button type="button" (click)="showAjout()" data-toggle="modal" >Ajouter un manager</button>
-                    <br><br>
-                  </div>
-                  <div class="col-sm">
+    <div class="col-8 p-4" style="border-right: 1px solid;">
+      <div class="row">
+        <div class="col">
+          <h3 class="titre">Bonjour, {{ prenomA }} {{ nomA }} - Votre Espace Admin</h3><br>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+<!--ajouter un manager-->
+          <div class="card">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm">
+                  <br>
+                  <button mat-stroked-button type="button" (click)="afficheAjout()" data-toggle="modal">Ajouter un
+                    manager</button>
+                  <br><br>
+                </div>
+                <div class="col-sm">
+                  <br>
+                  <div style="width: 100%" class="alert alert-success text-center" role="alert"
+                    *ngIf="showMessageCreate">
+                    Le compte a bien été crée.
                   </div>
                 </div>
-              </div>              
+              </div>
             </div>
+          </div>
 
+          <br>
+<!--charger la liste des managers-->
+          <div class="card">
             <br>
+            <h3 class="mx-auto">Liste des managers</h3>
+            <table class="table table-striped">
+              <thead>
+                <tr style="background-color: rgb(235, 118, 142)">
+                  <th scope="col">ID</th>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Preom</th>
+                  <th scope="col">e-mail</th>
+                  <th>Modifier</th>
+                  <th>Active</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let m of manager">
+                <tr style="background-color: rgb(231, 166, 179)">
+                  <th scope="row">{{m.id}}</th>
+                  <td>{{m.nom}}</td>
+                  <td>{{m.prenom}}</td>
+                  <td>{{m.mail}}</td>
+                  <td>
+                    <button mat-fab (click)="goModif(m.id)">Modify</button>
+                  </td>
+                  <td>
+                    <div *ngIf="m.access == 3">
+                      <button mat-fab color="warn" (click)="goDisable(m.id)" data-toggle="modal" data-target="#disableManager">On</button>
+                    </div>
+                    <div *ngIf="m.access == 5">
+                        <button mat-fab color="primary" (click)="goActive(m.id)" data-toggle="modal" data-target="#activeManager">Off</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
 
-            <div class="card">
+          </div>
+
+          <br>
+        </div>
+      </div>
+    </div>
+
+<!--paneau pour modifier un manager-->
+    <div class="col-4 p-4" *ngIf="showModif">
+      <div class="row" style="text-align: center;">
+        <div class="col">
+          <br><br><br><br><br><br><br><br>
+          <h3>Modification</h3><br>
+          <form>
+            <div class="form-group">
+              <label> Nom de manager</label>
+              <input type="text" #nomAction="ngModel" class="form-control" required [(ngModel)]="managerModif.nom"
+                name="nom">
+            </div>
+            <div class="form-group">
+              <label> Prénom de manager</label>
+              <input type="text" #nomAction="ngModel" class="form-control" required [(ngModel)]="managerModif.prenom"
+                name="prenom">
+            </div>
+            <div class="form-group">
+              <label> e-mail</label>
+              <input type="text" #nomAction="ngModel" class="form-control" required [(ngModel)]="managerModif.mail"
+                name="mail">
+            </div>
+            <div class="form-group">
+              <label> Mot de passe </label>
+              <input type="password" #nomAction="ngModel" class="form-control" required [(ngModel)]="managerModif.mdp"
+                name="mdp">
+            </div>
+            <div>
+              <button (click)="modifManager(managerModif.id)" class="btn btn-primary" data-dismiss="modal">Send
+                Modification</button>
+              <button (click)="cacheAjoutModif()" class="btn btn-primary">Retour</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+<!--paneau pour ajouter un manager-->
+    <div class="col-4 p-4" *ngIf="showAjout">
+      <div class="row" style="text-align: center;">
+        <div class="col">
+          <br><br><br><br><br><br><br><br>
+          <h3>Ajouter un manager</h3><br>
+          <form>
+            <div class="form-group">
+              <label> Nom du manager</label>
+              <input type="text" #nomAction="ngModel" class="form-control" required [(ngModel)]="man.nom" name="nomMA">
+            </div>
+            <div class="form-group">
+              <label> Prénom du manager</label>
+              <input type="text" #nomAction="ngModel" class="form-control" required [(ngModel)]="man.prenom"
+                name="prenomMA">
+            </div>
+            <div class="form-group">
+              <label> e-mail</label>
+              <input type="text" #nomAction="ngModel" class="form-control" required [(ngModel)]="man.mail"
+                name="mailMA">
+            </div>
+            <div class="form-group">
+              <label> Mot de passe </label>
+              <input type="password" #nomAction="ngModel" class="form-control" required [(ngModel)]="man.mdp"
+                name="mdpMA">
+            </div>
+            <div>
               <br>
-              <h3 class="mx-auto">Liste des managers</h3>
-              <table class="table table-striped">
-                <thead>
-                  <tr style="background-color: rgb(235, 118, 142)">
-                    <th scope="col">ID</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Preom</th>
-                    <th scope="col">e-mail</th>
-                    <th></th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody *ngFor="let m of manager">                  
-                  <tr style="background-color: rgb(231, 166, 179)">
-                    <th scope="row">{{m.id}}</th>
-                    <td>{{m.nom}}</td>
-                    <td>{{m.prenom}}</td>
-                    <td>{{m.mail}}</td>
-                    <td>
-                      <button mat-fab (click)="goModif(m.id)">Modify</button>                     
-                    </td>
-                    <td>
-                      <button mat-fab color="warn">Delete</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              
+              <button (click)="createManager()" class="btn btn-primary" data-dismiss="modal">Ajouter un manager</button>
+              <button (click)="cacheAjoutModif()" class="btn btn-primary">Retour</button>
             </div>
-            <br>
-          </div>
+          </form>
         </div>
       </div>
-      
-
-      <div class="col-4 p-4" *ngIf="!show">
-        <div class="row" style="text-align: center;">
-          <div class="col" >
-            <br><br><br><br><br>
-            <h3>Modification</h3><br>
-            <form>
-              <div class="form-group">
-                <label> Nom de manager</label>
-                <input type="text" #nomAction="ngModel" class="form-control"
-                  required [(ngModel)]="managerModif.nom" name="nom">
-              </div>
-              <div class="form-group">
-                <label> Prénom de manager</label>
-                <input type="text" #nomAction="ngModel" class="form-control"
-                  required [(ngModel)]="managerModif.prenom" name="prenom">
-              </div>
-              <div class="form-group">
-                <label> e-mail</label>
-                <input type="text" #nomAction="ngModel" class="form-control"
-                  required [(ngModel)]="managerModif.mail" name="mail">
-              </div> 
-              <div class="form-group">
-                <label> Mot de passe </label>
-                <input type="password" #nomAction="ngModel" class="form-control"
-                  required [(ngModel)]="managerModif.mdp" name="mdp">
-              </div>
-              <div>
-                <button (click)="modifManager(managerModif.id)" class="btn btn-primary" data-dismiss="modal">Send Modification</button>
-                <button (click)="showAjout()" class="btn btn-primary" data-dismiss="modal">Retour</button>
-              </div>
-            </form>              
-          </div>
-        </div>             
-      </div>
-
-
-      <div class="col-4 p-4" *ngIf="show">
-          <div class="row" style="text-align: center;">
-            <div class="col">
-              <br><br><br><br><br>
-              <h3>Ajouter un manager</h3><br>
-              <form>
-                <div class="form-group">
-                  <label> Nom du manager</label>
-                  <input type="text" #nomAction="ngModel" class="form-control" required [(ngModel)]="man.nom" name="nomMA">
-                </div>
-                <div class="form-group">
-                  <label> Prénom du manager</label>
-                  <input type="text" #nomAction="ngModel" class="form-control" required [(ngModel)]="man.prenom" name="prenomMA">
-                </div>
-                <div class="form-group">
-                  <label> e-mail</label>
-                  <input type="text" #nomAction="ngModel" class="form-control" required [(ngModel)]="man.mail" name="mailMA">
-                </div> 
-                <div class="form-group">
-                  <label> Mot de passe </label>
-                  <input type="password" #nomAction="ngModel" class="form-control" required [(ngModel)]="man.mdp" name="mdpMA">
-                </div>
-                <div>
-                  <button (click)="createManager()" class="btn btn-primary" data-dismiss="modal">Ajouter un manager</button>
-                </div>
-              </form>             
-            </div>
-          </div>
-        </div>
-
     </div>
-  </div>
-  
 
-
-
-<!--modal pour ajouter un manager-->
-<!--
-<div class="modal fade" id="ajouterManager" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ajouter un manager</h5>
-      </div>
-      <div class="modal-body">
-        <form>
-
-          <div class="form-group">
-            <label>Nom du manager</label>
-            <input type="text" #nomAction="ngModel" class="form-control" placeholder="Entrer le nom du manager" required
-              [(ngModel)]="man.nom" name="nomC">
-          </div>
-          <div class="form-group">
-            <label>Prénom du manager</label>
-          <input type="text" #nomAction="ngModel" class="form-control" placeholder="Entrer le prénom du manager" required
-              [(ngModel)]="man.prenom" name="prenomC">
-          </div>
-          <div class="form-group">
-            <label>Mail de contact</label>
-            <input type="email" #nomContact="ngModel" class="form-control" placeholder="Entrer son mail" required
-              [(ngModel)]="man.mail" name="mailC">
-          </div>
-          <div class="form-group">
-            <label>Mot de passe</label>
-            <input type="password" #nomAction="ngModel" class="form-control" placeholder="Entrer le mot de passe"
-              required [(ngModel)]="man.mdp" name="mdpC">
-          </div>
-          <div>
-            <button mat-stroked-button color="accent" (click)="createManager()" routerLinkActive="active" data-dismiss="modal">Ajouter</button>
-            <button type="button" class="btn btn-danger"routerLinkActive="active" data-dismiss="modal">Retour</button>
-          </div>
-        </form>
-      </div>
-    </div>
   </div>
 </div>
--->
 
+<!--modal pour désactiver un manager-->
+<div class="modal fade" id="disableManager" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Désactivation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Vous êtes sur de désactiver le manager suivant ? <br>
+          {{managerDisable.nom}} {{managerDisable.prenom}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="disable(managerDisable.id)">Valider</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--modal pour désactiver un manager-->
+<div class="modal fade" id="activeManager" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Désactivation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Vous êtes sur de reactiver le manager suivant ? <br>
+          {{managerActive.nom}} {{managerActive.prenom}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="active(managerActive.id)">Valider</button>
+        </div>
+      </div>
+    </div>
+  </div>

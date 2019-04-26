@@ -3,7 +3,7 @@
   <nav class="navbar navbar-light bg-light" style=" height: 50px; box-shadow: 0px 0px 0px;">
     <a class="navbar-brand ml-3" href="#">Beauty</a>
     <div class="d-flex">
-      <p> {{ prenom }} {{ nom }} </p>
+      <p *ngIf="connecte"> {{ prenom }} {{ nom }} </p>
       <img src="https://cdn.onlinewebfonts.com/svg/img_405324.png" style=" width: 30px; height: 30px;">
       <div *ngIf="show">        
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#connexion">Connexion</button>
@@ -47,10 +47,17 @@
   </div>
 </div>
 
+<!--Affichage "mot de passe incorrect"-->
 <div style="width: 100%" class="alert alert-danger text-center" role="alert" *ngIf="pass">
   Identifiant ou mot de passe incorrect
 </div>
 
+<!--Affichage "compte désactivé"-->
+<div style="width: 100%" class="alert alert-danger text-center" role="alert" *ngIf="desactive">
+    Votre compte est désactivé. Veuillez contacter l'administrateur du système
+</div>
+
+<!--Modal d'inscription-->
 <div class="modal fade" id="inscription" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -60,40 +67,26 @@
       <div class="modal-body">
         <form #validUser="ngForm">
           <h2 class="card-title text-left">Vous êtes...</h2>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" #nomClient="ngModel" [(ngModel)]="user.access" name="access"
-              value="1">
-            <label class="form-check-label" for="exampleRadios1">Client </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" #nomEmp="ngModel" [(ngModel)]="user.access" name="access"
-              value="2">
-            <label class="form-check-label" for="exampleRadios2">Employé</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" #nomMan="ngModel" [(ngModel)]="user.access" name="access"
-              value="3">
-            <label class="form-check-label" for="exampleRadios2">Manager</label>
-          </div>
+
           <div class="form-group">
             <label>Nom de l'utilisateur</label>
-            <input type="text" #nomAction="ngModel" class="form-control" placeholder="Entrer le nom" required
+            <input type="text" #nomAction="ngModel" class="form-control" placeholder="Entrez votre nom" required
               [(ngModel)]="user.nom" name="nom">
           </div>
           <div class="form-group">
             <label>Prénom de l'utilisateur</label>
-            <input type="text" #nomAction="ngModel" class="form-control" placeholder="Entrer le prénom" required
+            <input type="text" #nomAction="ngModel" class="form-control" placeholder="Entrez votre prénom" required
               [(ngModel)]="user.prenom" name="prenom">
           </div>
           <div class="form-group">
             <label>Mail de contact</label>
-            <input type="email" #nomContact="ngModel" class="form-control" placeholder="Entrer le mail" required
+            <input type="email" #nomContact="ngModel" class="form-control" placeholder="Entrer votre e-mail" required
               [(ngModel)]="user.mail" name="mail">
             <small class="form-text text-muted">Votre mail ne sera pas utilisé à des fins commerciales</small>
           </div>
           <div class="form-group">
             <label>Mot de passe</label>
-            <input type="password" #nomAction="ngModel" class="form-control" placeholder="Entrer le mot de passe"
+            <input type="password" #nomAction="ngModel" class="form-control" placeholder="Entrez votre mot de passe"
               required [(ngModel)]="user.mdp" name="mdp">
           </div>
           <div>
@@ -149,7 +142,7 @@
           <a class="nav-link boutonnav" routerLink="cartesalons" routerLinkActive="active">Voir la carte des salons</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link boutonnav" href="#">A propos de nous</a>
+          <a class="nav-link boutonnav" routerLink ="apropos" routerLinkActive="active">A propos de nous</a>
         </li>
         <li class="nav-item" *ngIf="showClient">
           <a class="nav-link boutonnav" routerLink="espaceperso" routerLinkActive="active">Mon espace client</a>

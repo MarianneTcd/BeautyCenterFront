@@ -24,6 +24,10 @@ export class EspaceAdminComponent implements OnInit {
   //stocker les info du manager que l'administrateur souhaite modifier
   managerModif: User = new User;
 
+  //stocker les info du manager que l'administrateur souhaite activer ou désactiver
+  managerDisable: User = new User;
+  managerActive: User = new User;
+
   //variable qui chargera la liste de tous les managers
   manager;
 
@@ -35,10 +39,24 @@ export class EspaceAdminComponent implements OnInit {
 
   //stocker les info du manager à ajouter;
   man: User = new User();
+
   //stocker les info du manager à modifier;
   manag: User = new User();
 
+  //pour afficher le message après la création de manager
+  showMessageCreate = false;
 
+  showModif = false;
+  showAjout = false;
+
+  chargeListe(){
+    this.http.get('http://localhost:8080/users/managers')
+    .subscribe(
+      response => {
+        console.log(response.json());
+        this.manager = response.json();
+      })
+  }
 
   ngOnInit() {
     this.http.get('http://localhost:8080/users/' + this.id)
@@ -52,15 +70,8 @@ export class EspaceAdminComponent implements OnInit {
           this.mdpA = this.resUser.mdp;
           this.accessA = this.resUser.access;
         })
-
-    this.http.get('http://localhost:8080/users/managers')
-      .subscribe(
-        response => {
-          console.log(response.json());
-          this.manager = response.json();
-        })
+    this.chargeListe();
   }
-
 
   goModif(id) {
     this.http.get('http://localhost:8080/users/' + id).subscribe(
@@ -68,7 +79,8 @@ export class EspaceAdminComponent implements OnInit {
         console.log(response.json());
         this.managerModif = response.json();
       })
-    this.show = false;
+    this.showModif = true;
+    this.showAjout = false;
   }
 
   modifManager(id) {
@@ -80,16 +92,56 @@ export class EspaceAdminComponent implements OnInit {
         console.log(err);
       });
 
-    this.http.get('http://localhost:8080/users/managers')
-      .subscribe(
-        response => {
-          console.log(response.json());
-          this.manager = response.json();
-        })
+    this.chargeListe();
+
+    this.showAjout = false;
+    this.showModif = false;
   }
 
-  showAjout() {
-    this.show = true;
+  afficheAjout() {
+    this.showAjout = true;
+    this.showModif = false;
+  }
+
+  cacheAjoutModif(){
+    this.showAjout = false;
+    this.showModif = false;
+  }
+
+  goDisable(id){
+    this.http.get('http://localhost:8080/users/' + id).subscribe(
+      response => {
+        console.log(response.json());
+        this.managerDisable = response.json();
+      })
+  }
+
+  disable(id){
+    this.managerDisable.access = 5;
+    this.http.put('http://localhost:8080/user/' + id, this.managerDisable).subscribe(
+      response => {
+        console.log(response.json());
+        this.managerDisable = response.json();
+      })
+    this.chargeListe();
+  }
+
+  goActive(id){
+    this.http.get('http://localhost:8080/users/' + id).subscribe(
+      response => {
+        console.log(response.json());
+        this.managerActive = response.json();
+      })
+  }
+
+  active(id){
+    this.managerActive.access = 3;
+    this.http.put('http://localhost:8080/user/' + id, this.managerActive).subscribe(
+      response => {
+        console.log(response.json());
+        this.managerActive = response.json();
+      })
+    this.chargeListe();
   }
 
   createManager() {
@@ -99,7 +151,6 @@ export class EspaceAdminComponent implements OnInit {
 
       this.http.post('http://localhost:8080/mailcreationmanager', this.man).subscribe(reponse => {
         this.mail = reponse.json();
-
         console.log('mail => man', this.man);
         console.log('mail', this.mail);
         console.log('mail envoyé');
@@ -108,12 +159,11 @@ export class EspaceAdminComponent implements OnInit {
       console.log(err);
     });
 
-    this.http.get('http://localhost:8080/users/managers')
-      .subscribe(
-        response => {
-          console.log(response.json());
-          this.manager = response.json();
-        })
+    this.showAjout = false;
+    this.showModif = false;
+    this.showMessageCreate = true;
+
+    this.chargeListe();
   }
 
 }
