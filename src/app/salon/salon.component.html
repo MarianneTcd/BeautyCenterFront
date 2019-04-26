@@ -1,90 +1,119 @@
 <!--Gros container pour la page-->
 <div class="container">
-  <div class="row justify-content-around">
-    <div class="col-10">
 
-      <!--boucle sur chaque salon présent dans la base de données-->
-
-      <!--card contenant toutes les infos-->
-      <div class="card p-1 mt-4" >
-        <div class="container">
+  <div class="card p-1 mt-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
 
 
-          <div class="row justify-content-between">
-
-            <!--photo du salon-->
-            <div class="col mt-3">
-              <img src="http://www.le-salon-coiffeur.com/images/accueil-2.jpg" class="img-fluid mx-auto"
-                style="width : 375px;">
-            </div>
-
-            <div class="col-8 align-self-center" >
-              <h2 class="nomsalon" style="text-align: center;">{{s.nomSalon}}</h2>
-              <p class="infosalon" style="text-align: justify;">Le {{s.nomSalon}} est un salon très cozy, ambiance un
-                peu underground, style post-modern rétro avec des notes de design suédois. Je ne sais pas quoi écrire
-                pour continuer de remplir un peu cette zone de texte.</p>
-              <p class="infosalon" style="text-align: justify;">Vous voulez réserver un soin ? Par ici !</p>
-
-              
-              <div class="btn-group">
-                <button class="btn dropdown-toggle" type="button" id="btnChoixPresta" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false" id="lbDrop">
-                  Je choisis mon soin
-                </button>
-
-                <div class="dropdown-menu" aria-labelledby="btnChoixPresta">
-
-                  <a *ngFor="let u of data" class="dropdown-item elemListePresta" (click)="afficherplanning()" >{{u.titre}} ({{u.duree}} min)</a>
-                 
-                </div>
-              </div>  
-
-            </div>
-
-          </div>
-
-          <br>
-          <br>
-
-          <img src="http://simpleicon.com/wp-content/uploads/phone-1.png" style="width : 50px;"><span
-            class="ml-4 infosalon_pagesalon">{{s.telephone}}</span><br><br>
-          <img src="https://image.flaticon.com/icons/png/512/9/9275.png" style="width : 50px;"><span
-            class="ml-4 infosalon_pagesalon">{{s.adresse}}</span><br><br>
-
-          <div class="row" style="height: 250px;">
-            <div class="col-4">
-              <p class="mt-2 infosalontext" style="text-align: justify;">Coiffure, Manucure, Pédicure, Coiffure,
-                Manucure, Pédicure, Coiffure, Manucure, Pédicure, Coiffure, Manucure, Pédicure</p>
-            </div>
-
-
-            <div class="col-8" style="text-align: center;">
-              <div *ngFor ="let m of mois">
-                <button (click)="goReserv()" > {{m.dayOfMonth}}</button>
-              </div>
-
-              <div *ngIf="!show">        
-                <div *ngFor = "let r of reserv">
-                  <p>{{r.hour}}:{{r.minute}}</p>
-                </div>
-              </div>
-                     
-               
-              </div>
-            </div>
-          </div>
-
-
+          <!--image salon-->
+          <img src="http://www.le-salon-coiffeur.com/images/accueil-2.jpg" class="img-fluid mx-auto"
+            style="width : 375px;">
 
 
         </div>
-      
-      <br>
-      <br>
+        <div class="col-8">
+          <div class="row justify-content-center">
 
 
+            <!--nom du salon et texte-->
+            <h2 class="nomsalon" style="text-align: center;">{{s.nomSalon}}</h2>
+            <p class="infosalon" style="text-align: justify;">Le {{s.nomSalon}} est un salon très cozy, ambiance un
+              peu underground, style post-modern rétro avec des notes de design suédois. Je ne sais pas quoi écrire
+              pour continuer de remplir un peu cette zone de texte.</p>
+            <p class="infosalon" style="text-align: justify;">Vous voulez réserver un soin ? Par ici !</p>
 
 
+          </div>
+          <div class="row">
+
+
+            <!--bouton je choisis mon soin-->
+            <div class="btn-group">
+              <button class="btn dropdown-toggle" type="button" id="btnChoixPresta" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" id="lbDrop">
+                Je choisis mon soin
+              </button>
+
+              <div class="dropdown-menu" aria-labelledby="btnChoixPresta">
+
+                <a *ngFor="let u of data" class="dropdown-item elemListePresta"
+                  (click)="afficherplanning(u.id)">{{u.titre}} ({{u.duree}} min)</a>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <div class="row">
+            <div class="col">
+
+
+              <!--image téléphone et adresse-->
+              <img src="http://simpleicon.com/wp-content/uploads/phone-1.png" style="width : 50px; height: 50px;"><span
+                class="ml-4 infosalon_pagesalon">{{s.telephone}}</span><br><br>
+              <img src="https://image.flaticon.com/icons/png/512/9/9275.png" style="width : 50px; height: 50px;"><span
+                class="ml-4 infosalon_pagesalon">{{s.adresse}}</span><br><br>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+
+              <!--texte décrivant les prestations-->
+              <p class="mt-2 infosalontext" style="text-align: justify;">Coiffure, Manucure, Pédicure, Coiffure,
+                Manucure, Pédicure, Coiffure, Manucure, Pédicure, Coiffure, Manucure, Pédicure</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="row justify-content-center">
+
+            <!--planning-->
+            <div *ngFor="let m of mois">
+              <button class="btn" (click)="fonction(m.dayOfMonth)">{{m.dayOfMonth}}</button>
+            </div>
+
+          </div>
+
+
+          <!--Bouton choix horaire-->
+          
+
+            <div class="row">
+              <div class="col-12">
+                <div *ngIf="show==true" class="btn-group">
+                  <button class="btn dropdown-toggle" type="button" id="btnChoixHeure" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" id="lbDropHeure">
+                    Je choisis mon horaire
+                  </button>
+
+                  <!--liste des horaires disponibles-->
+                  <div class="dropdown-menu" aria-labelledby="btnChoixPresta">
+                    <a *ngFor="let l of listeheures" class="dropdown-item elemListePresta"
+                      (click)="affichageReserver(l.hour, l.minute)">{{l.hour}}:{{l.minute}}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+              <div *ngIf="show2==true">
+                <div>{{texteheuresminutes}}</div>
+                <button class="btn btn-primary" (click)="reservation()">Réserver</button>
+              </div>
+            </div>
+            </div>
+          
+        </div>
+      </div>
     </div>
   </div>
+
 </div>

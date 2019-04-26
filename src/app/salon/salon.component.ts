@@ -12,66 +12,74 @@ import { $ } from 'protractor';
 })
 export class SalonComponent implements OnInit {
 
-  constructor(private http:Http, private serv: SalonservicesService) { }
-  currentDate = new Date() ; 
-  month = this.currentDate.getMonth()+1 ;
-  year = this.currentDate.getFullYear() ; 
-  day = this.currentDate.getDay() ;
+  constructor(private http: Http, private serv: SalonservicesService) { }
 
-idpresta ; 
-  mois ; 
-  reserv ;  
+  currentDate = new Date();
+  month = this.currentDate.getMonth() + 1;
+  year = this.currentDate.getFullYear();
+  day;
+  idpresta;
+  mois;
+  reserv;
   id = this.serv.id;
-  show = true; 
-
-  
-
+  show = false;
+  show2 = false;
   s;
-  data; 
-  choixsoin = "Je choisis mon soin";
- // table=["manucure", "brushing", "pédicure", "couleur"];
+  data;
+  listeheures;
+  texteheuresminutes;
 
-  ngOnInit() { 
-    console.log('test jo', this.id);
-  this.http.get('http://localhost:8080/salons/' + this.id)
-  .subscribe(
-    response => { 
-      console.log(response.json()); 
-      this.s= response.json();
-    } ) 
+
+  ngOnInit() {
+    this.http.get('http://localhost:8080/salons/' + this.id)
+      .subscribe(
+        response => {
+          this.s = response.json();
+        })
 
     this.http.get('http://localhost:8080/events/salon/' + this.id)
-    .subscribe(
-      response => { 
-        console.log(response.json()); 
-        this.data= response.json();
-      } ) 
+      .subscribe(
+        response => {
+          this.data = response.json();
 
-      
+
+        })
+
+
 
   }
 
-  afficherplanning() {
+  afficherplanning(id) {
     this.http.get('http://localhost:8080/testdate/' + this.month)
       .subscribe(
-        response => { 
-          console.log(response.json()); 
-          this.mois= response.json();
-          
-        } ) 
+        response => {
+          this.idpresta = id;
+          this.mois = response.json();
+         
+
+
+        })
 
   }
 
-  goReserv(m){
-    this.show = false ;
-    this.http.get('http://localhost:8080/reservations/'+ this.s.id + '/' this.data.id + '/' + this.year + '/' + this.month +'/'+ this.day + 9 + '/' + 17 )
-      .subscribe(
-        response => { 
-          console.log(response.json()); 
-          this.reserv = response.json();
-        } ) 
+  fonction(day) {
 
+    this.day = day;
+    this.http.get('http://localhost:8080/reservations/sal' + this.id + '/presta' + this.idpresta + '/' + this.year + '/' + this.month + '/' + this.day + '/' + "9" + '/' + "17")
+    .subscribe(
+      response => {
+        this.listeheures = response.json();
+      }
+    )
+    this.show = true;
   }
-//
-  
+
+  affichageReserver(heure, minute){
+    this.show2 = true;
+    this.texteheuresminutes = heure + "h" + minute;
+    console.log(this.texteheuresminutes);
+  }
+
+  //
+
 }
