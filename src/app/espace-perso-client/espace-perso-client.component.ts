@@ -11,9 +11,7 @@ import { userInfo } from 'os';
 })
 export class EspacePersoClientComponent implements OnInit {
   
-  user1: User = new User();
-  user2: User = new User();
-  user3: User = new User();
+  user: User = new User();
   u: User = new User();
   mdpA;
   mdpN1;
@@ -42,15 +40,13 @@ export class EspacePersoClientComponent implements OnInit {
         this.access = this.res.access;
       } )
   }
-  
-  modifNom(){
-    this.user1.id = this.res.id;
-    this.user1.prenom = this.res.prenom;
-    this.user1.mail = this.res.mail;
-    this.user1.mdp = this.res.mdp;
-    this.user1.access = this.res.access;
 
-    this.http.put('http://localhost:8080/user/' + this.id, this.user1).subscribe(userData => {
+  modifProfile(){
+    this.user.id = this.res.id;
+    this.user.mdp = this.res.mdp;
+    this.user.access = this.res.access;
+
+    this.http.put('http://localhost:8080/user/' + this.id, this.user).subscribe(userData => {
       console.log(userData);
     }, err => {
       console.log(err);
@@ -61,52 +57,6 @@ export class EspacePersoClientComponent implements OnInit {
       this.res= response.json();
       this.nom = this.res.nom;
       console.log('rafraîchir après le modif nom');
-    });
-  }
-
-  modifPrenom(){
-    this.user2.id = this.res.id;
-    this.user2.nom = this.res.nom;
-    this.user2.mail = this.res.mail;
-    this.user2.mdp = this.res.mdp;
-    this.user2.access = this.res.access;
-
-    this.http.put('http://localhost:8080/user/' + this.id, this.user2).
-    subscribe(userData => {
-      console.log(userData);
-    }, err => {
-      console.log(err);
-    });
-
-    this.http.get('http://localhost:8080/users/' + this.id)
-    .subscribe(response => { 
-        console.log(response.json()); 
-        this.res= response.json();
-        this.prenom = this.res.prenom;
-        console.log('rafraîchir après le modif prenom');
-    });
-  }
-
-  modifMail(){
-    this.user3.id = this.res.id;
-    this.user3.nom = this.res.nom;
-    this.user3.prenom = this.res.prenom;
-    this.user3.mdp = this.res.mdp;
-    this.user3.access = this.res.access;
-
-    this.http.put('http://localhost:8080/user/' + this.id, this.user3).
-    subscribe(userData => {
-      console.log(userData);
-    }, err => {
-      console.log(err);
-    });
-
-    this.http.get('http://localhost:8080/users/' + this.id)
-    .subscribe(response => { 
-        console.log(response.json()); 
-        this.res= response.json();
-        this.mail = this.res.mail;
-        console.log('rafraîchir après le modif mail');
     });
   }
 
@@ -133,21 +83,5 @@ export class EspacePersoClientComponent implements OnInit {
       this.passE = true;
     }
   }
-
-  /*
-  modifProf() {
-   
-    this.user.id = this.res.id;
-    this.user.mdp = this.res.mdp;
-    this.user.access = this.res.access;
-
-    this.http.put('http://localhost:8080/user/' + this.id, this.user).subscribe(userData=>{
-      console.log(userData);
-    }, err => {
-      console.log(err);
-    });
-
-  }
-*/
 
 }
