@@ -17,38 +17,43 @@
           <div class="row justify-content-center">
 
 
-            <!--nom du salon et texte-->
-            <h2 class="nomsalon" style="text-align: center;">{{s.nomSalon}}</h2>
-            <p class="infosalon" style="text-align: justify;">Le {{s.nomSalon}} est un salon très cozy, ambiance un
-              peu underground, style post-modern rétro avec des notes de design suédois. Je ne sais pas quoi écrire
-              pour continuer de remplir un peu cette zone de texte.</p>
-            <p class="infosalon" style="text-align: justify;">Vous voulez réserver un soin ? Par ici !</p>
+            <div class="col-12">
+
+              <!--nom du salon et texte-->
+              <h2 class="nomsalon" style="text-align: center;">{{s.nomSalon}}</h2>
+              <p class="infosalon" style="text-align: justify;">Le {{s.nomSalon}} est un salon très cozy, ambiance un
+                peu underground, style post-modern rétro avec des notes de design suédois. Je ne sais pas quoi écrire
+                pour continuer de remplir un peu cette zone de texte.</p>
+
+            </div>
 
 
           </div>
           <div class="row">
+            <div class="col-8">
+              <p class="infosalon" style="text-align: justify;">Vous voulez réserver un soin ? Par ici !</p>
 
 
-            <!--bouton je choisis mon soin-->
-            <div class="btn-group">
-              <button class="btn dropdown-toggle" type="button" id="btnChoixPresta" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false" id="lbDrop">
-                Je choisis mon soin
-              </button>
+              <!--bouton je choisis mon soin-->
+              <div class="btn-group">
 
-              <div class="dropdown-menu" aria-labelledby="btnChoixPresta">
+                <button class="btn dropdown-toggle" type="button" id="btnChoixPresta" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false" id="lbDrop">
+                  Je choisis mon soin : {{nompresta}}
+                </button>
 
-                <a *ngFor="let u of listepresta" class="dropdown-item elemListePresta"
-                  (click)="afficherplanning(u.id, u.duree)">{{u.titre}} ({{u.duree}} min)</a>
+                <div class="dropdown-menu" aria-labelledby="btnChoixPresta">
+                  <a *ngFor="let u of listepresta" class="dropdown-item elemListePresta"
+                    (click)="afficherplanning(u.id, u.duree, u.titre)">{{u.titre}} ({{u.duree}} min)</a>
 
-
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row justify-content-between">
         <div class="col-4">
           <div class="row">
             <div class="col">
@@ -71,46 +76,51 @@
             </div>
           </div>
         </div>
-        <div class="col-8">
-          <div class="row justify-content-center">
 
-            <!--planning-->
-            <div *ngFor="let m of mois">
-              <button class="btn" (click)="fonction(m.dayOfMonth)">{{m.dayOfMonth}}</button>
+
+
+
+        <div class="col-6">
+
+
+          <div class="card" *ngIf="showplanning==true" style=" width: 400px; text-align: center;">
+
+            <div class="titre" style="font-size: 150%; text-align: center;">
+              <button class="btn" (click)="moisPrecedent()">
+                <</button> {{month}} / {{year}} <button class="btn" (click)="moisSuivant()">>
+              </button>
             </div>
 
-          </div>
 
 
-          <!--Bouton choix horaire-->
-          
 
-            <div class="row">
-              <div class="col-12">
-                <div *ngIf="show==true" class="btn-group">
-                  <button class="btn dropdown-toggle" type="button" id="btnChoixHeure" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false" id="lbDropHeure">
-                    Je choisis mon horaire
-                  </button>
+            <div class="row mt-4 justify-content-center ml-1 mr-1">
 
-                  <!--liste des horaires disponibles-->
-                  <div class="dropdown-menu" aria-labelledby="btnChoixPresta">
-                    <a *ngFor="let l of listeheures" class="dropdown-item elemListePresta"
-                      (click)="affichageReserver(l.hour, l.minute)">{{l.hour}}:{{l.minute}}</a>
-                  </div>
+              <!--planning-->
+              <div class="btn-group boutonsjour" *ngFor="let m of mois" style="text-align: center;">
+                <div class="card" style="width: 30px; height: 30px;" (click)="fonction(m.dayOfMonth)">{{m.dayOfMonth}}
                 </div>
               </div>
             </div>
 
-            <div class="row">
-                <div class="col-12">
-              <div *ngIf="show2==true">
-                <div>{{texteheuresminutes}}</div>
-                <button class="btn btn-primary" (click)="reserver()">Réserver</button>
+            <div *ngIf="show==true" class="btn-group">
+              <button class="btn dropdown-toggle" type="button" id="btnChoixHeure" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" id="lbDropHeure">
+                Je choisis mon horaire pour le {{day}}
+              </button>
+
+              <!--liste des horaires disponibles-->
+              <div class="dropdown-menu" aria-labelledby="btnChoixPresta">
+                <a *ngFor="let l of listeheures" class="dropdown-item elemListePresta"
+                  (click)="affichageReserver(l.hour, l.minute)">{{l.hour}}:{{l.minute}}</a>
               </div>
             </div>
-            </div>
-          
+
+            <div *ngIf="show2==true">
+                <div class="reservationconfirm mt-4 ml-2 mr-2 mb-4">Je confirme ma réservation pour le : {{day}} / {{month}} / {{year}} à : {{texteheuresminutes}}</div>
+                <button class="btn btn-primary" (click)="reserver()">Réserver</button>
+              </div>
+          </div>
         </div>
       </div>
     </div>
