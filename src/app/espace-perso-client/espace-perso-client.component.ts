@@ -26,6 +26,11 @@ export class EspacePersoClientComponent implements OnInit {
   mail;
   mdp;
   access;
+  resa; 
+  idpresta;  
+  presta;  
+  idSalon; 
+  salon; 
 
   ngOnInit() {
     this.http.get('http://localhost:8080/users/' + this.id)
@@ -39,6 +44,14 @@ export class EspacePersoClientComponent implements OnInit {
         this.mdp = this.res.mdp;
         this.access = this.res.access;
       } )
+
+      this.http.get('http://localhost:8080/reserv/user/' + this.id)
+    .subscribe(
+      response=>{
+        this.resa = response.json();
+        console.log(this.resa); 
+      }
+    );
   }
 
   modifProfile(){
@@ -83,5 +96,37 @@ export class EspacePersoClientComponent implements OnInit {
       this.passE = true;
     }
   }
+
+  /*
+  modifProf() {
+   
+    this.user.id = this.res.id;
+    this.user.mdp = this.res.mdp;
+    this.user.access = this.res.access;
+
+    this.http.put('http://localhost:8080/user/' + this.id, this.user).subscribe(userData=>{
+      console.log(userData);
+    }, err => {
+      console.log(err);
+    });
+
+  }
+*/
+
+getTitre(idpresta){ 
+  this.idpresta = idpresta
+  this.http.get('http://localhost:8080/prestations/' + this.idpresta)
+    .subscribe(response => { 
+        this.presta= response.json();
+    });
+}
+getSalon(idSalon){ 
+  this.idSalon = idSalon
+  this.http.get('http://localhost:8080/salons/' + this.idSalon)
+    .subscribe(response => { 
+        this.salon= response.json();
+        console.log(this.salon);
+    });
+}
 
 }
