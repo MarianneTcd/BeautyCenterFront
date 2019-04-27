@@ -49,7 +49,7 @@ export class AppComponent {
         } else if (this.data.access == 3) {
           this.route.navigate(['/espacemanager']);
           this.showManager = true;
-        } else if (this.data.access == 4) {
+        } else if (this.data.access == 0) {
           this.route.navigate(['/espaceadmin']);
           this.showAdmin = true;
         } else if (this.data.access == 5) {

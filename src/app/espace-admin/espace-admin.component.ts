@@ -25,8 +25,6 @@ export class EspaceAdminComponent implements OnInit {
   managerModif: User = new User;
 
   //stocker les info du manager que l'administrateur souhaite activer ou désactiver
-  managerDisable: User = new User;
-  managerActive: User = new User;
 
   //variable qui chargera la liste de tous les managers
   manager;
@@ -49,14 +47,8 @@ export class EspaceAdminComponent implements OnInit {
   showModif = false;
   showAjout = false;
 
-  chargeListe(){
-    this.http.get('http://localhost:8080/users/managers')
-    .subscribe(
-      response => {
-        console.log(response.json());
-        this.manager = response.json();
-      })
-  }
+
+
 
   ngOnInit() {
     this.http.get('http://localhost:8080/users/' + this.id)
@@ -71,6 +63,15 @@ export class EspaceAdminComponent implements OnInit {
           this.accessA = this.resUser.access;
         })
     this.chargeListe();
+  }
+
+  chargeListe(){
+    this.http.get('http://localhost:8080/users/managers')
+    .subscribe(
+      response => {
+        console.log(response.json());
+        this.manager = response.json();
+      });
   }
 
   goModif(id) {
@@ -108,40 +109,32 @@ export class EspaceAdminComponent implements OnInit {
     this.showModif = false;
   }
 
-  goDisable(id){
+  managerAD: User = new User;
+  managerInactif: User = new User;
+  managerActif: User = new User;
+  activation(id){
     this.http.get('http://localhost:8080/users/' + id).subscribe(
       response => {
         console.log(response.json());
-        this.managerDisable = response.json();
-      })
-  }
-
-  disable(id){
-    this.managerDisable.access = 5;
-    this.http.put('http://localhost:8080/user/' + id, this.managerDisable).subscribe(
+        this.managerAD = response.json();
+      });
+      if(this.managerAD.access==3){
+        this.managerAD.access=5;
+        this.http.put('http://localhost:8080/user/' + id, this.managerAD).subscribe(
       response => {
         console.log(response.json());
-        this.managerDisable = response.json();
-      })
-    this.chargeListe();
-  }
-
-  goActive(id){
-    this.http.get('http://localhost:8080/users/' + id).subscribe(
+        this.managerInactif = response.json();
+        this.chargeListe();
+      });
+    }else if (this.managerAD.access==5){
+      this.managerAD.access=3;
+        this.http.put('http://localhost:8080/user/' + id, this.managerAD).subscribe(
       response => {
         console.log(response.json());
-        this.managerActive = response.json();
-      })
-  }
-
-  active(id){
-    this.managerActive.access = 3;
-    this.http.put('http://localhost:8080/user/' + id, this.managerActive).subscribe(
-      response => {
-        console.log(response.json());
-        this.managerActive = response.json();
-      })
-    this.chargeListe();
+        this.managerActif = response.json();
+        this.chargeListe();
+      });
+    }
   }
 
   createManager() {

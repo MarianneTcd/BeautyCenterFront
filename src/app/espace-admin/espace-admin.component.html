@@ -20,32 +20,36 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th scope="col">ID</th>
                   <th scope="col">Nom</th>
-                  <th scope="col">Preom</th>
+                  <th scope="col">Prenom</th>
                   <th scope="col">e-mail</th>
                   <th>Modifier</th>
-                  <th>Active</th>
+                  <th>Etat</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody *ngFor="let m of manager">
                 <tr>
-                  <th scope="row">{{m.id}}</th>
                   <td>{{m.nom}}</td>
                   <td>{{m.prenom}}</td>
                   <td>{{m.mail}}</td>
                   <td>
-                    <button mat-button (click)="goModif(m.id)">Modify</button>
+                    <div>
+                      <button mat-button (click)="goModif(m.id)">Modifier</button>
+                    </div>                    
                   </td>
                   <td>
                     <div *ngIf="m.access == 3">
-                      <button mat-button color="warn" (click)="goDisable(m.id)" data-toggle="modal"
-                        data-target="#disableManager">Désactiver</button>
+                      <label><strong>Actif</strong></label>
                     </div>
                     <div *ngIf="m.access == 5">
-                      <button mat-button color="primary" (click)="goActive(m.id)" data-toggle="modal"
-                        data-target="#activeManager">Activer</button>
+                      <label>Inactif</label>
                     </div>
+                  </td>
+                  <td>
+                    <div>
+                      <button mat-button color="warn" (click)="activation(m.id)">Activer/Desactiver</button>
+                    </div>                      
                   </td>
                 </tr>
               </tbody>
@@ -123,8 +127,7 @@
                   name="mdp">
               </div>
               <div>
-                <button (click)="modifManager(managerModif.id)" class="btn btn-primary" data-dismiss="modal">Send
-                  Modification</button>
+                <button (click)="modifManager(managerModif.id)" class="btn btn-primary" data-dismiss="modal">Modifier</button>
                 <button (click)="cacheAjoutModif()" class="btn btn-primary">Retour</button>
               </div>
             </form>
@@ -132,53 +135,5 @@
         </div>
     </div>
 
-  </div>
-</div>
-
-<!--modal pour désactiver un manager-->
-<div class="modal fade" id="disableManager" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Désactivation</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Vous êtes sur de désactiver le manager suivant ? <br>
-        {{managerDisable.nom}} {{managerDisable.prenom}}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal"
-          (click)="disable(managerDisable.id)">Valider</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--modal pour désactiver un manager-->
-<div class="modal fade" id="activeManager" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Désactivation</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Vous êtes sur de reactiver le manager suivant ? <br>
-        {{managerActive.nom}} {{managerActive.prenom}}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal"
-          (click)="active(managerActive.id)">Valider</button>
-      </div>
-    </div>
   </div>
 </div>
