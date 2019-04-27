@@ -5,12 +5,14 @@
     <div class="d-flex">
       <p *ngIf="connecte"> {{ prenom }} {{ nom }} </p>
       <img src="https://cdn.onlinewebfonts.com/svg/img_405324.png" style=" width: 30px; height: 30px;">
-      <div *ngIf="show">        
+      <div *ngIf="show">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#connexion">Connexion</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inscription">Inscription</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal"
+          data-target="#inscription">Inscription</button>
       </div>
-      <div *ngIf="!show">        
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deconnexion">Déconnexion</button>
+      <div *ngIf="!show">
+        <button type="button" class="btn btn-primary" data-toggle="modal"
+          data-target="#deconnexion">Déconnexion</button>
       </div>
 
     </div>
@@ -21,9 +23,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">  </h5>
+        <h5 class="modal-title" id="exampleModalLabel"> </h5>
       </div>
-      <div class="modal-body">         
+      <div class="modal-body">
         <h5 class="card-title text-center">Déjà inscrit?</h5>
         <form>
           <div class="form-group">
@@ -35,14 +37,13 @@
             <label>Mot de passe</label>
             <input type="password" #nomAction="ngModel" class="form-control" placeholder="Entrer le mot de passe"
               required [(ngModel)]="u.mdp" name="mdp">
-          </div>           
+          </div>
           <div>
             <button (click)="connexion()" class="btn btn-primary" data-dismiss="modal">Valider</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
-            <p><br><br></p>
           </div>
         </form>
-      </div>         
+      </div>
     </div>
   </div>
 </div>
@@ -54,11 +55,12 @@
 
 <!--Affichage "compte désactivé"-->
 <div style="width: 100%" class="alert alert-danger text-center" role="alert" *ngIf="desactive">
-    Votre compte est désactivé. Veuillez contacter l'administrateur du système
+  Votre compte est désactivé. Veuillez contacter l'administrateur du système
 </div>
 
 <!--Modal d'inscription-->
-<div class="modal fade" id="inscription" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="inscription" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -92,8 +94,7 @@
           <div>
             <button (click)="createUser()" class="btn btn-primary" routerLink="/listesalons" routerLinkActive="active"
               [disabled]="!validUser.form.valid" data-dismiss="modal">Valider</button>
-            <button type="button" class="btn btn-danger" routerLink="/listesalons"
-              routerLinkActive="active" data-dismiss="modal">Retour</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
           </div>
         </form>
       </div>
@@ -101,25 +102,26 @@
   </div>
 </div>
 
-<div class="modal fade" id="deconnexion" tabindex="-1" role="dialog" aria-labelledby="connexionLabel" aria-hidden="true">
+<div class="modal fade" id="deconnexion" tabindex="-1" role="dialog" aria-labelledby="connexionLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">  </h5>
+        <h5 class="modal-title" id="exampleModalLabel"> </h5>
       </div>
-      <div class="modal-body">              
+      <div class="modal-body">
         <h5 class="card-title text-center">Êtes-vous sûr de vous déconnecter ?</h5>
         <form>
           <div>
             <button (click)="deconnexion()" class="btn btn-primary" data-dismiss="modal">Valider</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
-          </div>    
+          </div>
         </form>
-      </div>         
+      </div>
     </div>
   </div>
 </div>
- 
+
 <br>
 
 <!--2e navbar : reste tout au long du scroll-->
@@ -129,30 +131,30 @@
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link boutonnav" routerLink="listesalons" routerLinkActive="active">Nos salons</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link boutonnav" routerLink="listeprestations" routerLinkActive="active">Nos prestations</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link boutonnav" routerLink="cartesalons" routerLinkActive="active">Voir la carte des salons</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link boutonnav" routerLink ="apropos" routerLinkActive="active">A propos de nous</a>
+        <li class="nav-item active">
+          <a class="nav-link boutonnav" routerLink="apropos" routerLinkActive="active">A propos de nous</a>
         </li>
-        <li class="nav-item" *ngIf="showClient">
+        <li class="nav-item active" *ngIf="showClient">
           <a class="nav-link boutonnav" routerLink="espaceperso" routerLinkActive="active">Mon espace client</a>
         </li>
-        <li class="nav-item" *ngIf="showManager">
+        <li class="nav-item active" *ngIf="showManager">
           <a class="nav-link boutonnav" routerLink="espacemanager" routerLinkActive="active">Mon espace Manager</a>
         </li>
-        <li class="nav-item" *ngIf="showAdmin">
-            <a class="nav-link boutonnav" routerLink="espaceadmin" routerLinkActive="active">Mon espace Admin</a>
-          </li>
+        <li class="nav-item active" *ngIf="showAdmin">
+          <a class="nav-link boutonnav" routerLink="espaceadmin" routerLinkActive="active">Mon espace Admin</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -162,56 +164,56 @@
 
 <!--Footer-->
 <div class="footer mt-5">
-    <!-- gros container pour tous les liens -->
-    <div class="container-fluid text-center text-md-left  pt-4">
-      <div class="row">
-        <div class="col-md-6 mt-md-0 mt-3">
-          <!--Petit texte de footer-->
-          <h5 class="text-uppercase">Site de beauty</h5>
-          <p>Ce site n'est pas vraiment un site de réservation de salons de beauté. Désolés. On aura essayé.</p>
-        </div>
-        <!-- Grid column -->
-        <hr class="clearfix w-100 d-md-none pb-3">
-        <div class="col-md-3 mb-md-0 mb-3">
-          <!--Quelques liens-->
-          <h5 class="text-uppercase">Quelques liens</h5>
-          <ul class="list-unstyled">
-            <li>
-              <a href="#!" class="boutonnav">Link 1</a>
-            </li>
-            <li>
-              <a href="#!" class="boutonnav">Link 2</a>
-            </li>
-            <li>
-              <a href="#!" class="boutonnav">Link 3</a>
-            </li>
-            <li>
-              <a href="#!" class="boutonnav">Link 4</a>
-            </li>
-          </ul>
-        </div>        
-        <div class="col-md-3 mb-md-0 mb-3">
-          <!--Quelques liens-->
-          <h5 class="text-uppercase">Pour faire genre</h5>
-          <ul class="list-unstyled">
-            <li>
-              <a href="#!" class="boutonnav">Link 1</a>
-            </li>
-            <li>
-              <a href="#!" class="boutonnav">Link 2</a>
-            </li>
-            <li>
-              <a href="#!" class="boutonnav">Link 3</a>
-            </li>
-            <li>
-              <a href="#!" class="boutonnav">Link 4</a>
-            </li>
-          </ul>
-        </div>
+  <!-- gros container pour tous les liens -->
+  <div class="container-fluid text-center text-md-left  pt-4">
+    <div class="row">
+      <div class="col-md-6 mt-md-0 mt-3">
+        <!--Petit texte de footer-->
+        <h5 class="text-uppercase">Site de beauty</h5>
+        <p>Ce site n'est pas vraiment un site de réservation de salons de beauté. Désolés. On aura essayé.</p>
+      </div>
+      <!-- Grid column -->
+      <hr class="clearfix w-100 d-md-none pb-3">
+      <div class="col-md-3 mb-md-0 mb-3">
+        <!--Quelques liens-->
+        <h5 class="text-uppercase">Quelques liens</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!" class="boutonnav">Link 1</a>
+          </li>
+          <li>
+            <a href="#!" class="boutonnav">Link 2</a>
+          </li>
+          <li>
+            <a href="#!" class="boutonnav">Link 3</a>
+          </li>
+          <li>
+            <a href="#!" class="boutonnav">Link 4</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-3 mb-md-0 mb-3">
+        <!--Quelques liens-->
+        <h5 class="text-uppercase">Pour faire genre</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!" class="boutonnav">Link 1</a>
+          </li>
+          <li>
+            <a href="#!" class="boutonnav">Link 2</a>
+          </li>
+          <li>
+            <a href="#!" class="boutonnav">Link 3</a>
+          </li>
+          <li>
+            <a href="#!" class="boutonnav">Link 4</a>
+          </li>
+        </ul>
       </div>
     </div>
+  </div>
   <!--copyright pour faire genre-->
   <div class="footer-cp text-center py-3">© 2018 Copyright:
     <a href="#"> Solutec *DAB*</a>
-  </div>  
+  </div>
 </div>
