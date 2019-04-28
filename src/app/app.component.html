@@ -3,21 +3,29 @@
   <nav class="navbar navbar-light bg-light" style=" height: 50px; box-shadow: 0px 0px 0px;">
     <a class="navbar-brand ml-3" href="#">Beauty</a>
     <div class="d-flex">
-      <p *ngIf="connecte"> {{ prenom }} {{ nom }} </p>
       <img src="https://cdn.onlinewebfonts.com/svg/img_405324.png" style=" width: 30px; height: 30px;">
+      <p *ngIf="connecte" class="nomprenom"> {{ prenom }} {{ nom }} </p>
       <div *ngIf="show">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#connexion">Connexion</button>
         <button type="button" class="btn btn-primary" data-toggle="modal"
           data-target="#inscription">Inscription</button>
       </div>
       <div *ngIf="!show">
-        <button type="button" class="btn btn-primary" data-toggle="modal"
+         
+        <button type="button" class="btn btn-primary nombres" data-toggle="modal"
           data-target="#deconnexion">Déconnexion</button>
       </div>
 
     </div>
   </nav>
 </div>
+
+
+
+
+
+
+
 
 <div class="modal fade" id="connexion" tabindex="-1" role="dialog" aria-labelledby="connexionLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

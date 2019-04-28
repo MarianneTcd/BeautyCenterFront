@@ -99,6 +99,10 @@ import { AproposComponent } from './apropos/apropos.component';
       {
         path: 'apropos',
         component: AproposComponent,
+      },
+      {
+        path : 'connexion',
+        component: ConnexionInscriptionComponent,
       }
 
     ])

@@ -7,6 +7,7 @@ import { $ } from 'protractor';
 import { PathLocationStrategy } from '@angular/common';
 import { ServiceStockageService } from '../service-stockage.service';
 import { Reservation } from '../model/Reservation';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { Reservation } from '../model/Reservation';
 })
 export class SalonComponent implements OnInit {
 
-  constructor(private http: Http, private serv: SalonservicesService, private serv2: ServiceStockageService) { }
+  constructor(private http: Http, private serv: SalonservicesService, private serv2: ServiceStockageService, private route: Router) { }
 
 
   iduser = this.serv2.id; 
@@ -124,13 +125,17 @@ export class SalonComponent implements OnInit {
     this.reservation.minute = this.minute;
     this.reservation.dureepresta = this.dureepresta;
     console.log(this.reservation);
+    if (this.iduser == null){
+      console.log("iduser inexistant");
+      this.route.navigate(['/connexion']);
+    };
   }
 
 
   
   reserver(reservation) {
 this.reservation=reservation;
-    
+
 
    this.http.post('http://localhost:8080/PresqueReservations', this.reservation)
     .subscribe(reserv => {

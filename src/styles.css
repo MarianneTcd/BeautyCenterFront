@@ -19,7 +19,16 @@ body
     font-family:  'Roboto', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
  }
 
+.nombres
+{
+    font-family: 'Merriweather';
+}
 
+.nomprenom
+{
+    font-family: 'Merriweather';
+    color: #7b4b94;
+}
  .boutonnav
  {
     color:#eaeaea;
