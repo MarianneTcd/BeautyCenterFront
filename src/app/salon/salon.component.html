@@ -8,8 +8,7 @@
 
 
           <!--image salon-->
-          <img src="{{photoS}}" class="img-fluid mx-auto"
-            style="width : 375px;">
+          <img src="{{photoS}}" class="img-fluid mx-auto" style="width : 375px;">
 
 
         </div>
@@ -71,7 +70,9 @@
             <div class="col">
 
               <!--texte décrivant les prestations-->
-              <p class="mt-2 notessalon" style="text-align: justify;">4.5/5 - Super Picsou Magasine - "Bon rapport qualité-prix"<br>3.2/5 - Télérama - "Peut mieux faire"<br>0.1/5 - Les Inrockuptibles - "On se croirait en 2018"</p>
+              <p class="mt-2 notessalon" style="text-align: justify;">4.5/5 - Super Picsou Magasine - "Bon rapport
+                qualité-prix"<br>3.2/5 - Télérama - "Peut mieux faire"<br>0.1/5 - Les Inrockuptibles - "On se croirait
+                en 2018"</p>
             </div>
           </div>
         </div>
@@ -116,9 +117,11 @@
             </div>
 
             <div *ngIf="show2==true">
-                <div class="reservationconfirm mt-4 ml-2 mr-2 mb-4 nombres">Je confirme ma réservation pour le : {{day}} / {{month}} / {{year}} à : {{texteheuresminutes}}</div>
-                <button class="btn btn-primary" (click)="reserver(reservation)" data-toggle="popover" title="titre" data-content="réservation effectuée">Réserver</button>
-              </div>
+              <div class="reservationconfirm mt-4 ml-2 mr-2 mb-4 nombres">Je confirme ma réservation pour le : {{day}} /
+                {{month}} / {{year}} à : {{texteheuresminutes}}</div>
+              <button class="btn btn-primary" (click)="reserver(reservation)" data-toggle="popover" title="titre"
+                data-content="réservation effectuée">Réserver</button>
+            </div>
           </div>
         </div>
       </div>
@@ -130,7 +133,8 @@
 
 
 
-<div class="modal fade" id="pasconnecte" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="pasconnecte" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
