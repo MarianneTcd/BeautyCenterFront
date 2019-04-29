@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../model/User';
 import { ServiceStockageService } from '../service-stockage.service';
 import { Http } from '@angular/http';
+import { ActivationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-espace-admin',
@@ -112,12 +113,15 @@ export class EspaceAdminComponent implements OnInit {
   managerAD: User = new User;
   managerInactif: User = new User;
   managerActif: User = new User;
-  activation(id){
+  getInfo(id){
     this.http.get('http://localhost:8080/users/' + id).subscribe(
       response => {
         console.log(response.json());
         this.managerAD = response.json();
       });
+    }
+
+  activation(id){
       if(this.managerAD.access==3){
         this.managerAD.access=5;
         this.http.put('http://localhost:8080/user/' + id, this.managerAD).subscribe(
