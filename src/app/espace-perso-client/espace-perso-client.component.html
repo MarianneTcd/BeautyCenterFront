@@ -13,9 +13,9 @@
         <div *ngIf="modif" div style="width: 100%" class="alert alert-success text-center" role="alert">
           Compte modifié
         </div>
-          <div *ngIf="annul" div style="width: 100%" class="alert alert-success text-center" role="alert">
-            Réservation annulée
-          </div>
+        <div *ngIf="annul" div style="width: 100%" class="alert alert-success text-center" role="alert">
+          {{michel}}
+        </div>
       </div>
 
       <div class="row">
@@ -35,54 +35,60 @@
                     <!--<h2 class="titrepresta">{{getTitre(r.idpresta)}} {{presta.titre}}</h2>-->
                   </div>
                   <div class="row">
-                    <img src="https://image.flaticon.com/icons/svg/747/747310.svg" style="height: 20px; width: 20px;"><span
-                    class="ml-2 infosalon">Date : {{r.hstart.dayOfMonth}} {{r.hstart.month}} {{r.hstart.year}} </span><br>
+                    <img src="https://image.flaticon.com/icons/svg/747/747310.svg"
+                      style="height: 20px; width: 20px;"><span class="ml-2 infosalon">Date : {{r.hstart.dayOfMonth}}
+                      {{r.hstart.month}} {{r.hstart.year}} </span><br>
                   </div>
                   <div class="row mt-2">
-                      <img src="https://image.flaticon.com/icons/svg/61/61227.svg" style="height: 20px; width: 20px;"><span
-                    class="ml-2 infosalon">Heure : {{r.hstart.hour}}h{{r.hstart.minute}}</span><br>
+                    <img src="https://image.flaticon.com/icons/svg/61/61227.svg"
+                      style="height: 20px; width: 20px;"><span class="ml-2 infosalon">Heure :
+                      {{r.hstart.hour}}h{{r.hstart.minute}}</span><br>
                   </div>
                   <div class="row mt-2">
-                      <img src="https://image.flaticon.com/icons/svg/149/149778.svg" style="height: 20px; width: 20px;"><span
-                    class="ml-2 infosalon">Durée : {{r.dureepresta}} min</span>
+                    <img src="https://image.flaticon.com/icons/svg/149/149778.svg"
+                      style="height: 20px; width: 20px;"><span class="ml-2 infosalon">Durée : {{r.dureepresta}}
+                      min</span>
                   </div>
 
                 </div>
                 <div class="col-3">
                   <div class="row justify-content-end">
-                    <button class="btn btn-primary"> modifier </button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#modifReserv"
+                      (click)="recupReserv(r.id)"> modifier </button>
                   </div>
                   <div class="row justify-content-end">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#annulReserv" (click)="recupId(r.id)"> annuler </button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#annulReserv"
+                      (click)="recupId(r.id)"> annuler </button>
                   </div>
 
                 </div>
               </div>
             </div>
 
-            <br>
-            <div class="modal fade" id="annulReserv" tabindex="-1" role="dialog"
-            aria-labelledby="connexionLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel"> </h5>
-                </div>
-                <div class="modal-body">
 
-                  <h6 class="card-title text-center">Êtes-vous sûr de vouloir annuler votre réservation ?</h6>
-                  <form>
-                    <div class="d-flex justify-content-center">
-                      <button class="btn btn-primary" data-dismiss="modal"
-                        (click)="annulReserv(idreserv)">Valider</button>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
-                    </div>
-                  </form>
+            <br>
+            <div class="modal fade" id="annulReserv" tabindex="-1" role="dialog" aria-labelledby="connexionLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"> </h5>
+                  </div>
+                  <div class="modal-body">
+
+                    <h6 class="card-title text-center">Êtes-vous sûr de vouloir annuler votre réservation ?</h6>
+                    <form>
+                      <div class="d-flex justify-content-center">
+                        <button class="btn btn-primary" data-dismiss="modal"
+                          (click)="annulReserv(idreserv)">Valider</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          
+
           </div>
           <!-- </div> -->
           <br>
@@ -109,9 +115,10 @@
       <div class="row">
         <div>
           <mat-button-toggle-group>
-            <mat-button-toggle data-toggle="modal" data-target="#modifCompte" (click)="recupProfil(id)">Modifier mon compte
+            <mat-button-toggle data-toggle="modal" data-target="#modifCompte" (click)="recupProfil(id)">Modifier mon
+              compte
             </mat-button-toggle>
-            </mat-button-toggle-group>
+          </mat-button-toggle-group>
         </div>
       </div>
     </div>
@@ -119,48 +126,103 @@
 </div>
 
 <div class="modal fade" id="modifCompte" tabindex="-1" role="dialog" aria-labelledby="connexionLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel"> </h5>
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> </h5>
+      </div>
+      <div class="modal-body">
+        <h5 class="card-title text-center">Mon compte</h5>
+        <form>
+          <div class="form-group">
+            <label>Nom</label>
+            <input type="text" #nomAction="ngModel" class="form-control" required [(ngModel)]="profil.nom" name="nom">
           </div>
-          <div class="modal-body">
-            <h5 class="card-title text-center">Mon compte</h5>
-            <form>
-              <div class="form-group">
-                <label>Nom</label>
-                <input type="text" #nomAction="ngModel" class="form-control" required [(ngModel)]="profil.nom"
-                  name="nom">
-              </div>
-              <div class="form-group">
-                <label>Prenom</label>
-                <input type="text" #nomPerso="ngModel" class="form-control" required [(ngModel)]="profil.prenom"
-                  name="prenom">
-              </div>
-              <div class="form-group">
-                <label>Mail</label>
-                <input type="mail" #nomDate="ngModel" class="form-control" required [(ngModel)]="profil.mail"
-                  name="mail">
-              </div>
-              <div class="form-group">
-                <label>Mot de passe</label>
-                <input type="text" #nomMdp="ngModel" class="form-control" required [(ngModel)]="profil.mdp"
-                  name="mdp">
-              </div>
-              <div class="form-group">
-                  <label>Modifier ma photo (URL)</label>
-                  <input type="text" #nomPhoto="ngModel" class="form-control" required [(ngModel)]="profil.photo"
-                    name="photo">
+          <div class="form-group">
+            <label>Prenom</label>
+            <input type="text" #nomPerso="ngModel" class="form-control" required [(ngModel)]="profil.prenom"
+              name="prenom">
+          </div>
+          <div class="form-group">
+            <label>Mail</label>
+            <input type="mail" #nomDate="ngModel" class="form-control" required [(ngModel)]="profil.mail" name="mail">
+          </div>
+          <div class="form-group">
+            <label>Mot de passe</label>
+            <input type="text" #nomMdp="ngModel" class="form-control" required [(ngModel)]="profil.mdp" name="mdp">
+          </div>
+          <div class="form-group">
+            <label>Modifier ma photo (URL)</label>
+            <input type="text" #nomPhoto="ngModel" class="form-control" required [(ngModel)]="profil.photo"
+              name="photo">
+          </div>
+          <div>
+            <button (click)="modifProfile(profil.id)" class="btn btn-primary" data-dismiss="modal">Modifier mon
+              compte</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour au
+              menu</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="modifReserv" tabindex="-1" role="dialog" aria-labelledby="connexionLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> </h5>
+      </div>
+      <div class="modal-body">
+        <h5 class="card-title text-center">Changer ma reservation </h5>
+        <div class="col-6">
+
+
+          <div class="card" style=" width: 400px; text-align: center;">
+
+            <div class="titre nombres" style="font-size: 150%; text-align: center;">
+              <button class="btn" (click)="moisPrecedent()">
+                <</button> {{month}} / {{year}} <button class="btn" (click)="moisSuivant()">>
+              </button>
+            </div>
+
+            <div class="row mt-4 justify-content-center ml-1 mr-1">
+
+              <!--planning-->
+              <div class="btn-group boutonsjour nombres" *ngFor="let m of mois" style="text-align: center;">
+                <div class="card" style="width: 30px; height: 30px;" (click)="fonction(m.dayOfMonth)">{{m.dayOfMonth}}
                 </div>
-              <div>
-                <button (click)="modifProfile(profil.id)" class="btn btn-primary" data-dismiss="modal">Modifier mon
-                  compte</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour au
-                  menu</button>
               </div>
-            </form>
+            </div>
+
+            <div *ngIf="show==true" class="btn-group">
+              <button class="btn dropdown-toggle" type="button" id="btnChoixHeure" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" id="lbDropHeure">
+                Je choisis mon horaire pour le {{day}}
+              </button>
+
+              <!--liste des horaires disponibles-->
+              <div class="dropdown-menu" aria-labelledby="btnChoixPresta">
+                <a *ngFor="let l of listeheures" class="dropdown-item elemListePresta"
+                  (click)="affichageReserver(l.hour, l.minute)">{{l.hour}}:{{l.minute}}</a>
+              </div>
+            </div>
+
+            <div *ngIf="show2==true">
+              <div class="reservationconfirm mt-4 ml-2 mr-2 mb-4 nombres">Je confirme le changement de ma réservation du
+                : {{resa2?.hstart.dayOfMonth}} / {{resa2?.hstart.month}} / {{resa2?.hstart.year}} à : {{resa2?.hstart.hour}}h{{resa2?.hstart.minute}} au : {{day}} /
+                {{month}} / {{year}} à : {{texteheuresminutes}}</div>
+              <button class="btn btn-primary" data-toggle="modal" data-target="#confirmReserv"
+                (click)="reserver(reservation)">Réserver</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
