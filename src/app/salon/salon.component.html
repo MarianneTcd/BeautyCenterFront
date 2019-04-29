@@ -118,7 +118,7 @@
 
             <div *ngIf="show2==true">
                 <div class="reservationconfirm mt-4 ml-2 mr-2 mb-4 nombres">Je confirme ma réservation pour le : {{day}} / {{month}} / {{year}} à : {{texteheuresminutes}}</div>
-                <button class="btn btn-primary" (click)="reserver()">Réserver</button>
+                <button class="btn btn-primary" (click)="reserver(reservation)" data-toggle="popover" title="titre" data-content="réservation effectuée">Réserver</button>
               </div>
           </div>
         </div>
