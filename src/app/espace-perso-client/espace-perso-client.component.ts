@@ -99,6 +99,7 @@ annulReserv(id){
   this.http.delete('http://localhost:8080/reserv/' + this.idreserv)
     .subscribe(response => { 
       console.log(response)
+      this.ngOnInit(); 
     });
 }
 }
