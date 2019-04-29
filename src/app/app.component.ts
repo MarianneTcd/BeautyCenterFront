@@ -47,6 +47,8 @@ export class AppComponent {
 
 
   connexion() {
+    this.pass=false;
+    this.desactive=false;
     console.log('debut de connexion()', this.u);
     this.http.post('http://localhost:8080/connexion', this.u).subscribe(userData => {
       this.data = userData.json();
