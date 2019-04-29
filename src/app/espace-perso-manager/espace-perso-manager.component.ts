@@ -27,6 +27,7 @@ export class EspacePersoManagerComponent implements OnInit {
   prenomManager;
   mailManager;
   photoManager;
+
   ngOnInit() {
     console.log('recup mis en service id', this.stockageService.id);
     console.log('recup mis en service id dans variable perso', this.idMan);
@@ -149,11 +150,19 @@ export class EspacePersoManagerComponent implements OnInit {
     });
   }
 
+  user: User = new User;
+  data;
+  nom;
+  prenom;
+  showManager = false;
+
+  modif=false;
   //MODIFICATION COMPTE MANAGER
   modifCompte(id) {
     this.http.put('http://localhost:8080/user/' + id, this.stockManager).subscribe(userPut => {
-      this.route.navigate(['/espacemanager']);
       console.log(userPut);
+      this.ngOnInit();
+      this.modif=true;
     }, err => {
       console.log(err);
     });

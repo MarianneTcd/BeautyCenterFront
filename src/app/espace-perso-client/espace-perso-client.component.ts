@@ -66,6 +66,7 @@ export class EspacePersoClientComponent implements OnInit {
     this.http.put('http://localhost:8080/user/' + id, this.profil).subscribe(userData => {
       console.log(userData);
       this.modif = true;
+      this.ngOnInit();
     }, err => {
       console.log(err);
     });
