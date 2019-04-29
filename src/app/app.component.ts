@@ -3,6 +3,7 @@ import { User } from './model/User';
 import { Http } from '@angular/http';
 import { RouterLinkWithHref, Router } from '@angular/router';
 import { ServiceStockageService } from './service-stockage.service';
+import { userInfo } from 'os';
 
 @Component({
   selector: 'app-root',
@@ -34,6 +35,14 @@ export class AppComponent {
   connexionReset(){
     this.u.mail = "";
     this.u.mdp = "";
+  }
+
+
+  inscriptionReset(){
+    this.user.nom="";
+    this.user.prenom="";
+    this.user.mail="";
+    this.user.mdp="";
   }
 
 
