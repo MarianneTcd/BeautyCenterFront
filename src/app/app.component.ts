@@ -31,6 +31,12 @@ export class AppComponent {
   desactive = false;
   connecte = true;
 
+  connexionReset(){
+    this.u.mail = "";
+    this.u.mdp = "";
+  }
+
+
   connexion() {
     console.log('debut de connexion()', this.u);
     this.http.post('http://localhost:8080/connexion', this.u).subscribe(userData => {
