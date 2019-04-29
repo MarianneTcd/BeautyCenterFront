@@ -50,7 +50,7 @@
                     <button class="btn btn-primary"> modifier </button>
                   </div>
                   <div class="row justify-content-end">
-                    <button class="btn btn-primary"> annuler </button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#annulReserv" (click)="recupId(r.id)"> annuler </button>
                   </div>
 
                 </div>
@@ -58,6 +58,27 @@
             </div>
 
             <br>
+            <div class="modal fade" id="annulReserv" tabindex="-1" role="dialog"
+            aria-labelledby="connexionLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel"> </h5>
+                </div>
+                <div class="modal-body">
+
+                  <h6 class="card-title text-center">Êtes-vous sûr de vouloir annuler votre réservation ?</h6>
+                  <form>
+                    <div class="d-flex justify-content-center">
+                      <button class="btn btn-primary" data-dismiss="modal"
+                        (click)="annulReserv(r.id)">Valider</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
           </div>
           <!-- </div> -->
           <br>
