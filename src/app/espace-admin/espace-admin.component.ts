@@ -62,8 +62,8 @@ export class EspaceAdminComponent implements OnInit {
           this.mailA = this.resUser.mail;
           this.mdpA = this.resUser.mdp;
           this.accessA = this.resUser.access;
-        })
-    this.chargeListe();
+          this.chargeListe();
+        });
   }
 
   chargeListe(){
@@ -90,12 +90,10 @@ export class EspaceAdminComponent implements OnInit {
     this.http.put('http://localhost:8080/user/' + id, this.managerModif).
       subscribe(userData => {
         console.log(userData);
+        this.ngOnInit();
       }, err => {
         console.log(err);
       });
-
-    this.chargeListe();
-
     this.showAjout = false;
     this.showModif = false;
   }
@@ -128,7 +126,7 @@ export class EspaceAdminComponent implements OnInit {
       response => {
         console.log(response.json());
         this.managerInactif = response.json();
-        this.chargeListe();
+        this.ngOnInit();
       });
     }else if (this.managerAD.access==5){
       this.managerAD.access=3;
@@ -136,8 +134,9 @@ export class EspaceAdminComponent implements OnInit {
       response => {
         console.log(response.json());
         this.managerActif = response.json();
-        this.chargeListe();
+        this.ngOnInit();
       });
+      
     }
   }
 
@@ -156,7 +155,7 @@ export class EspaceAdminComponent implements OnInit {
     this.showAjout = false;
     this.showModif = false;
     this.showMessageCreate = true;
-    this.chargeListe();
+    this.ngOnInit();
   }
 
 }
