@@ -101,6 +101,7 @@ export class EspaceAdminComponent implements OnInit {
   afficheAjout() {
     this.showAjout = true;
     this.showModif = false;
+    this.ajoutReset();
   }
 
   cacheAjoutModif(){
@@ -156,6 +157,13 @@ export class EspaceAdminComponent implements OnInit {
     this.showModif = false;
     this.showMessageCreate = true;
     this.ngOnInit();
+  }
+
+  ajoutReset(){
+    this.man.nom="";
+    this.man.prenom="";
+    this.man.mail="";
+    this.man.mdp="";
   }
 
 }
