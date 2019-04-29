@@ -32,6 +32,7 @@ export class EspacePersoClientComponent implements OnInit {
   idreserv; 
 
 
+
   ngOnInit() {
     this.http.get('http://localhost:8080/users/' + this.id)
     .subscribe(
@@ -93,13 +94,14 @@ recupId(id){
   this.idreserv = id
     };
 
-
+annul = false ; 
 annulReserv(id){ 
   this.idreserv = id 
   this.http.delete('http://localhost:8080/reserv/' + this.idreserv)
     .subscribe(response => { 
       console.log(response)
+      this.annul = true; 
       this.ngOnInit(); 
-    });
+          });
 }
 }
