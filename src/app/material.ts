@@ -6,11 +6,12 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatListModule} from '@angular/material/list'; 
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
-    imports: [MatButtonModule, MatCheckboxModule, MatAutocompleteModule,
+    imports: [MatButtonModule, MatCheckboxModule, MatAutocompleteModule, MatTableModule,
     MatInputModule, MatDialogModule, MatCardModule, MatButtonToggleModule, MatListModule],
-    exports: [MatButtonModule, MatCheckboxModule, MatAutocompleteModule,
+    exports: [MatButtonModule, MatCheckboxModule, MatAutocompleteModule, MatTableModule,
         MatInputModule, MatDialogModule, MatCardModule, MatButtonToggleModule, MatListModule],
     })
 

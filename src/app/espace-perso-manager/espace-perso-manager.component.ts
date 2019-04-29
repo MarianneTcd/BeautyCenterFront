@@ -57,6 +57,7 @@ export class EspacePersoManagerComponent implements OnInit {
     });
   }
 
+  addS = false;
   // CREATION D'UN SALON POUR LE MANAGER
   salon: Salon = new Salon();
   createSalon() {
@@ -64,6 +65,9 @@ export class EspacePersoManagerComponent implements OnInit {
     this.http.post('http://localhost:8080/salons', this.salon).subscribe(salonData => {
       console.log(salonData);
       this.chargeListeSalons(this.idManager);
+      this.addS = true;
+      this.addP=false;
+      this.modif=false;
     }, err => {
       console.log(err);
     });
@@ -104,6 +108,7 @@ export class EspacePersoManagerComponent implements OnInit {
     });
   }
 
+  addP=false;
   // AJOUT D'UNE PRESTATION AU SALON
   prestation: Prestation = new Prestation();
   pass = false;
@@ -111,6 +116,9 @@ export class EspacePersoManagerComponent implements OnInit {
     this.http.post('http://localhost:8080/prestations', this.prestation).subscribe(prestationData => {
       console.log(prestationData);
       this.affCach();
+      this.addP=true;
+      this.addS=false;
+      this.modif=false;
     }, err => {
       console.log(err);
     });
@@ -163,6 +171,8 @@ export class EspacePersoManagerComponent implements OnInit {
       console.log(userPut);
       this.ngOnInit();
       this.modif=true;
+      this.addP=false;
+      this.addS=false;
     }, err => {
       console.log(err);
     });
@@ -179,4 +189,19 @@ export class EspacePersoManagerComponent implements OnInit {
     });
   }
 
+  salonRest(){
+    this.salon.nomSalon="";
+    this.salon.nbPersonnelSalon=null;
+    this.salon.dateSalon=null;
+    this.salon.adresse="";
+    this.salon.telephone="";
+    this.salon.contact="";
+  }
+
+  prestationRest(){
+    this.prestation.titre="";
+    this.prestation.duree=null;
+    this.prestation.nbPersonnel=null;
+
+  }
 }

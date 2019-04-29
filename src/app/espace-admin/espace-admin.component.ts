@@ -86,7 +86,6 @@ export class EspaceAdminComponent implements OnInit {
   }
 
   modifManager(id) {
-    this.managerModif.access = 3;
     this.http.put('http://localhost:8080/user/' + id, this.managerModif).
       subscribe(userData => {
         console.log(userData);

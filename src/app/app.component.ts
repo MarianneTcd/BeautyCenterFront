@@ -3,6 +3,7 @@ import { User } from './model/User';
 import { Http } from '@angular/http';
 import { RouterLinkWithHref, Router } from '@angular/router';
 import { ServiceStockageService } from './service-stockage.service';
+import { userInfo } from 'os';
 
 @Component({
   selector: 'app-root',
@@ -37,7 +38,17 @@ export class AppComponent {
   }
 
 
+  inscriptionReset(){
+    this.user.nom="";
+    this.user.prenom="";
+    this.user.mail="";
+    this.user.mdp="";
+  }
+
+
   connexion() {
+    this.pass=false;
+    this.desactive=false;
     console.log('debut de connexion()', this.u);
     this.http.post('http://localhost:8080/connexion', this.u).subscribe(userData => {
       this.data = userData.json();
