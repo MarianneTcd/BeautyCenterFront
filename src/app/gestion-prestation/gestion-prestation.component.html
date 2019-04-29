@@ -11,7 +11,7 @@
             {{u.nbPersonnel}} personne(s)</label>
         </th>
         <th>
-          <button mat-button color="warn" (click)=supEvent(u.id)>retirer</button>
+          <button mat-button color="warn" (click)=supEvent(u.id) >retirer</button>
         </th>
       </tr>
     </table>
@@ -30,7 +30,7 @@
                 {{p.nbPersonnel}} personne(s)</label>
             </th>
             <th>
-              <button mat-button color="primary" (click)="recupEvent(p.id)" data-toggle="modal" data-target="#ajout">ajouter</button>
+              <button mat-button color="primary" (click)="recupEvent(p.id)" (click)="createEvent()">ajouter</button>
               
               <div class="modal fade" id="ajout" tabindex="-1" role="dialog"
                       aria-labelledby="connexionLabel" aria-hidden="true">
