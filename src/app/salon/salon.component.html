@@ -119,8 +119,8 @@
             <div *ngIf="show2==true">
               <div class="reservationconfirm mt-4 ml-2 mr-2 mb-4 nombres">Je confirme ma réservation pour le : {{day}} /
                 {{month}} / {{year}} à : {{texteheuresminutes}}</div>
-              <button class="btn btn-primary" (click)="reserver(reservation)" data-toggle="popover" title="titre"
-                data-content="réservation effectuée">Réserver</button>
+              <button class="btn btn-primary" data-toggle="modal" data-target="#confirmReserv"
+                (click)="reserver(reservation)">Réserver</button>
             </div>
           </div>
         </div>
@@ -131,20 +131,21 @@
 </div>
 
 
-
-
-<div class="modal fade" id="pasconnecte" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="confirmReserv" tabindex="-1" role="dialog" aria-labelledby="connexionLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Hop hop hop ! On se connecte avant de réserver !</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h5 class="modal-title" id="exampleModalLabel"> </h5>
       </div>
       <div class="modal-body">
-        ...
+
+        <h6 class="card-title text-center">Réservation effectuée.</h6>
+        <form>
+          <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
