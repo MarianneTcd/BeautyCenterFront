@@ -17,55 +17,61 @@
           <br>
           <!--charger la liste des managers-->
           <div style="width: 500px;">
-          <h3 class="mx-auto">Liste des managers</h3>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Nom</th>
-                <th scope="col">Prenom</th>
-                <th scope="col">e-mail</th>
-                <th>Modifier</th>
-                <th>Etat</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody *ngFor="let m of manager">
-              <tr>
-                <td>{{m.nom}}</td>
-                <td>{{m.prenom}}</td>
-                <td>{{m.mail}}</td>
-                <td>
-                  <div>
-                    <button mat-button (click)="goModif(m.id)">Modifier</button>
-                  </div>
-                </td>
-                <td>
-                  <div *ngIf="m.access == 3">
-                    <label><strong>Actif</strong></label>
-                  </div>
-                  <div *ngIf="m.access == 5">
-                    <label>Inactif</label>
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    <button mat-button color="warn" (click)="getInfo(m.id)" data-toggle="modal" data-target="#activation">Activer/Desactiver</button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <br>
+            <h3 class="mx-auto text-center">Liste des managers</h3><br>
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Prenom</th>
+                  <th scope="col">Mail</th>
+                  <th scope="col">Etat</th>
+                  <th scope="col">Modifier</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let m of manager">
+                <tr>
+                  <td>{{m.nom}}</td>
+                  <td>{{m.prenom}}</td>
+                  <td>{{m.mail}}</td>
+                  <td>
+                    <div *ngIf="m.access == 3">
+                      <label id="labelA">Actif</label>
+                    </div>
+                    <div *ngIf="m.access == 5">
+                      <label id="labelB">Inactif</label>
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <button mat-button color="primary" (click)="goModif(m.id)">Modifier</button>
+                    </div>
+                  </td>
+                  <td>
+                    <div *ngIf="m.access == 3">
+                      <button mat-button color="warn" (click)="getInfo(m.id)" data-toggle="modal"
+                        data-target="#activation">Désactiver</button>
+                    </div>
+                    <div *ngIf="m.access == 5">
+                        <button id="butn" mat-button (click)="getInfo(m.id)" data-toggle="modal"
+                          data-target="#activation">Réactiver</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+          </div>
         </div>
       </div>
-    </div>
     </div>
 
     <!--paneau pour ajouter un manager-->
     <div class="col-3 p-4">
       <div class="row">
         <div class="col">
-          <br><br><br><button mat-stroked-button type="button" (click)="afficheAjout()" (click)="ajoutReset()" data-toggle="modal">Ajouter un
+          <br><br><br><button mat-stroked-button type="button" (click)="afficheAjout()" (click)="ajoutReset()"
+            data-toggle="modal">Ajouter un
             manager</button>
         </div>
       </div>
