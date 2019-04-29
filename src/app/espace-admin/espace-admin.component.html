@@ -54,7 +54,7 @@
                     </div>
                     <div *ngIf="m.access == 5">
                         <button id="butn" mat-button (click)="getInfo(m.id)" data-toggle="modal"
-                          data-target="#activation">Réactiver</button>
+                          data-target="#reactivation">Réactiver</button>
                     </div>
                   </td>
                 </tr>
@@ -154,7 +154,7 @@
       </div>
       <div class="modal-body">
 
-        <h6 class="card-title text-center">Ajouter la prestation </h6>
+        <h6 class="card-title text-center">Désactiver le compte du manager <strong>{{managerAD.prenom}} {{managerAD.nom}} ?</strong></h6>
         <form>
           <div class="d-flex justify-content-center">
             <button class="btn btn-primary" data-dismiss="modal" (click)="activation(managerAD.id)">Valider</button>
@@ -165,3 +165,22 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="reactivation" tabindex="-1" role="dialog" aria-labelledby="connexionLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"> </h5>
+        </div>
+        <div class="modal-body">
+  
+          <h6 class="card-title text-center">Réactiver le compte du manager <strong>{{managerAD.prenom}} {{managerAD.nom}} ?</strong></h6>
+          <form>
+            <div class="d-flex justify-content-center">
+              <button class="btn btn-primary" data-dismiss="modal" (click)="activation(managerAD.id)">Valider</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
