@@ -12,6 +12,11 @@
         </div>
       </div>
       <div class="row">
+          <div *ngIf="modif" div style="width: 100%" class="alert alert-success text-center" role="alert">
+            Compte modifié
+          </div>
+        </div>
+      <div class="row">
         <div class="col">
 
           <h4 class="card-title text-center">Gestion de mes salons</h4>
@@ -315,7 +320,7 @@
                     name="photo">
                 </div>
               <div>
-                <button (click)="modifCompte(stockManager.id)" class="btn btn-primary" data-dismiss="modal">Modifier mon
+                <button  (click)="modifCompte(stockManager.id)" class="btn btn-primary" data-dismiss="modal">Modifier mon
                   compte</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour au
                   menu</button>
